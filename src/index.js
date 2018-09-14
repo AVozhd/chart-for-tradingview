@@ -1,9 +1,9 @@
-import 'bootstrap'
-import './css/index.css'
-import React from 'react'
-import { render } from 'react-dom'
-import App from './App'
+import 'bootstrap';
+import './css/index.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-render(
+ReactDOM.render(
 	<App />, document.getElementById('app')
-)
+);
