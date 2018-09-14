@@ -1,0 +1,6 @@
+@import 'normalize.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.test {
+  color: green;
+}
