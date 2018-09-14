@@ -1,8 +1,10 @@
 {
-  "name": "rapp2",
-  "version": "1.0.0",
+  "name": "chart-for-tradingview",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
+  "repository": "https://github.com/AVozhd/chart-for-tradingview.git",
+  "author": "Aleksei Vozhdaev <soulburglar@gmail.com>",
   "scripts": {
     "watch": "webpack --mode development -w & reload -b -d public -p 4000",
     "dev": "webpack --mode development --progress",
