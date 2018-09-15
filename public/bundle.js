@@ -4072,7 +4072,7 @@ exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!./normalize.cs
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "/*.container {*/\n  /*display: grid;*/\n  /*grid-template-columns: 1fr 1fr 1fr;*/\n/*}*/\n\n/*.grid-container {*/\n  /*display: grid;*/\n  /*gap: 30px 10px;*/\n  /*box-sizing: border-box;*/\n  /*width: 100%;*/\n/*}*/\n\n/*.block {*/\n  /*display: block;*/\n  /*margin: 0 auto;*/\n  /*!*width: auto;*!*/\n/*}*/\n\n/*.text-center {*/\n  /*text-align: center;*/\n/*}*/\n", ""]);
+exports.push([module.i, ".container{\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\n/*svg {*/\n  /*height: 500px;*/\n  /*width: 500px;*/\n/*}*/\n\n\n.test {\n  display: flex;\n  height: inherit;\n  width: inherit;\n  align-items: center;\n  justify-content: center;\n}\n\n/*p {*/\n  /*text-align:center;*/\n/*}*/\n\n/*text {*/\n  /*margin: 0 auto;*/\n  /*font-size: 14px;*/\n/*}*/\n\n/*.container {*/\n  /*display: grid;*/\n  /*grid-template-columns: 1fr 1fr 1fr;*/\n/*}*/\n\n/*.grid-container {*/\n  /*display: grid;*/\n  /*gap: 30px 10px;*/\n  /*box-sizing: border-box;*/\n  /*width: 100%;*/\n/*}*/\n\n/*.block {*/\n  /*display: block;*/\n  /*margin: 0 auto;*/\n  /*!*width: auto;*!*/\n/*}*/\n\n/*.text-center {*/\n  /*text-align: center;*/\n/*}*/\n", ""]);
 
 // exports
 
@@ -48025,8 +48025,12 @@ var App = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
-        _react2.default.createElement(_SnapSvgContainer2.default, { id: 'test' })
+        { className: 'container' },
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(_SnapSvgContainer2.default, { id: 'Buy', text: 'Buy', width: '100', height: '50' })
+        )
       );
     }
   }]);
@@ -48182,6 +48186,10 @@ var _snapsvg = __webpack_require__(/*! snapsvg */ "./node_modules/snapsvg/dist/s
 
 var _snapsvg2 = _interopRequireDefault(_snapsvg);
 
+var _jquery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -48203,19 +48211,50 @@ var SnapSvgContainer = function (_React$Component) {
     key: 'svgRender',
     value: function svgRender() {
       var paper = (0, _snapsvg2.default)('#' + this.props.id);
-      var rect = paper.rect(0, 0, 150, 150);
+      /*let line = paper.line(50, 50, 100, 100);
+      line.attr({
+        fill: '#000',
+        stroke: '#000',
+        strokeWidth: 2
+      });*/
+      var rect = paper.rect(0, 0, this.props.width, this.props.height);
       rect.attr({
         fill: '#fff',
         stroke: '#000',
         strokeWidth: 2
       });
-      // let text = paper.text(x, y, text);
-      // let circle = snp.circle(150, 150, 100);
-      // circle.attr({
-      //   fill: '#fff',
-      //   stroke: '#000',
-      //   strokeWidth: 2
-      // });
+      var foreignObjSvgTemplate = '<foreignObject width=' + this.props.width + ' height=' + this.props.height + '>\n                                   <body>\n                                     <span class="test">\n                                       ' + this.props.text + '\n                                     </span>\n                                   </body>\n                                 </foreignObject>';
+      var text = _snapsvg2.default.parse(foreignObjSvgTemplate);
+      var res = paper.append(text);
+      // let line = paper.line(this.props.width/2, parseInt(this.props.height), parseInt(this.props.width/2), parseInt(this.props.height*2));
+      var line = paper.line(parseInt(this.props.width / 2), parseInt(this.props.height), parseInt(this.props.width / 2), parseInt(this.props.height * 2));
+      line.attr({
+        stroke: '#000',
+        strokeWidth: 2
+      });
+
+      // let res = paper.group().append(text);
+      // asd
+
+
+      /*let rect = paper.rect(0, 0);
+      rect.attr({
+        fill: '#fff',
+        stroke: '#000',
+        strokeWidth: 2
+      });
+         let t1 = paper.text(10, 50, "test");
+      t1.attr({
+        'font-size':50
+      });
+         rect.attr({
+        width: (t1.node.clientWidth)
+      });*/
+
+      // console.log($('#test>rect'));
+      // $('#test>rect').append('<text x="30" y ="30">test</text>');
+      // let t1 = paper.text(10, 10, "test");
+      // t1.attr({textpath: "M10,10L100,100"});
     }
   }, {
     key: 'componentDidMount',
@@ -48234,6 +48273,11 @@ var SnapSvgContainer = function (_React$Component) {
     //   }
     // }
 
+    // getParentWidth
+
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {}
   }, {
     key: 'render',
     value: function render() {
@@ -48241,7 +48285,7 @@ var SnapSvgContainer = function (_React$Component) {
 
       return (
         // <div ref={d=>this.svgDiv=d} />
-        _react2.default.createElement('svg', { id: id })
+        _react2.default.createElement('svg', { id: id, width: this.props.width, height: this.props.height })
       );
     }
   }]);
