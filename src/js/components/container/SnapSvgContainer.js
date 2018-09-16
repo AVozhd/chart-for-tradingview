@@ -1,6 +1,4 @@
 import React from 'react';
-import ContainerDimensions from 'react-container-dimensions';
-import SnapSvgElement from '../presentational/SnapSvgElement';
 
 export default class SnapSvgContainer extends React.Component {
   

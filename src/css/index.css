@@ -1,6 +1,13 @@
 @import 'normalize.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'svgInstanceExample.css';
 
+
+/*circle {*/
+  /*fill: red;*/
+/*}*/
+
+/*
 .container{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -44,6 +51,7 @@ polygon {
 .triangle_group polygon {
   stroke-width: 1px;
 }
+*/
 
 /*
 path {
