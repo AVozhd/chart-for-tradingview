@@ -1,20 +1,18 @@
 import React from 'react';
 import SnapSvgContainer from './components/container/SnapSvgContainer';
-import FormContainer from './components/container/FormContainer';
-import HignChartContainer from './components/container/HignChartContainer';
+import ContainerDimensions from 'react-container-dimensions';
 
-class App extends React.Component {
+export default class App extends React.Component {
+  
   render() {
     return (
       <div className="container">
-        <div>
-          <SnapSvgContainer id="Buy" text="Buy"  width="100" height="50" />
+        <div className="svg-container">
+          <ContainerDimensions>
+            { ({ width, height }) => <SnapSvgContainer width={width} height={height} /> }
+          </ContainerDimensions>
         </div>
-        {/*<FormContainer />*/}
-        {/*<HignChartContainer />*/}
       </div>
     )
   }
 }
-
-export default App;

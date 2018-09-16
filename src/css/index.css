@@ -6,47 +6,51 @@
   grid-template-columns: 1fr 1fr;
 }
 
-/*svg {*/
-  /*height: 500px;*/
-  /*width: 500px;*/
-/*}*/
-
-
-.test {
-  display: flex;
-  height: inherit;
-  width: inherit;
-  align-items: center;
-  justify-content: center;
+.svg-container {
+  min-height: 700px;
 }
 
-/*p {*/
-  /*text-align:center;*/
-/*}*/
+svg {
+  height: auto;
+  width: 100%;
+}
 
-/*text {*/
-  /*margin: 0 auto;*/
-  /*font-size: 14px;*/
-/*}*/
+circle {
+  fill: none;
+  stroke: #008B6F;
+  stroke-width: 7px;
+}
 
-/*.container {*/
-  /*display: grid;*/
-  /*grid-template-columns: 1fr 1fr 1fr;*/
-/*}*/
+line {
+  stroke: black;
+  stroke-width: 5px;
+}
 
-/*.grid-container {*/
-  /*display: grid;*/
-  /*gap: 30px 10px;*/
-  /*box-sizing: border-box;*/
-  /*width: 100%;*/
-/*}*/
+text {
+  font-size: 60px;
+  text-anchor: middle;
+  font-family: 'FilmotypeMajor', sans-serif;
+  stroke: #000;
+  stroke-width: 3px;
+  fill: #F6F7F3;
+}
 
-/*.block {*/
-  /*display: block;*/
-  /*margin: 0 auto;*/
-  /*!*width: auto;*!*/
-/*}*/
+polygon {
+  fill: #008B6F;
+  stroke: black;
+  stroke-width: 2px;
+}
 
-/*.text-center {*/
-  /*text-align: center;*/
-/*}*/
+.triangle_group polygon {
+  stroke-width: 1px;
+}
+
+/*
+path {
+  stroke - the color of  the stroke
+  stroke-width - thickness of the stroke
+  stroke-linecap - shape of lineCap (e.g., round)
+  stroke-dasharray - legth of dashes for the stroke
+  stroke-dashoffset - offset for when the stroke begins
+}
+*/
