@@ -41732,7 +41732,7 @@ var SvgInstanceExample = function (_React$Component) {
   }
 
   _createClass(SvgInstanceExample, [{
-    key: "render",
+    key: 'test',
 
 
     // constructor(props) {
@@ -41744,48 +41744,56 @@ var SvgInstanceExample = function (_React$Component) {
     //   let element = document.getElementsByTagName('use');
     //   element.attachShadow({ mode: "open" });
     // }
-
+    value: function test() {
+      console.log('123');
+    }
+  }, {
+    key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
-        "div",
+        'div',
         null,
         _react2.default.createElement(
-          "svg",
-          { xmlns: "http://www.w3.org/2000/svg",
-            className: "defined-icon" },
+          'svg',
+          { xmlns: 'http://www.w3.org/2000/svg',
+            className: 'defined-icon' },
           _react2.default.createElement(
-            "symbol",
-            { id: "phone" },
-            _react2.default.createElement("rect", { x: "5", y: "5", width: "70", height: "100", rx: "5" }),
-            _react2.default.createElement("circle", { r: "3", cy: "105", cx: "40" })
+            'symbol',
+            { id: 'phone' },
+            _react2.default.createElement('rect', { x: '5', y: '5', width: '70', height: '100', rx: '5' }),
+            _react2.default.createElement('circle', { r: '3', cy: '105', cx: '40' })
           )
         ),
         _react2.default.createElement(
-          "h1",
+          'h1',
           null,
-          "Separator"
+          'Separator'
         ),
         _react2.default.createElement(
-          "div",
+          'div',
           null,
           _react2.default.createElement(
-            "svg",
-            { xmlns: "http://www.w3.org/2000/svg",
-              viewBox: "0 0 80 110",
-              className: "displayed-icon",
-              version: "1.1",
-              xmlnsXlink: "http://www.w3.org/1999/xlink" },
+            'svg',
+            { xmlns: 'http://www.w3.org/2000/svg',
+              viewBox: '0 0 80 110',
+              className: 'displayed-icon',
+              version: '1.1',
+              xmlnsXlink: 'http://www.w3.org/1999/xlink' },
             _react2.default.createElement(
-              "title",
+              'title',
               null,
-              "Title for SVG elem"
+              'Title for SVG elem'
             ),
             _react2.default.createElement(
-              "desc",
+              'desc',
               null,
-              "Some description for SVG elem"
+              'Some description for SVG elem'
             ),
-            _react2.default.createElement("use", { xlinkHref: "#phone" })
+            _react2.default.createElement('use', { xlinkHref: '#phone', onClick: function onClick() {
+                return _this2.test();
+              } })
           )
         )
       );

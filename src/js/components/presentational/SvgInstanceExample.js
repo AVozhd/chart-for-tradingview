@@ -12,6 +12,9 @@ export default class SvgInstanceExample extends React.Component {
   //   let element = document.getElementsByTagName('use');
   //   element.attachShadow({ mode: "open" });
   // }
+  test() {
+    console.log('123');
+  }
   
   render() {
     return (
@@ -34,7 +37,7 @@ export default class SvgInstanceExample extends React.Component {
             <desc>
               Some description for SVG elem
             </desc>
-            <use xlinkHref="#phone" />
+            <use xlinkHref="#phone" onClick={() => this.test()} />
           </svg>
         </div>
       </div>
