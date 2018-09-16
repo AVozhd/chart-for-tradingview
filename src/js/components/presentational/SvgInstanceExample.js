@@ -1,6 +1,18 @@
 import React from 'react';
+// import ShadowDOM from 'react-shadow';
 
 export default class SvgInstanceExample extends React.Component {
+  
+  // constructor(props) {
+  //   super(props);
+  //   // this.attachShadow({ mode: "open" });
+  // }
+  
+  // componenDidMount() {
+  //   let element = document.getElementsByTagName('use');
+  //   element.attachShadow({ mode: "open" });
+  // }
+  
   render() {
     return (
       <div>
@@ -12,19 +24,20 @@ export default class SvgInstanceExample extends React.Component {
           </symbol>
         </svg>
         <h1>Separator</h1>
-        <svg xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 80 110"
-             className="displayed-icon"
-             version="1.1"
-             xmlnsXlink="http://www.w3.org/1999/xlink">
-          <title>Title for SVG elem</title>
-          <desc>
-            Some description for SVG elem
-          </desc>
-          <use xlinkHref="#phone" />
-        </svg>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 110"
+               className="displayed-icon"
+               version="1.1"
+               xmlnsXlink="http://www.w3.org/1999/xlink">
+            <title>Title for SVG elem</title>
+            <desc>
+              Some description for SVG elem
+            </desc>
+            <use xlinkHref="#phone" />
+          </svg>
+        </div>
       </div>
-      
     )
   }
 }

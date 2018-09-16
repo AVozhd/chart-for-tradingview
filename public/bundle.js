@@ -41720,6 +41720,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// import ShadowDOM from 'react-shadow';
+
 var SvgInstanceExample = function (_React$Component) {
   _inherits(SvgInstanceExample, _React$Component);
 
@@ -41731,6 +41733,18 @@ var SvgInstanceExample = function (_React$Component) {
 
   _createClass(SvgInstanceExample, [{
     key: "render",
+
+
+    // constructor(props) {
+    //   super(props);
+    //   // this.attachShadow({ mode: "open" });
+    // }
+
+    // componenDidMount() {
+    //   let element = document.getElementsByTagName('use');
+    //   element.attachShadow({ mode: "open" });
+    // }
+
     value: function render() {
       return _react2.default.createElement(
         "div",
@@ -41752,23 +41766,27 @@ var SvgInstanceExample = function (_React$Component) {
           "Separator"
         ),
         _react2.default.createElement(
-          "svg",
-          { xmlns: "http://www.w3.org/2000/svg",
-            viewBox: "0 0 80 110",
-            className: "displayed-icon",
-            version: "1.1",
-            xmlnsXlink: "http://www.w3.org/1999/xlink" },
+          "div",
+          null,
           _react2.default.createElement(
-            "title",
-            null,
-            "Title for SVG elem"
-          ),
-          _react2.default.createElement(
-            "desc",
-            null,
-            "Some description for SVG elem"
-          ),
-          _react2.default.createElement("use", { xlinkHref: "#phone" })
+            "svg",
+            { xmlns: "http://www.w3.org/2000/svg",
+              viewBox: "0 0 80 110",
+              className: "displayed-icon",
+              version: "1.1",
+              xmlnsXlink: "http://www.w3.org/1999/xlink" },
+            _react2.default.createElement(
+              "title",
+              null,
+              "Title for SVG elem"
+            ),
+            _react2.default.createElement(
+              "desc",
+              null,
+              "Some description for SVG elem"
+            ),
+            _react2.default.createElement("use", { xlinkHref: "#phone" })
+          )
         )
       );
     }
