@@ -4246,11 +4246,11 @@ exports.push([module.i, "/*!\n * Bootstrap v4.1.3 (https://getbootstrap.com/)\n 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
 // imports
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!./normalize.css */ "./node_modules/css-loader/index.js!./src/css/normalize.css"), "");
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rubik);", ""]);
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
-exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!./svgInstanceExample.css */ "./node_modules/css-loader/index.js!./src/css/svgInstanceExample.css"), "");
 
 // module
-exports.push([module.i, "/*circle {*/\n  /*fill: red;*/\n/*}*/\n\n/*\n.container{\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\n.svg-container {\n  min-height: 700px;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\ncircle {\n  fill: none;\n  stroke: #008B6F;\n  stroke-width: 7px;\n}\n\nline {\n  stroke: black;\n  stroke-width: 5px;\n}\n\ntext {\n  font-size: 60px;\n  text-anchor: middle;\n  font-family: 'FilmotypeMajor', sans-serif;\n  stroke: #000;\n  stroke-width: 3px;\n  fill: #F6F7F3;\n}\n\npolygon {\n  fill: #008B6F;\n  stroke: black;\n  stroke-width: 2px;\n}\n\n.triangle_group polygon {\n  stroke-width: 1px;\n}\n*/\n\n/*\npath {\n  stroke - the color of  the stroke\n  stroke-width - thickness of the stroke\n  stroke-linecap - shape of lineCap (e.g., round)\n  stroke-dasharray - legth of dashes for the stroke\n  stroke-dashoffset - offset for when the stroke begins\n}\n*/\n", ""]);
+exports.push([module.i, "/*@import 'svgInstanceExample.css';*/\n\nbody {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n.container{\n  display: grid;\n  height: 100vh;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: 100%;\n  width: 100%;\n  /*background-color: #363636;*/\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\n\n/*circle {*/\n  /*fill: red;*/\n/*}*/\n\n/*\n.container{\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\n.svg-container {\n  min-height: 700px;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\ncircle {\n  fill: none;\n  stroke: #008B6F;\n  stroke-width: 7px;\n}\n\nline {\n  stroke: black;\n  stroke-width: 5px;\n}\n\ntext {\n  font-size: 60px;\n  text-anchor: middle;\n  font-family: 'FilmotypeMajor', sans-serif;\n  stroke: #000;\n  stroke-width: 3px;\n  fill: #F6F7F3;\n}\n\npolygon {\n  fill: #008B6F;\n  stroke: black;\n  stroke-width: 2px;\n}\n\n.triangle_group polygon {\n  stroke-width: 1px;\n}\n*/\n\n/*\npath {\n  stroke - the color of  the stroke\n  stroke-width - thickness of the stroke\n  stroke-linecap - shape of lineCap (e.g., round)\n  stroke-dasharray - legth of dashes for the stroke\n  stroke-dashoffset - offset for when the stroke begins\n}\n*/\n", ""]);
 
 // exports
 
@@ -4270,25 +4270,6 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 // module
 exports.push([module.i, "/*! normalize.css v6.0.0 | MIT License | github.com/necolas/normalize.css */\r\n\r\n/* Document\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Correct the line height in all browsers.\r\n * 2. Prevent adjustments of font size after orientation changes in\r\n *    IE on Windows Phone and in iOS.\r\n */\r\n\r\nhtml {\r\n    line-height: 1.15; /* 1 */\r\n    -ms-text-size-adjust: 100%; /* 2 */\r\n    -webkit-text-size-adjust: 100%; /* 2 */\r\n}\r\n\r\n/* Sections\r\n   ========================================================================== */\r\n\r\n/**\r\n * Add the correct display in IE 9-.\r\n */\r\n\r\narticle,\r\naside,\r\nfooter,\r\nheader,\r\nnav,\r\nsection {\r\n    display: block;\r\n}\r\n\r\n/**\r\n * Correct the font size and margin on `h1` elements within `section` and\r\n * `article` contexts in Chrome, Firefox, and Safari.\r\n */\r\n\r\nh1 {\r\n    font-size: 2em;\r\n    margin: 0.67em 0;\r\n}\r\n\r\n/* Grouping content\r\n   ========================================================================== */\r\n\r\n/**\r\n * Add the correct display in IE 9-.\r\n * 1. Add the correct display in IE.\r\n */\r\n\r\nfigcaption,\r\nfigure,\r\nmain { /* 1 */\r\n    display: block;\r\n}\r\n\r\n/**\r\n * Add the correct margin in IE 8.\r\n */\r\n\r\nfigure {\r\n    margin: 1em 40px;\r\n}\r\n\r\n/**\r\n * 1. Add the correct box sizing in Firefox.\r\n * 2. Show the overflow in Edge and IE.\r\n */\r\n\r\nhr {\r\n    box-sizing: content-box; /* 1 */\r\n    height: 0; /* 1 */\r\n    overflow: visible; /* 2 */\r\n}\r\n\r\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\r\n\r\npre {\r\n    font-family: monospace, monospace; /* 1 */\r\n    font-size: 1em; /* 2 */\r\n}\r\n\r\n/* Text-level semantics\r\n   ========================================================================== */\r\n\r\n/**\r\n * 1. Remove the gray background on active links in IE 10.\r\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\r\n */\r\n\r\na {\r\n    background-color: transparent; /* 1 */\r\n    -webkit-text-decoration-skip: objects; /* 2 */\r\n}\r\n\r\n/**\r\n * 1. Remove the bottom border in Chrome 57- and Firefox 39-.\r\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\r\n */\r\n\r\nabbr[title] {\r\n    border-bottom: none; /* 1 */\r\n    text-decoration: underline; /* 2 */\r\n    text-decoration: underline dotted; /* 2 */\r\n}\r\n\r\n/**\r\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\r\n */\r\n\r\nb,\r\nstrong {\r\n    font-weight: inherit;\r\n}\r\n\r\n/**\r\n * Add the correct font weight in Chrome, Edge, and Safari.\r\n */\r\n\r\nb,\r\nstrong {\r\n    font-weight: bolder;\r\n}\r\n\r\n/**\r\n * 1. Correct the inheritance and scaling of font size in all browsers.\r\n * 2. Correct the odd `em` font sizing in all browsers.\r\n */\r\n\r\ncode,\r\nkbd,\r\nsamp {\r\n    font-family: monospace, monospace; /* 1 */\r\n    font-size: 1em; /* 2 */\r\n}\r\n\r\n/**\r\n * Add the correct font style in Android 4.3-.\r\n */\r\n\r\ndfn {\r\n    font-style: italic;\r\n}\r\n\r\n/**\r\n * Add the correct background and color in IE 9-.\r\n */\r\n\r\nmark {\r\n    background-color: #ff0;\r\n    color: #000;\r\n}\r\n\r\n/**\r\n * Add the correct font size in all browsers.\r\n */\r\n\r\nsmall {\r\n    font-size: 80%;\r\n}\r\n\r\n/**\r\n * Prevent `sub` and `sup` elements from affecting the line height in\r\n * all browsers.\r\n */\r\n\r\nsub,\r\nsup {\r\n    font-size: 75%;\r\n    line-height: 0;\r\n    position: relative;\r\n    vertical-align: baseline;\r\n}\r\n\r\nsub {\r\n    bottom: -0.25em;\r\n}\r\n\r\nsup {\r\n    top: -0.5em;\r\n}\r\n\r\n/* Embedded content\r\n   ========================================================================== */\r\n\r\n/**\r\n * Add the correct display in IE 9-.\r\n */\r\n\r\naudio,\r\nvideo {\r\n    display: inline-block;\r\n}\r\n\r\n/**\r\n * Add the correct display in iOS 4-7.\r\n */\r\n\r\naudio:not([controls]) {\r\n    display: none;\r\n    height: 0;\r\n}\r\n\r\n/**\r\n * Remove the border on images inside links in IE 10-.\r\n */\r\n\r\nimg {\r\n    border-style: none;\r\n}\r\n\r\n/**\r\n * Hide the overflow in IE.\r\n */\r\n\r\nsvg:not(:root) {\r\n    overflow: hidden;\r\n}\r\n\r\n/* Forms\r\n   ========================================================================== */\r\n\r\n/**\r\n * Remove the margin in Firefox and Safari.\r\n */\r\n\r\nbutton,\r\ninput,\r\noptgroup,\r\nselect,\r\ntextarea {\r\n    margin: 0;\r\n}\r\n\r\n/**\r\n * Show the overflow in IE.\r\n * 1. Show the overflow in Edge.\r\n */\r\n\r\nbutton,\r\ninput { /* 1 */\r\n    overflow: visible;\r\n}\r\n\r\n/**\r\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\r\n * 1. Remove the inheritance of text transform in Firefox.\r\n */\r\n\r\nbutton,\r\nselect { /* 1 */\r\n    text-transform: none;\r\n}\r\n\r\n/**\r\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\r\n *    controls in Android 4.\r\n * 2. Correct the inability to style clickable types in iOS and Safari.\r\n */\r\n\r\nbutton,\r\nhtml [type=\"button\"], /* 1 */\r\n[type=\"reset\"],\r\n[type=\"submit\"] {\r\n    -webkit-appearance: button; /* 2 */\r\n}\r\n\r\n/**\r\n * Remove the inner border and padding in Firefox.\r\n */\r\n\r\nbutton::-moz-focus-inner,\r\n[type=\"button\"]::-moz-focus-inner,\r\n[type=\"reset\"]::-moz-focus-inner,\r\n[type=\"submit\"]::-moz-focus-inner {\r\n    border-style: none;\r\n    padding: 0;\r\n}\r\n\r\n/**\r\n * Restore the focus styles unset by the previous rule.\r\n */\r\n\r\nbutton:-moz-focusring,\r\n[type=\"button\"]:-moz-focusring,\r\n[type=\"reset\"]:-moz-focusring,\r\n[type=\"submit\"]:-moz-focusring {\r\n    outline: 1px dotted ButtonText;\r\n}\r\n\r\n/**\r\n * 1. Correct the text wrapping in Edge and IE.\r\n * 2. Correct the color inheritance from `fieldset` elements in IE.\r\n * 3. Remove the padding so developers are not caught out when they zero out\r\n *    `fieldset` elements in all browsers.\r\n */\r\n\r\nlegend {\r\n    box-sizing: border-box; /* 1 */\r\n    color: inherit; /* 2 */\r\n    display: table; /* 1 */\r\n    max-width: 100%; /* 1 */\r\n    padding: 0; /* 3 */\r\n    white-space: normal; /* 1 */\r\n}\r\n\r\n/**\r\n * 1. Add the correct display in IE 9-.\r\n * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\r\n */\r\n\r\nprogress {\r\n    display: inline-block; /* 1 */\r\n    vertical-align: baseline; /* 2 */\r\n}\r\n\r\n/**\r\n * Remove the default vertical scrollbar in IE.\r\n */\r\n\r\ntextarea {\r\n    overflow: auto;\r\n}\r\n\r\n/**\r\n * 1. Add the correct box sizing in IE 10-.\r\n * 2. Remove the padding in IE 10-.\r\n */\r\n\r\n[type=\"checkbox\"],\r\n[type=\"radio\"] {\r\n    box-sizing: border-box; /* 1 */\r\n    padding: 0; /* 2 */\r\n}\r\n\r\n/**\r\n * Correct the cursor style of increment and decrement buttons in Chrome.\r\n */\r\n\r\n[type=\"number\"]::-webkit-inner-spin-button,\r\n[type=\"number\"]::-webkit-outer-spin-button {\r\n    height: auto;\r\n}\r\n\r\n/**\r\n * 1. Correct the odd appearance in Chrome and Safari.\r\n * 2. Correct the outline style in Safari.\r\n */\r\n\r\n[type=\"search\"] {\r\n    -webkit-appearance: textfield; /* 1 */\r\n    outline-offset: -2px; /* 2 */\r\n}\r\n\r\n/**\r\n * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\r\n */\r\n\r\n[type=\"search\"]::-webkit-search-cancel-button,\r\n[type=\"search\"]::-webkit-search-decoration {\r\n    -webkit-appearance: none;\r\n}\r\n\r\n/**\r\n * 1. Correct the inability to style clickable types in iOS and Safari.\r\n * 2. Change font properties to `inherit` in Safari.\r\n */\r\n\r\n::-webkit-file-upload-button {\r\n    -webkit-appearance: button; /* 1 */\r\n    font: inherit; /* 2 */\r\n}\r\n\r\n/* Interactive\r\n   ========================================================================== */\r\n\r\n/*\r\n * Add the correct display in IE 9-.\r\n * 1. Add the correct display in Edge, IE, and Firefox.\r\n */\r\n\r\ndetails, /* 1 */\r\nmenu {\r\n    display: block;\r\n}\r\n\r\n/*\r\n * Add the correct display in all browsers.\r\n */\r\n\r\nsummary {\r\n    display: list-item;\r\n}\r\n\r\n/* Scripting\r\n   ========================================================================== */\r\n\r\n/**\r\n * Add the correct display in IE 9-.\r\n */\r\n\r\ncanvas {\r\n    display: inline-block;\r\n}\r\n\r\n/**\r\n * Add the correct display in IE.\r\n */\r\n\r\ntemplate {\r\n    display: none;\r\n}\r\n\r\n/* Hidden\r\n   ========================================================================== */\r\n\r\n/**\r\n * Add the correct display in IE 10-.\r\n */\r\n\r\n[hidden] {\r\n    display: none;\r\n}", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js!./src/css/svgInstanceExample.css":
-/*!******************************************************************!*\
-  !*** ./node_modules/css-loader!./src/css/svgInstanceExample.css ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".displayed-icon {\n  height: auto;\n  width: 30%;\n}\n\n.defined-icon {\n  display: none;\n}\n\n#phone rect,\n#phone circle {\n  fill: white;\n}\n\n#phone rect {\n  stroke: #FF2626;\n  stroke-width: 10px;\n}\n\n\n\n/*.displayed {*/\n  /*display: inline-block;*/\n/*}*/\n\n\n\n", ""]);
 
 // exports
 
@@ -41541,6 +41522,10 @@ var _reactContainerDimensions = __webpack_require__(/*! react-container-dimensio
 
 var _reactContainerDimensions2 = _interopRequireDefault(_reactContainerDimensions);
 
+var _StaticFlowChart = __webpack_require__(/*! ./components/container/StaticFlowChart */ "./src/js/components/container/StaticFlowChart.js");
+
+var _StaticFlowChart2 = _interopRequireDefault(_StaticFlowChart);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41567,7 +41552,12 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'svg-container' },
-          _react2.default.createElement(_SvgInstanceExample2.default, null)
+          _react2.default.createElement(_StaticFlowChart2.default, { type: 'Buy' })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'svg-container' },
+          _react2.default.createElement(_StaticFlowChart2.default, { type: 'Sell' })
         )
       );
     }
@@ -41689,6 +41679,186 @@ var SnapSvgContainer = function (_React$Component) {
 
 
 exports.default = SnapSvgContainer;
+
+/***/ }),
+
+/***/ "./src/js/components/container/StaticFlowChart.js":
+/*!********************************************************!*\
+  !*** ./src/js/components/container/StaticFlowChart.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var StaticFlowChart = function (_React$Component) {
+  _inherits(StaticFlowChart, _React$Component);
+
+  function StaticFlowChart() {
+    _classCallCheck(this, StaticFlowChart);
+
+    return _possibleConstructorReturn(this, (StaticFlowChart.__proto__ || Object.getPrototypeOf(StaticFlowChart)).apply(this, arguments));
+  }
+
+  _createClass(StaticFlowChart, [{
+    key: 'test',
+
+    // constructor(props) {
+    //   super(props);
+    //   this.dim = "0 0 " + props.containerWidth + " " + props.containerHeight;
+    // }
+
+    value: function test() {
+      console.log('test');
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      // let {containerWidth, containerHeight} = this.props;
+      // console.log("containerWidth ", containerWidth);
+      // console.log("containerHeight ", containerHeight);
+
+      // console.log(dim);
+      return _react2.default.createElement(
+        'svg',
+        { version: '1.1',
+          xmlns: 'http://www.w3.org/2000/svg',
+          viewBox: '0 0 300 500' },
+        _react2.default.createElement(
+          'g',
+          { onClick: function onClick() {
+              return _this2.test();
+            }, className: 'typeRect pointer', transform: 'translate(100,1)' },
+          _react2.default.createElement('rect', { height: '50', width: '100', x: '0', y: '0' }),
+          _react2.default.createElement(
+            'text',
+            { x: '50', y: '30' },
+            this.props.type
+          )
+        ),
+        _react2.default.createElement(
+          'g',
+          { transform: 'translate(150,50)' },
+          _react2.default.createElement('line', { x1: '0', y1: '0', x2: '0', y2: '23' }),
+          _react2.default.createElement('polygon', { points: '-2,23 2,23 0,28' })
+        ),
+        _react2.default.createElement(
+          'g',
+          { className: 'typeMixRect', transform: 'translate(100,80)' },
+          _react2.default.createElement('rect', { height: '100', width: '250', x: '-75', y: '0' }),
+          _react2.default.createElement(
+            'text',
+            { x: '50', y: '55' },
+            'and'
+          ),
+          _react2.default.createElement(
+            'g',
+            { className: 'typeRect pointer', transform: 'translate(-75,0)' },
+            _react2.default.createElement('rect', { height: '100', width: '100', x: '0', y: '0' }),
+            _react2.default.createElement(
+              'text',
+              { x: '50', y: '30' },
+              'RS1'
+            ),
+            _react2.default.createElement('line', { x1: '0', y1: '50', x2: '100', y2: '50' }),
+            _react2.default.createElement(
+              'text',
+              { x: '50', y: '80' },
+              'Params'
+            )
+          ),
+          _react2.default.createElement(
+            'g',
+            { className: 'typeRect pointer', transform: 'translate(75,0)' },
+            _react2.default.createElement('rect', { height: '100', width: '100', x: '0', y: '0' }),
+            _react2.default.createElement(
+              'text',
+              { x: '50', y: '30' },
+              'BB'
+            ),
+            _react2.default.createElement('line', { x1: '0', y1: '50', x2: '100', y2: '50' }),
+            _react2.default.createElement(
+              'text',
+              { x: '50', y: '80' },
+              'Params'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'g',
+          { transform: 'translate(150,180)' },
+          _react2.default.createElement('line', { x1: '0', y1: '0', x2: '0', y2: '23' }),
+          _react2.default.createElement('polygon', { points: '-2,23 2,23 0,28' })
+        ),
+        _react2.default.createElement(
+          'g',
+          { className: 'typeRect pointer', transform: 'translate(150,210)' },
+          _react2.default.createElement('rect', { height: '100', width: '100', x: '-50', y: '0' }),
+          _react2.default.createElement(
+            'text',
+            { x: '0', y: '30' },
+            'Market ',
+            this.props.type
+          ),
+          _react2.default.createElement('line', { x1: '-50', y1: '50', x2: '50', y2: '50' }),
+          _react2.default.createElement(
+            'text',
+            { x: '0', y: '80' },
+            'Params'
+          )
+        ),
+        _react2.default.createElement(
+          'g',
+          { transform: 'translate(150,310)' },
+          _react2.default.createElement('line', { x1: '0', y1: '0', x2: '0', y2: '23' }),
+          _react2.default.createElement('polygon', { points: '-2,23 2,23 0,28' })
+        ),
+        _react2.default.createElement(
+          'g',
+          { className: 'typeRect pointer', transform: 'translate(150,340)' },
+          _react2.default.createElement('rect', { height: '50', width: '100', x: '-50', y: '0' }),
+          _react2.default.createElement(
+            'text',
+            { x: '0', y: '30' },
+            'Finish'
+          )
+        )
+      );
+    }
+  }]);
+
+  return StaticFlowChart;
+}(_react2.default.Component);
+
+// <g transform="translate(100,5)">
+// </g>
+// <path x="2" y="2" d="M0,0 L0,0 L100,0 L100,50 L0,50 L0,0 Z" />
+// <line x1="47" y1="198" x2="221" y2="198" />
+// <text x="134" y="142" >Buy</text>
+
+
+exports.default = StaticFlowChart;
 
 /***/ }),
 
