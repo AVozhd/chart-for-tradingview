@@ -1,29 +1,46 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import $ from 'jquery';
 
 export default class StaticFlowChart extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.dim = "0 0 " + props.containerWidth + " " + props.containerHeight;
-  // }
-
-  test() {
-    console.log('test');
+  constructor(props) {
+    super(props);
+    // this.test = this.test.bind(this);
+    // this.dim = "0 0 " + props.containerWidth + " " + props.containerHeight;
   }
+
+  // test() {
+  //   if (this.props.type === "Buy") {
+  //     $('.svgSell').addClass('hidden');
+  //     $('.svgBuy').removeClass('hidden');
+  //   } else {
+  //     $('.svgSell').removeClass('hidden');
+  //     $('.svgBuy').addClass('hidden');
+  //   }
+  // }
+  
+  // test = (event) => {
+  //   console.log(123);
+  // };
 
   render() {
     // let {containerWidth, containerHeight} = this.props;
     // console.log("containerWidth ", containerWidth);
     // console.log("containerHeight ", containerHeight);
-
     // console.log(dim);
+  
+    const test = (event) => {
+      console.log(123);
+    };
+    
     return(
       <svg version="1.1"
            xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 300 500">
+           viewBox="0 0 300 500" className={"svg" + this.props.type} >
 
-        <g onClick={() => this.test()} className="typeRect pointer" transform="translate(100,1)">
-          <rect height="50" width="100" x="0" y="0" />
-          <text x="50" y="30" >{this.props.type}</text>
+        <g onClick={test} className="typeRect pointer" transform="translate(150,1)">
+          <rect height="50" width="100" x="-50" y="0" />
+          <text x="0" y="30" >{this.props.type}</text>
         </g>
 
         <g transform="translate(150,50)">
@@ -74,6 +91,10 @@ export default class StaticFlowChart extends React.Component {
     )
   }
 }
+
+StaticFlowChart.propTypes = {
+  type: PropTypes.string
+};
 
 // <g transform="translate(100,5)">
 // </g>

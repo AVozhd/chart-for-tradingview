@@ -47,6 +47,9 @@ text {
   cursor: pointer;
 }
 
+.hidden {
+  display: none;
+}
 
 /*circle {*/
   /*fill: red;*/
