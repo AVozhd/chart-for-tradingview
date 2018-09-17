@@ -43924,6 +43924,14 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _SimpleBlock = __webpack_require__(/*! ./components/presentational/SimpleBlock */ "./src/js/components/presentational/SimpleBlock.js");
+
+var _SimpleBlock2 = _interopRequireDefault(_SimpleBlock);
+
+var _SimpleArrow = __webpack_require__(/*! ./components/presentational/SimpleArrow */ "./src/js/components/presentational/SimpleArrow.js");
+
+var _SimpleArrow2 = _interopRequireDefault(_SimpleArrow);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43935,15 +43943,17 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SimpleApp = function (_React$Component) {
   _inherits(SimpleApp, _React$Component);
 
-  function SimpleApp(props, context) {
+  function SimpleApp(props) {
     _classCallCheck(this, SimpleApp);
 
-    var _this = _possibleConstructorReturn(this, (SimpleApp.__proto__ || Object.getPrototypeOf(SimpleApp)).call(this, props, context));
+    var _this = _possibleConstructorReturn(this, (SimpleApp.__proto__ || Object.getPrototypeOf(SimpleApp)).call(this, props));
 
     _this.addBlock = _this.addBlock.bind(_this);
+    _this.drawArrow = _this.drawArrow.bind(_this);
     // this.draw = this.draw.bind(this);
 
     _this.state = {
+      arrows: [],
       blocks: [{
         title: 'buy',
         x: 100,
@@ -43964,7 +43974,10 @@ var SimpleApp = function (_React$Component) {
         x: 100,
         y: newBlockY
       });
-      this.setState({ blocks: blocks });
+      this.drawArrow(blocks);
+      this.setState({
+        blocks: blocks
+      });
 
       /*this.setState((prevState, props) => ({
         blocks: prevState.blocks.push({
@@ -43975,19 +43988,27 @@ var SimpleApp = function (_React$Component) {
       }));*/
     }
   }, {
-    key: 'drawBlock',
-    value: function drawBlock(block, index) {
-      return _react2.default.createElement(
-        'g',
-        { key: index, transform: "translate(" + block.x + "," + block.y + ")" },
-        _react2.default.createElement('rect', { height: '50', width: '100', x: '-50', y: '0' }),
-        _react2.default.createElement(
-          'text',
-          { x: '0', y: '30' },
-          block.title
-        )
-      );
-    }
+    key: 'drawArrow',
+    value: function drawArrow() {}
+
+    /*drawArrow() {
+      return(
+        <g transform="translate(150,50)">
+          <line x1="0" y1="0" x2="0" y2="23" />
+          <polygon points="-2,23 2,23 0,28" />
+        </g>
+      )
+    }*/
+
+    /*drawBlock(block, index) {
+      return (
+        <g key={index} transform={"translate(" + block.x + "," + block.y + ")"}>
+          <rect height="50" width="100" x="-50" y="0" />
+          <text x="0" y="30" >{block.title}</text>
+        </g>
+      )
+    }*/
+
   }, {
     key: 'render',
     value: function render() {
@@ -43999,7 +44020,12 @@ var SimpleApp = function (_React$Component) {
           { version: '1.1',
             xmlns: 'http://www.w3.org/2000/svg',
             viewBox: '0 0 300 500', className: "svg" + this.props.type },
-          this.state.blocks.map(this.drawBlock)
+          this.state.blocks.map(function (elem, index) {
+            return _react2.default.createElement(_SimpleBlock2.default, { params: elem, index: index });
+          }),
+          this.state.arrows.map(function (elem, index) {
+            return _react2.default.createElement(_SimpleArrow2.default, { params: elem, index: index });
+          })
         ),
         _react2.default.createElement(
           'div',
@@ -44016,6 +44042,9 @@ var SimpleApp = function (_React$Component) {
 
   return SimpleApp;
 }(_react2.default.Component);
+
+// {this.state.blocks.map(this.drawBlock)}
+
 
 exports.default = SimpleApp;
 
@@ -44636,6 +44665,122 @@ var Block = function (_React$Component) {
 
 
 exports.default = Block;
+
+/***/ }),
+
+/***/ "./src/js/components/presentational/SimpleArrow.js":
+/*!*********************************************************!*\
+  !*** ./src/js/components/presentational/SimpleArrow.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SimpleArrow = function (_React$Component) {
+  _inherits(SimpleArrow, _React$Component);
+
+  function SimpleArrow(props) {
+    _classCallCheck(this, SimpleArrow);
+
+    return _possibleConstructorReturn(this, (SimpleArrow.__proto__ || Object.getPrototypeOf(SimpleArrow)).call(this, props));
+  }
+
+  _createClass(SimpleArrow, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "g",
+        { key: this.props.index, transform: "translate(" + this.props.params.x + "," + this.props.params.y + ")" },
+        _react2.default.createElement("line", { x1: "0", y1: "0", x2: "0", y2: "23" }),
+        _react2.default.createElement("polygon", { points: "-2,23 2,23 0,28" })
+      );
+    }
+  }]);
+
+  return SimpleArrow;
+}(_react2.default.Component);
+
+exports.default = SimpleArrow;
+
+/***/ }),
+
+/***/ "./src/js/components/presentational/SimpleBlock.js":
+/*!*********************************************************!*\
+  !*** ./src/js/components/presentational/SimpleBlock.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SimpleBlock = function (_React$Component) {
+  _inherits(SimpleBlock, _React$Component);
+
+  function SimpleBlock(props) {
+    _classCallCheck(this, SimpleBlock);
+
+    return _possibleConstructorReturn(this, (SimpleBlock.__proto__ || Object.getPrototypeOf(SimpleBlock)).call(this, props));
+  }
+
+  _createClass(SimpleBlock, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "g",
+        { key: this.props.index, transform: "translate(" + this.props.params.x + "," + this.props.params.y + ")" },
+        _react2.default.createElement("rect", { height: "50", width: "100", x: "-50", y: "0" }),
+        _react2.default.createElement(
+          "text",
+          { x: "0", y: "30" },
+          this.props.params.title
+        )
+      );
+    }
+  }]);
+
+  return SimpleBlock;
+}(_react2.default.Component);
+
+exports.default = SimpleBlock;
 
 /***/ }),
 
