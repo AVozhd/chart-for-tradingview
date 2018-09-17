@@ -43789,15 +43789,22 @@ var _App = __webpack_require__(/*! ./js/App */ "./src/js/App.js");
 
 var _App2 = _interopRequireDefault(_App);
 
+var _SimpleApp = __webpack_require__(/*! ./js/SimpleApp */ "./src/js/SimpleApp.js");
+
+var _SimpleApp2 = _interopRequireDefault(_SimpleApp);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var store = (0, _configureStore2.default)();
+// const store = configureStore();
 
-_reactDom2.default.render(_react2.default.createElement(
-  _reactRedux.Provider,
-  { store: store },
-  _react2.default.createElement(_App2.default, null)
-), document.getElementById('root'));
+_reactDom2.default.render(_react2.default.createElement(_SimpleApp2.default, null), document.getElementById('root'));
+
+/*ReactDOM.render(
+  <Provider store={store} >
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);*/
 
 /***/ }),
 
@@ -43841,6 +43848,10 @@ var _CoursesPage = __webpack_require__(/*! ./examples/CoursesPage */ "./src/js/e
 
 var _CoursesPage2 = _interopRequireDefault(_CoursesPage);
 
+var _SvgContainer = __webpack_require__(/*! ./components/container/SvgContainer */ "./src/js/components/container/SvgContainer.js");
+
+var _SvgContainer2 = _interopRequireDefault(_SvgContainer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43852,10 +43863,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
-  function App() {
+  function App(props) {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    // this.addBlock = this.addBlock.bind(this);
   }
 
   _createClass(App, [{
@@ -43863,8 +43875,8 @@ var App = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
-        _react2.default.createElement(_CoursesPage2.default, null)
+        { className: 'container' },
+        _react2.default.createElement(_SvgContainer2.default, null)
       );
     }
   }]);
@@ -43872,21 +43884,140 @@ var App = function (_React$Component) {
   return App;
 }(_react2.default.Component);
 
+// <CoursesPage />
+
+/*
+<div className="container">
+  <div className="svg-container">
+    <StaticFlowChart type="Buy" />
+    /!*<ContainerDimensions>
+     { ({ width, height }) => <StaticFlowChart containerWidth={width} containerHeight={height} /> }
+     </ContainerDimensions>*!/
+  </div>
+  <div className="svg-container">
+    <StaticFlowChart type="Sell" />
+  </div>
+</div>*/
+
+
 exports.default = App;
 
+/***/ }),
 
-{/*
-  <div className="container">
-   <div className="svg-container">
-     <StaticFlowChart type="Buy" />
-     /!*<ContainerDimensions>
-      { ({ width, height }) => <StaticFlowChart containerWidth={width} containerHeight={height} /> }
-      </ContainerDimensions>*!/
-   </div>
-   <div className="svg-container">
-     <StaticFlowChart type="Sell" />
-   </div>
-  </div>*/}
+/***/ "./src/js/SimpleApp.js":
+/*!*****************************!*\
+  !*** ./src/js/SimpleApp.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SimpleApp = function (_React$Component) {
+  _inherits(SimpleApp, _React$Component);
+
+  function SimpleApp(props, context) {
+    _classCallCheck(this, SimpleApp);
+
+    var _this = _possibleConstructorReturn(this, (SimpleApp.__proto__ || Object.getPrototypeOf(SimpleApp)).call(this, props, context));
+
+    _this.addBlock = _this.addBlock.bind(_this);
+    // this.draw = this.draw.bind(this);
+
+    _this.state = {
+      blocks: [{
+        title: 'buy',
+        x: 100,
+        y: 1
+      }]
+    };
+
+    return _this;
+  }
+
+  _createClass(SimpleApp, [{
+    key: 'addBlock',
+    value: function addBlock() {
+      var blocks = this.state.blocks;
+      var newBlockY = blocks[blocks.length - 1].y + 100;
+      blocks.push({
+        title: 'buy',
+        x: 100,
+        y: newBlockY
+      });
+      this.setState({ blocks: blocks });
+
+      /*this.setState((prevState, props) => ({
+        blocks: prevState.blocks.push({
+          title: 'buy',
+          x: 100,
+          y: prevState.blocks[prevState.blocks.length - 1].y + 100
+        })
+      }));*/
+    }
+  }, {
+    key: 'drawBlock',
+    value: function drawBlock(block, index) {
+      return _react2.default.createElement(
+        'g',
+        { key: index, transform: "translate(" + block.x + "," + block.y + ")" },
+        _react2.default.createElement('rect', { height: '50', width: '100', x: '-50', y: '0' }),
+        _react2.default.createElement(
+          'text',
+          { x: '0', y: '30' },
+          block.title
+        )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
+          'svg',
+          { version: '1.1',
+            xmlns: 'http://www.w3.org/2000/svg',
+            viewBox: '0 0 300 500', className: "svg" + this.props.type },
+          this.state.blocks.map(this.drawBlock)
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'button',
+            { onClick: this.addBlock },
+            'add block'
+          )
+        )
+      );
+    }
+  }]);
+
+  return SimpleApp;
+}(_react2.default.Component);
+
+exports.default = SimpleApp;
 
 /***/ }),
 
@@ -43904,6 +44035,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var CREATE_COURSE = exports.CREATE_COURSE = 'CREATE_COURSE';
+var CREATE_BLOCK = exports.CREATE_BLOCK = 'CREATE_BLOCK';
 
 /***/ }),
 
@@ -43930,6 +44062,33 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function createCourse(course) {
   return { type: types.CREATE_COURSE, course: course };
+}
+
+/***/ }),
+
+/***/ "./src/js/actions/svgActions.js":
+/*!**************************************!*\
+  !*** ./src/js/actions/svgActions.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createBlock = createBlock;
+
+var _actionTypes = __webpack_require__(/*! ./actionTypes */ "./src/js/actions/actionTypes.js");
+
+var types = _interopRequireWildcard(_actionTypes);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function createBlock(block) {
+  return { type: types.CREATE_BLOCK, block: block };
 }
 
 /***/ }),
@@ -44243,6 +44402,243 @@ StaticFlowChart.propTypes = {
 
 /***/ }),
 
+/***/ "./src/js/components/container/SvgContainer.js":
+/*!*****************************************************!*\
+  !*** ./src/js/components/container/SvgContainer.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _svgActions = __webpack_require__(/*! ../../actions/svgActions */ "./src/js/actions/svgActions.js");
+
+var svgActions = _interopRequireWildcard(_svgActions);
+
+var _Block = __webpack_require__(/*! ../presentational/Block */ "./src/js/components/presentational/Block.js");
+
+var _Block2 = _interopRequireDefault(_Block);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SvgContainer = function (_React$Component) {
+  _inherits(SvgContainer, _React$Component);
+
+  function SvgContainer(props, context) {
+    _classCallCheck(this, SvgContainer);
+
+    var _this = _possibleConstructorReturn(this, (SvgContainer.__proto__ || Object.getPrototypeOf(SvgContainer)).call(this, props, context));
+
+    _this.addBlock = _this.addBlock.bind(_this);
+    _this.draw = _this.draw.bind(_this);
+    _this.state = {
+      blocks: [{
+        title: 'buy',
+        x: 100,
+        y: 1
+      }]
+    };
+
+    return _this;
+  }
+
+  _createClass(SvgContainer, [{
+    key: 'addBlock',
+    value: function addBlock(event) {
+      var blocks = this.state.blocks;
+      blocks.push({
+        title: 'buy',
+        x: 100,
+        y: Math.random() * 100
+      });
+
+      // console.log(blocks);
+      // course.title = event.target.value;
+      // console.log(course);
+      // this.setState((prevState, props) => ({
+      //   course: prevState.course + props.course
+      // }));
+      this.setState({ blocks: blocks });
+      this.draw();
+    }
+  }, {
+    key: 'draw',
+    value: function draw() {
+      this.props.createBlock(this.state.blocks);
+    }
+    // onClickSave() {
+    //   this.props.createBlock(this.state.blocks);
+    // }
+
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.draw();
+    }
+  }, {
+    key: 'drawBlock',
+    value: function drawBlock(blocks) {
+      var arr = [];
+      Object.values(blocks).forEach(function (element, index) {
+        arr.push(_react2.default.createElement(
+          'g',
+          { key: index, transform: "translate(" + element.x + "," + element.y + ")" },
+          _react2.default.createElement('rect', { height: '50', width: '100', x: '-50', y: '0' }),
+          _react2.default.createElement(
+            'text',
+            { x: '0', y: '30' },
+            element.title
+          )
+        ));
+      });
+      return [].concat(arr);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'button',
+            { onClick: this.addBlock },
+            'add block'
+          )
+        ),
+        _react2.default.createElement(
+          'svg',
+          { version: '1.1',
+            xmlns: 'http://www.w3.org/2000/svg',
+            viewBox: '0 0 300 500', className: "svg" + this.props.type },
+          this.props.blocks.map(this.drawBlock)
+        )
+      );
+    }
+  }]);
+
+  return SvgContainer;
+}(_react2.default.Component);
+
+SvgContainer.propTypes = {
+  blocks: _propTypes2.default.array,
+  createBlock: _propTypes2.default.func
+};
+
+function mapStateToProps(state, ownProps) {
+  return {
+    blocks: state.blocks
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    createBlock: function createBlock(block) {
+      return dispatch(svgActions.createBlock(block));
+    }
+  };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SvgContainer);
+
+/***/ }),
+
+/***/ "./src/js/components/presentational/Block.js":
+/*!***************************************************!*\
+  !*** ./src/js/components/presentational/Block.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Block = function (_React$Component) {
+  _inherits(Block, _React$Component);
+
+  function Block(props) {
+    _classCallCheck(this, Block);
+
+    var _this = _possibleConstructorReturn(this, (Block.__proto__ || Object.getPrototypeOf(Block)).call(this, props));
+
+    console.log(props);
+    return _this;
+  }
+
+  _createClass(Block, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'g',
+        { key: 'test', transform: "translate(" + 100 + "," + 1 + ")" },
+        _react2.default.createElement('rect', { height: '50', width: '100', x: '-50', y: '0' }),
+        _react2.default.createElement(
+          'text',
+          { x: '0', y: '30' },
+          'test'
+        )
+      );
+    }
+  }]);
+
+  return Block;
+}(_react2.default.Component);
+
+// <g key={index} transform={"translate(" + block.x + "," + block.y + ")"}>
+//  <rect height="50" width="100" x="-50" y="0" />
+//  <text x="0" y="30" >{block.title}</text>
+// </g>
+
+
+exports.default = Block;
+
+/***/ }),
+
 /***/ "./src/js/components/presentational/SvgInstanceExample.js":
 /*!****************************************************************!*\
   !*** ./src/js/components/presentational/SvgInstanceExample.js ***!
@@ -44489,44 +44885,6 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ "./src/js/reducers/courseReducer.js":
-/*!******************************************!*\
-  !*** ./src/js/reducers/courseReducer.js ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = courseReducer;
-
-var _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ "./src/js/actions/actionTypes.js");
-
-var types = _interopRequireWildcard(_actionTypes);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function courseReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments[1];
-
-  switch (action.type) {
-    case types.CREATE_COURSE:
-      return [].concat(_toConsumableArray(state), [Object.assign({}, action.course)]);
-
-    default:
-      return state;
-  }
-}
-
-/***/ }),
-
 /***/ "./src/js/reducers/index.js":
 /*!**********************************!*\
   !*** ./src/js/reducers/index.js ***!
@@ -44543,17 +44901,55 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
-var _courseReducer = __webpack_require__(/*! ./courseReducer */ "./src/js/reducers/courseReducer.js");
+var _svgReducer = __webpack_require__(/*! ./svgReducer */ "./src/js/reducers/svgReducer.js");
 
-var _courseReducer2 = _interopRequireDefault(_courseReducer);
+var _svgReducer2 = _interopRequireDefault(_svgReducer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var rootReducer = (0, _redux.combineReducers)({
-  courses: _courseReducer2.default
+  blocks: _svgReducer2.default
 });
 
 exports.default = rootReducer;
+
+/***/ }),
+
+/***/ "./src/js/reducers/svgReducer.js":
+/*!***************************************!*\
+  !*** ./src/js/reducers/svgReducer.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = svgReducer;
+
+var _actionTypes = __webpack_require__(/*! ../actions/actionTypes */ "./src/js/actions/actionTypes.js");
+
+var types = _interopRequireWildcard(_actionTypes);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function svgReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+    case types.CREATE_BLOCK:
+      return [].concat(_toConsumableArray(state), [Object.assign({}, action.block)]);
+
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
@@ -44574,16 +44970,16 @@ exports.default = configureStore;
 
 var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
-var _reducers = __webpack_require__(/*! ../reducers */ "./src/js/reducers/index.js");
+var _index = __webpack_require__(/*! ../reducers/index */ "./src/js/reducers/index.js");
 
-var _reducers2 = _interopRequireDefault(_reducers);
+var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 
 function configureStore(initialState) {
-  return (0, _redux.createStore)(_reducers2.default, initialState);
+  return (0, _redux.createStore)(_index2.default, initialState);
 }
 
 // applyMiddleware(reduxImmutableStateInvariant())

@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import courses from './courseReducer';
+import blocks from './svgReducer';
 
 const rootReducer = combineReducers({
-  courses
+  blocks
 });
 
 export default rootReducer;
