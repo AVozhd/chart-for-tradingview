@@ -4250,7 +4250,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.btn {\n  margin-right: 10px;\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 90%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.btn {\n  margin-right: 10px;\n}\n", ""]);
 
 // exports
 
@@ -43924,13 +43924,17 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Block = __webpack_require__(/*! ./components/presentational/Block */ "./src/js/components/presentational/Block.js");
+var _BuyChart = __webpack_require__(/*! ./components/container/BuyChart */ "./src/js/components/container/BuyChart.js");
 
-var _Block2 = _interopRequireDefault(_Block);
+var _BuyChart2 = _interopRequireDefault(_BuyChart);
 
-var _SimpleArrow = __webpack_require__(/*! ./components/presentational/SimpleArrow */ "./src/js/components/presentational/SimpleArrow.js");
+var _SellChart = __webpack_require__(/*! ./components/container/SellChart */ "./src/js/components/container/SellChart.js");
 
-var _SimpleArrow2 = _interopRequireDefault(_SimpleArrow);
+var _SellChart2 = _interopRequireDefault(_SellChart);
+
+var _Button = __webpack_require__(/*! ./components/presentational/Button */ "./src/js/components/presentational/Button.js");
+
+var _Button2 = _interopRequireDefault(_Button);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43950,45 +43954,15 @@ var SimpleApp = function (_React$Component) {
 
     _this.showBuy = _this.showBuy.bind(_this);
     _this.showSell = _this.showSell.bind(_this);
-    _this.addBlock = _this.addBlock.bind(_this);
-    _this.drawArrow = _this.drawArrow.bind(_this);
 
     _this.state = {
       chartType: 'buy',
-      arrows: [{
-        x1: 0,
-        y1: 50,
-        x2: 0,
-        y2: 100
-      }, {
-        x1: 0,
-        y1: 200,
-        x2: 0,
-        y2: 250
-      }],
-      blocks: [{
-        blockType: 'simple',
-        title: 'buy',
-        x: 0,
-        y: 0,
-        width: 100,
-        height: 50
-      }, {
-        blockType: 'complex',
-        x: 0,
-        y: 100,
-        width: 250,
-        height: 100,
-        leftParamsTitle: 'RS1',
-        rightParamsTitle: 'BB'
-      }, {
-        blockType: 'simple',
-        title: 'finish',
-        x: 0,
-        y: 250,
-        width: 100,
-        height: 50
-      }]
+      buyBtn: {
+        active: true
+      },
+      sellBtn: {
+        active: false
+      }
     };
     return _this;
   }
@@ -43998,7 +43972,13 @@ var SimpleApp = function (_React$Component) {
     value: function showBuy() {
       if (this.state.chartType !== 'buy') {
         this.setState({
-          chartType: 'buy'
+          chartType: 'buy',
+          buyBtn: {
+            active: true
+          },
+          sellBtn: {
+            active: false
+          }
         });
       }
     }
@@ -44007,52 +43987,15 @@ var SimpleApp = function (_React$Component) {
     value: function showSell() {
       if (this.state.chartType !== 'sell') {
         this.setState({
-          chartType: 'sell'
+          chartType: 'sell',
+          buyBtn: {
+            active: false
+          },
+          sellBtn: {
+            active: true
+          }
         });
       }
-    }
-  }, {
-    key: 'addBlock',
-    value: function addBlock() {
-      var blocks = this.state.blocks;
-      var newBlocksState = blocks.slice(0, blocks.length - 1);
-      newBlocksState.push({
-        blockType: 'complex',
-        x: 0,
-        y: newBlocksState[newBlocksState.length - 1].y + newBlocksState[newBlocksState.length - 1].height + 50,
-        width: 250,
-        height: 100,
-        leftParamsTitle: 'RS1',
-        rightParamsTitle: 'BB'
-      });
-      newBlocksState.push({
-        blockType: 'simple',
-        title: 'finish',
-        x: 0,
-        y: newBlocksState[newBlocksState.length - 1].y + newBlocksState[newBlocksState.length - 1].height + 50,
-        width: 100,
-        height: 50
-      });
-      this.setState({
-        blocks: newBlocksState
-      });
-      this.drawArrow(newBlocksState);
-    }
-  }, {
-    key: 'drawArrow',
-    value: function drawArrow(blocks) {
-      var newBlock = blocks[blocks.length - 1];
-      var lastBlock = blocks[blocks.length - 2];
-      var arrows = this.state.arrows;
-      arrows.push({
-        x1: lastBlock.x,
-        y1: lastBlock.y + lastBlock.height,
-        x2: newBlock.x,
-        y2: newBlock.y
-      });
-      this.setState({
-        arrows: arrows
-      });
     }
   }, {
     key: 'render',
@@ -44066,34 +44009,22 @@ var SimpleApp = function (_React$Component) {
             xmlns: 'http://www.w3.org/2000/svg',
             viewBox: '0 0 300 500',
             className: "svg" + this.props.type },
-          _react2.default.createElement(
-            'g',
-            { transform: 'translate(150,1)' },
-            this.state.blocks.map(function (elem, index) {
-              return _react2.default.createElement(_Block2.default, { params: elem, index: index });
-            }),
-            this.state.arrows.map(function (elem, index) {
-              return _react2.default.createElement(_SimpleArrow2.default, { params: elem, index: index });
-            })
-          )
+          this.state.chartType === 'buy' ? _react2.default.createElement(_BuyChart2.default, null) : _react2.default.createElement(_SellChart2.default, null)
         ),
         _react2.default.createElement(
           'div',
           null,
           _react2.default.createElement(
             'button',
-            { className: 'btn btn-outline-primary', onClick: this.showBuy },
+            { className: this.state.buyBtn.active ? 'btn btn-outline-primary active' : 'btn btn-outline-primary',
+              onClick: this.showBuy },
             'Buy'
           ),
           _react2.default.createElement(
             'button',
-            { className: 'btn btn-outline-primary', onClick: this.showSell },
+            { className: this.state.sellBtn.active ? 'btn btn-outline-primary active' : 'btn btn-outline-primary',
+              onClick: this.showSell },
             'Sell'
-          ),
-          _react2.default.createElement(
-            'button',
-            { className: 'btn btn-outline-primary', onClick: this.addBlock },
-            'add block'
           )
         )
       );
@@ -44102,6 +44033,9 @@ var SimpleApp = function (_React$Component) {
 
   return SimpleApp;
 }(_react2.default.Component);
+
+// <button className="btn btn-outline-primary" onClick={this.addBlock}>add block</button>
+
 
 exports.default = SimpleApp;
 
@@ -44176,6 +44110,310 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function createBlock(block) {
   return { type: types.CREATE_BLOCK, block: block };
 }
+
+/***/ }),
+
+/***/ "./src/js/components/container/BuyChart.js":
+/*!*************************************************!*\
+  !*** ./src/js/components/container/BuyChart.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Block = __webpack_require__(/*! ../presentational/Block */ "./src/js/components/presentational/Block.js");
+
+var _Block2 = _interopRequireDefault(_Block);
+
+var _SimpleArrow = __webpack_require__(/*! ../presentational/SimpleArrow */ "./src/js/components/presentational/SimpleArrow.js");
+
+var _SimpleArrow2 = _interopRequireDefault(_SimpleArrow);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var BuyChart = function (_React$Component) {
+  _inherits(BuyChart, _React$Component);
+
+  function BuyChart(props) {
+    _classCallCheck(this, BuyChart);
+
+    var _this = _possibleConstructorReturn(this, (BuyChart.__proto__ || Object.getPrototypeOf(BuyChart)).call(this, props));
+
+    _this.addBlock = _this.addBlock.bind(_this);
+    _this.drawArrow = _this.drawArrow.bind(_this);
+
+    _this.state = {
+      arrows: [{
+        x1: 0,
+        y1: 50,
+        x2: 0,
+        y2: 100
+      }, {
+        x1: 0,
+        y1: 200,
+        x2: 0,
+        y2: 250
+      }],
+      blocks: [{
+        blockType: 'simple',
+        title: 'BUY',
+        x: 0,
+        y: 0,
+        width: 100,
+        height: 50
+      }, {
+        blockType: 'complex',
+        x: 0,
+        y: 100,
+        width: 250,
+        height: 100,
+        leftParamsTitle: 'RS1',
+        rightParamsTitle: 'BB'
+      }, {
+        blockType: 'simple',
+        title: 'finish',
+        x: 0,
+        y: 250,
+        width: 100,
+        height: 50
+      }]
+    };
+    return _this;
+  }
+
+  _createClass(BuyChart, [{
+    key: 'addBlock',
+    value: function addBlock() {
+      var blocks = this.state.blocks;
+      var newBlocksState = blocks.slice(0, blocks.length - 1);
+      newBlocksState.push({
+        blockType: 'complex',
+        x: 0,
+        y: newBlocksState[newBlocksState.length - 1].y + newBlocksState[newBlocksState.length - 1].height + 50,
+        width: 250,
+        height: 100,
+        leftParamsTitle: 'RS1',
+        rightParamsTitle: 'BB'
+      });
+      newBlocksState.push({
+        blockType: 'simple',
+        title: 'finish',
+        x: 0,
+        y: newBlocksState[newBlocksState.length - 1].y + newBlocksState[newBlocksState.length - 1].height + 50,
+        width: 100,
+        height: 50
+      });
+      this.setState({
+        blocks: newBlocksState
+      });
+      this.drawArrow(newBlocksState);
+    }
+  }, {
+    key: 'drawArrow',
+    value: function drawArrow(blocks) {
+      var newBlock = blocks[blocks.length - 1];
+      var lastBlock = blocks[blocks.length - 2];
+      var arrows = this.state.arrows;
+      arrows.push({
+        x1: lastBlock.x,
+        y1: lastBlock.y + lastBlock.height,
+        x2: newBlock.x,
+        y2: newBlock.y
+      });
+      this.setState({
+        arrows: arrows
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'g',
+        { transform: 'translate(150,1)' },
+        this.state.blocks.map(function (elem, index) {
+          return _react2.default.createElement(_Block2.default, { params: elem, index: index });
+        }),
+        this.state.arrows.map(function (elem, index) {
+          return _react2.default.createElement(_SimpleArrow2.default, { params: elem, index: index });
+        })
+      );
+    }
+  }]);
+
+  return BuyChart;
+}(_react2.default.Component);
+
+exports.default = BuyChart;
+
+/***/ }),
+
+/***/ "./src/js/components/container/SellChart.js":
+/*!**************************************************!*\
+  !*** ./src/js/components/container/SellChart.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Block = __webpack_require__(/*! ../presentational/Block */ "./src/js/components/presentational/Block.js");
+
+var _Block2 = _interopRequireDefault(_Block);
+
+var _SimpleArrow = __webpack_require__(/*! ../presentational/SimpleArrow */ "./src/js/components/presentational/SimpleArrow.js");
+
+var _SimpleArrow2 = _interopRequireDefault(_SimpleArrow);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SellChart = function (_React$Component) {
+  _inherits(SellChart, _React$Component);
+
+  function SellChart(props) {
+    _classCallCheck(this, SellChart);
+
+    var _this = _possibleConstructorReturn(this, (SellChart.__proto__ || Object.getPrototypeOf(SellChart)).call(this, props));
+
+    _this.addBlock = _this.addBlock.bind(_this);
+    _this.drawArrow = _this.drawArrow.bind(_this);
+
+    _this.state = {
+      arrows: [{
+        x1: 0,
+        y1: 50,
+        x2: 0,
+        y2: 100
+      }, {
+        x1: 0,
+        y1: 200,
+        x2: 0,
+        y2: 250
+      }],
+      blocks: [{
+        blockType: 'simple',
+        title: 'SELL',
+        x: 0,
+        y: 0,
+        width: 100,
+        height: 50
+      }, {
+        blockType: 'complex',
+        x: 0,
+        y: 100,
+        width: 250,
+        height: 100,
+        leftParamsTitle: 'RS1',
+        rightParamsTitle: 'BB'
+      }, {
+        blockType: 'simple',
+        title: 'finish',
+        x: 0,
+        y: 250,
+        width: 100,
+        height: 50
+      }]
+    };
+    return _this;
+  }
+
+  _createClass(SellChart, [{
+    key: 'addBlock',
+    value: function addBlock() {
+      var blocks = this.state.blocks;
+      var newBlocksState = blocks.slice(0, blocks.length - 1);
+      newBlocksState.push({
+        blockType: 'complex',
+        x: 0,
+        y: newBlocksState[newBlocksState.length - 1].y + newBlocksState[newBlocksState.length - 1].height + 50,
+        width: 250,
+        height: 100,
+        leftParamsTitle: 'RS1',
+        rightParamsTitle: 'BB'
+      });
+      newBlocksState.push({
+        blockType: 'simple',
+        title: 'finish',
+        x: 0,
+        y: newBlocksState[newBlocksState.length - 1].y + newBlocksState[newBlocksState.length - 1].height + 50,
+        width: 100,
+        height: 50
+      });
+      this.setState({
+        blocks: newBlocksState
+      });
+      this.drawArrow(newBlocksState);
+    }
+  }, {
+    key: 'drawArrow',
+    value: function drawArrow(blocks) {
+      var newBlock = blocks[blocks.length - 1];
+      var lastBlock = blocks[blocks.length - 2];
+      var arrows = this.state.arrows;
+      arrows.push({
+        x1: lastBlock.x,
+        y1: lastBlock.y + lastBlock.height,
+        x2: newBlock.x,
+        y2: newBlock.y
+      });
+      this.setState({
+        arrows: arrows
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'g',
+        { transform: 'translate(150,1)' },
+        this.state.blocks.map(function (elem, index) {
+          return _react2.default.createElement(_Block2.default, { params: elem, index: index });
+        }),
+        this.state.arrows.map(function (elem, index) {
+          return _react2.default.createElement(_SimpleArrow2.default, { params: elem, index: index });
+        })
+      );
+    }
+  }]);
+
+  return SellChart;
+}(_react2.default.Component);
+
+exports.default = SellChart;
 
 /***/ }),
 
@@ -44793,6 +45031,74 @@ var Block = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Block;
+
+/***/ }),
+
+/***/ "./src/js/components/presentational/Button.js":
+/*!****************************************************!*\
+  !*** ./src/js/components/presentational/Button.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Button = function (_React$Component) {
+  _inherits(Button, _React$Component);
+
+  function Button(props) {
+    _classCallCheck(this, Button);
+
+    var _this = _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).call(this, props));
+
+    _this.toggleActive = _this.toggleActive.bind(_this);
+    _this.state = {
+      active: false
+    };
+    return _this;
+  }
+
+  _createClass(Button, [{
+    key: 'toggleActive',
+    value: function toggleActive() {
+      var currentState = this.state.active;
+      this.setState({ active: !currentState });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'button',
+        { className: this.state.active ? 'btn btn-outline-primary active' : 'btn btn-outline-primary',
+          onClick: this.toggleActive },
+        this.props.title
+      );
+    }
+  }]);
+
+  return Button;
+}(_react2.default.Component);
+
+exports.default = Button;
 
 /***/ }),
 
