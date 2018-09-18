@@ -97,8 +97,8 @@ export default class SellChart extends React.Component {
   
   render() {
     return(
-      <g transform="translate(150,1)">
-        {this.state.blocks.map((elem, index) => <Block params={elem} index={index} />)}
+      <g transform="translate(130,1)">
+        {this.state.blocks.map((elem, index) => <Block addBlock={this.addBlock} params={elem} index={index} />)}
         {this.state.arrows.map((elem, index) => <SimpleArrow params={elem} index={index} />)}
       </g>
     )

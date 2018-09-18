@@ -7,6 +7,11 @@ body {
   font-size: 16px;
 }
 
+#root {
+  display: block;
+  overflow: auto;
+}
+
 .container{
   display: grid;
   height: auto;
@@ -15,7 +20,7 @@ body {
 
 svg {
   height: auto;
-  width: 90%;
+  width: 100%;
 }
 
 rect,
@@ -32,8 +37,14 @@ polygon {
 
 rect,
 path,
-polygon {
+polygon,
+circle {
   fill: white;
+}
+
+circle {
+  stroke: #007bff;
+  stroke-width: 1px;
 }
 
 text {
@@ -55,4 +66,9 @@ text {
 
 .btn {
   margin-right: 10px;
+}
+
+.addBlockBtn line {
+  stroke: #007bff;
+  stroke-width: 1px;
 }

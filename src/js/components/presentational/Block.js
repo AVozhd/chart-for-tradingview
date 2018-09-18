@@ -5,6 +5,7 @@ export default class Block extends React.Component {
     super(props);
   
     this.handleClick = this.handleClick.bind(this);
+    this.addBlock = this.addBlock.bind(this);
     
     this.state = {
       status: ''
@@ -15,6 +16,10 @@ export default class Block extends React.Component {
     this.setState({
       status: 'active'
     });
+  }
+  
+  addBlock() {
+    this.props.addBlock();
   }
   
   render() {
@@ -66,6 +71,21 @@ export default class Block extends React.Component {
             <line x1="1" y1="50" x2="99" y2="50" />
             <text x="50" y="30" >{this.props.params.rightParamsTitle}</text>
             <text x="50" y="80" >Params</text>
+          </g>
+          <g className="addBlockBtn"
+             transform={"translate(" + (this.props.params.width/2 + 20) + "," + (this.props.params.height/2) + ")"}
+             onClick={this.addBlock} >
+            <circle cx="0"
+                    cy="0"
+                    r={this.props.params.height/10 + ""} />
+            <line x1={"-" + (this.props.params.height/10 - 5)}
+                  y1="0"
+                  x2={"" + (this.props.params.height/10 - 5)}
+                  y2="0" />
+            <line x1="0"
+                  y1={"" + (this.props.params.height/10 - 5)}
+                  x2="0"
+                  y2={"-" + (this.props.params.height/10 - 5)} />
           </g>
         </g>
       )

@@ -1,7 +1,6 @@
 import React from 'react';
 import BuyChart from './components/container/BuyChart';
 import SellChart from './components/container/SellChart';
-import Button from './components/presentational/Button';
 
 export default class SimpleApp extends React.Component {
   constructor(props) {
@@ -9,14 +8,15 @@ export default class SimpleApp extends React.Component {
     
     this.showBuy = this.showBuy.bind(this);
     this.showSell = this.showSell.bind(this);
+    this.changeSVG = this.changeSVG.bind(this);
     
     this.state = {
       chartType: 'buy',
-      buyBtn: {
-        active: true
-      },
-      sellBtn: {
-        active: false
+      buyBtn: { active: true },
+      sellBtn: { active: false },
+      svg: {
+        width: 300,
+        height: 400
       }
     }
   }
@@ -25,12 +25,8 @@ export default class SimpleApp extends React.Component {
     if(this.state.chartType !== 'buy') {
       this.setState({
         chartType: 'buy',
-        buyBtn: {
-          active: true
-        },
-        sellBtn: {
-          active: false
-        }
+        buyBtn: { active: true },
+        sellBtn: { active: false }
       });
     }
   }
@@ -39,14 +35,19 @@ export default class SimpleApp extends React.Component {
     if(this.state.chartType !== 'sell') {
       this.setState({
         chartType: 'sell',
-        buyBtn: {
-          active: false
-        },
-        sellBtn: {
-          active: true
-        }
+        buyBtn: { active: false },
+        sellBtn: { active: true }
       });
     }
+  }
+  
+  changeSVG() {
+    this.setState((prevState, props) => ({
+      svg: {
+        width: prevState.svg.width,
+        height: prevState.svg.height + 200
+      }
+    }));
   }
   
   render() {
@@ -54,14 +55,14 @@ export default class SimpleApp extends React.Component {
       <div className="container">
         <svg version="1.1"
              xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 300 500"
+             viewBox={"0 0 " + this.state.svg.width + " " + this.state.svg.height}
              className={"svg" + this.props.type} >
-          {this.state.chartType === 'buy' ? <BuyChart /> : <SellChart /> }
+          {this.state.chartType === 'buy' ? <BuyChart changeSVG={this.changeSVG} /> : <SellChart changeSVG={this.changeSVG} /> }
         </svg>
         <div>
-          {/*<Button title="Buy" onClick={this.showBuy} />*/}
-          {/*<Button title="Sell" onClick={this.showSell} />*/}
-          
+          <span className="btn">
+            Choose chart type:
+          </span>
           <button className={this.state.buyBtn.active ? 'btn btn-outline-primary active' : 'btn btn-outline-primary'}
                   onClick={this.showBuy}>
             Buy
@@ -76,4 +77,3 @@ export default class SimpleApp extends React.Component {
   }
 }
 
-// <button className="btn btn-outline-primary" onClick={this.addBlock}>add block</button>

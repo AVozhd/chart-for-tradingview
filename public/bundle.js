@@ -4250,7 +4250,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 90%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.btn {\n  margin-right: 10px;\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ncircle {\n  stroke: #007bff;\n  stroke-width: 1px;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn line {\n  stroke: #007bff;\n  stroke-width: 1px;\n}\n", ""]);
 
 // exports
 
@@ -43932,10 +43932,6 @@ var _SellChart = __webpack_require__(/*! ./components/container/SellChart */ "./
 
 var _SellChart2 = _interopRequireDefault(_SellChart);
 
-var _Button = __webpack_require__(/*! ./components/presentational/Button */ "./src/js/components/presentational/Button.js");
-
-var _Button2 = _interopRequireDefault(_Button);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43954,14 +43950,15 @@ var SimpleApp = function (_React$Component) {
 
     _this.showBuy = _this.showBuy.bind(_this);
     _this.showSell = _this.showSell.bind(_this);
+    _this.changeSVG = _this.changeSVG.bind(_this);
 
     _this.state = {
       chartType: 'buy',
-      buyBtn: {
-        active: true
-      },
-      sellBtn: {
-        active: false
+      buyBtn: { active: true },
+      sellBtn: { active: false },
+      svg: {
+        width: 300,
+        height: 400
       }
     };
     return _this;
@@ -43973,12 +43970,8 @@ var SimpleApp = function (_React$Component) {
       if (this.state.chartType !== 'buy') {
         this.setState({
           chartType: 'buy',
-          buyBtn: {
-            active: true
-          },
-          sellBtn: {
-            active: false
-          }
+          buyBtn: { active: true },
+          sellBtn: { active: false }
         });
       }
     }
@@ -43988,14 +43981,22 @@ var SimpleApp = function (_React$Component) {
       if (this.state.chartType !== 'sell') {
         this.setState({
           chartType: 'sell',
-          buyBtn: {
-            active: false
-          },
-          sellBtn: {
-            active: true
-          }
+          buyBtn: { active: false },
+          sellBtn: { active: true }
         });
       }
+    }
+  }, {
+    key: 'changeSVG',
+    value: function changeSVG() {
+      this.setState(function (prevState, props) {
+        return {
+          svg: {
+            width: prevState.svg.width,
+            height: prevState.svg.height + 200
+          }
+        };
+      });
     }
   }, {
     key: 'render',
@@ -44007,13 +44008,18 @@ var SimpleApp = function (_React$Component) {
           'svg',
           { version: '1.1',
             xmlns: 'http://www.w3.org/2000/svg',
-            viewBox: '0 0 300 500',
+            viewBox: "0 0 " + this.state.svg.width + " " + this.state.svg.height,
             className: "svg" + this.props.type },
-          this.state.chartType === 'buy' ? _react2.default.createElement(_BuyChart2.default, null) : _react2.default.createElement(_SellChart2.default, null)
+          this.state.chartType === 'buy' ? _react2.default.createElement(_BuyChart2.default, { changeSVG: this.changeSVG }) : _react2.default.createElement(_SellChart2.default, { changeSVG: this.changeSVG })
         ),
         _react2.default.createElement(
           'div',
           null,
+          _react2.default.createElement(
+            'span',
+            { className: 'btn' },
+            'Choose chart type:'
+          ),
           _react2.default.createElement(
             'button',
             { className: this.state.buyBtn.active ? 'btn btn-outline-primary active' : 'btn btn-outline-primary',
@@ -44033,9 +44039,6 @@ var SimpleApp = function (_React$Component) {
 
   return SimpleApp;
 }(_react2.default.Component);
-
-// <button className="btn btn-outline-primary" onClick={this.addBlock}>add block</button>
-
 
 exports.default = SimpleApp;
 
@@ -44202,6 +44205,7 @@ var BuyChart = function (_React$Component) {
   _createClass(BuyChart, [{
     key: 'addBlock',
     value: function addBlock() {
+      this.props.changeSVG();
       var blocks = this.state.blocks;
       var newBlocksState = blocks.slice(0, blocks.length - 1);
       newBlocksState.push({
@@ -44245,11 +44249,13 @@ var BuyChart = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'g',
-        { transform: 'translate(150,1)' },
+        { transform: 'translate(130,1)' },
         this.state.blocks.map(function (elem, index) {
-          return _react2.default.createElement(_Block2.default, { params: elem, index: index });
+          return _react2.default.createElement(_Block2.default, { addBlock: _this2.addBlock, params: elem, index: index });
         }),
         this.state.arrows.map(function (elem, index) {
           return _react2.default.createElement(_SimpleArrow2.default, { params: elem, index: index });
@@ -44397,11 +44403,13 @@ var SellChart = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         'g',
-        { transform: 'translate(150,1)' },
+        { transform: 'translate(130,1)' },
         this.state.blocks.map(function (elem, index) {
-          return _react2.default.createElement(_Block2.default, { params: elem, index: index });
+          return _react2.default.createElement(_Block2.default, { addBlock: _this2.addBlock, params: elem, index: index });
         }),
         this.state.arrows.map(function (elem, index) {
           return _react2.default.createElement(_SimpleArrow2.default, { params: elem, index: index });
@@ -44931,6 +44939,7 @@ var Block = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Block.__proto__ || Object.getPrototypeOf(Block)).call(this, props));
 
     _this.handleClick = _this.handleClick.bind(_this);
+    _this.addBlock = _this.addBlock.bind(_this);
 
     _this.state = {
       status: ''
@@ -44944,6 +44953,11 @@ var Block = function (_React$Component) {
       this.setState({
         status: 'active'
       });
+    }
+  }, {
+    key: 'addBlock',
+    value: function addBlock() {
+      this.props.addBlock();
     }
   }, {
     key: 'render',
@@ -45021,6 +45035,23 @@ var Block = function (_React$Component) {
               { x: '50', y: '80' },
               'Params'
             )
+          ),
+          _react2.default.createElement(
+            'g',
+            { className: 'addBlockBtn',
+              transform: "translate(" + (this.props.params.width / 2 + 20) + "," + this.props.params.height / 2 + ")",
+              onClick: this.addBlock },
+            _react2.default.createElement('circle', { cx: '0',
+              cy: '0',
+              r: this.props.params.height / 10 + "" }),
+            _react2.default.createElement('line', { x1: "-" + (this.props.params.height / 10 - 5),
+              y1: '0',
+              x2: "" + (this.props.params.height / 10 - 5),
+              y2: '0' }),
+            _react2.default.createElement('line', { x1: '0',
+              y1: "" + (this.props.params.height / 10 - 5),
+              x2: '0',
+              y2: "-" + (this.props.params.height / 10 - 5) })
           )
         );
       }
@@ -45031,74 +45062,6 @@ var Block = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Block;
-
-/***/ }),
-
-/***/ "./src/js/components/presentational/Button.js":
-/*!****************************************************!*\
-  !*** ./src/js/components/presentational/Button.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Button = function (_React$Component) {
-  _inherits(Button, _React$Component);
-
-  function Button(props) {
-    _classCallCheck(this, Button);
-
-    var _this = _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).call(this, props));
-
-    _this.toggleActive = _this.toggleActive.bind(_this);
-    _this.state = {
-      active: false
-    };
-    return _this;
-  }
-
-  _createClass(Button, [{
-    key: 'toggleActive',
-    value: function toggleActive() {
-      var currentState = this.state.active;
-      this.setState({ active: !currentState });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'button',
-        { className: this.state.active ? 'btn btn-outline-primary active' : 'btn btn-outline-primary',
-          onClick: this.toggleActive },
-        this.props.title
-      );
-    }
-  }]);
-
-  return Button;
-}(_react2.default.Component);
-
-exports.default = Button;
 
 /***/ }),
 
@@ -45133,10 +45096,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SimpleArrow = function (_React$Component) {
   _inherits(SimpleArrow, _React$Component);
 
-  function SimpleArrow(props) {
+  function SimpleArrow() {
     _classCallCheck(this, SimpleArrow);
 
-    return _possibleConstructorReturn(this, (SimpleArrow.__proto__ || Object.getPrototypeOf(SimpleArrow)).call(this, props));
+    return _possibleConstructorReturn(this, (SimpleArrow.__proto__ || Object.getPrototypeOf(SimpleArrow)).apply(this, arguments));
   }
 
   _createClass(SimpleArrow, [{
@@ -45156,14 +45119,6 @@ var SimpleArrow = function (_React$Component) {
 
   return SimpleArrow;
 }(_react2.default.Component);
-
-/*
-<g key={this.props.index} transform={"translate(" + this.props.params.x + "," + this.props.params.y + ")"} >
-  <line x1="0" y1="0" x2="0" y2="23" />
-  <polygon points="-2,23 2,23 0,28" />
-</g>
-*/
-
 
 exports.default = SimpleArrow;
 
