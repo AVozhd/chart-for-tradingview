@@ -4250,7 +4250,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ncircle {\n  stroke: #007bff;\n  stroke-width: 1px;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn line {\n  stroke: #007bff;\n  stroke-width: 1px;\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ncircle {\n  stroke: #007bff;\n  stroke-width: 1px;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn line {\n  stroke: #007bff;\n  stroke-width: 1px;\n}\n", ""]);
 
 // exports
 
@@ -43932,6 +43932,10 @@ var _SellChart = __webpack_require__(/*! ./components/container/SellChart */ "./
 
 var _SellChart2 = _interopRequireDefault(_SellChart);
 
+var _Form = __webpack_require__(/*! ./components/container/Form */ "./src/js/components/container/Form.js");
+
+var _Form2 = _interopRequireDefault(_Form);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43951,6 +43955,7 @@ var SimpleApp = function (_React$Component) {
     _this.showBuy = _this.showBuy.bind(_this);
     _this.showSell = _this.showSell.bind(_this);
     _this.changeSVG = _this.changeSVG.bind(_this);
+    _this.makeFormActive = _this.makeFormActive.bind(_this);
 
     _this.state = {
       chartType: 'buy',
@@ -43959,6 +43964,9 @@ var SimpleApp = function (_React$Component) {
       svg: {
         width: 300,
         height: 400
+      },
+      form: {
+        active: false
       }
     };
     return _this;
@@ -43999,6 +44007,15 @@ var SimpleApp = function (_React$Component) {
       });
     }
   }, {
+    key: 'makeFormActive',
+    value: function makeFormActive() {
+      this.setState({
+        form: {
+          active: true
+        }
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -44010,14 +44027,16 @@ var SimpleApp = function (_React$Component) {
             xmlns: 'http://www.w3.org/2000/svg',
             viewBox: "0 0 " + this.state.svg.width + " " + this.state.svg.height,
             className: "svg" + this.props.type },
-          this.state.chartType === 'buy' ? _react2.default.createElement(_BuyChart2.default, { changeSVG: this.changeSVG }) : _react2.default.createElement(_SellChart2.default, { changeSVG: this.changeSVG })
+          this.state.chartType === 'buy' ? _react2.default.createElement(_BuyChart2.default, { makeFormActive: this.makeFormActive,
+            changeSVG: this.changeSVG }) : _react2.default.createElement(_SellChart2.default, { makeFormActive: this.makeFormActive,
+            changeSVG: this.changeSVG })
         ),
         _react2.default.createElement(
           'div',
           null,
           _react2.default.createElement(
             'span',
-            { className: 'btn' },
+            { className: 'span-title' },
             'Choose chart type:'
           ),
           _react2.default.createElement(
@@ -44031,6 +44050,11 @@ var SimpleApp = function (_React$Component) {
             { className: this.state.sellBtn.active ? 'btn btn-outline-primary active' : 'btn btn-outline-primary',
               onClick: this.showSell },
             'Sell'
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            this.state.form.active ? _react2.default.createElement(_Form2.default, null) : ''
           )
         )
       );
@@ -44255,10 +44279,16 @@ var BuyChart = function (_React$Component) {
         'g',
         { transform: 'translate(130,1)' },
         this.state.blocks.map(function (elem, index) {
-          return _react2.default.createElement(_Block2.default, { addBlock: _this2.addBlock, params: elem, index: index });
+          return _react2.default.createElement(_Block2.default, { makeFormActive: _this2.props.makeFormActive,
+            addBlock: _this2.addBlock,
+            params: elem,
+            key: index,
+            index: index });
         }),
         this.state.arrows.map(function (elem, index) {
-          return _react2.default.createElement(_SimpleArrow2.default, { params: elem, index: index });
+          return _react2.default.createElement(_SimpleArrow2.default, { params: elem,
+            key: index,
+            index: index });
         })
       );
     }
@@ -44268,6 +44298,75 @@ var BuyChart = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = BuyChart;
+
+/***/ }),
+
+/***/ "./src/js/components/container/Form.js":
+/*!*********************************************!*\
+  !*** ./src/js/components/container/Form.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Form = function (_React$Component) {
+  _inherits(Form, _React$Component);
+
+  function Form() {
+    _classCallCheck(this, Form);
+
+    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).apply(this, arguments));
+  }
+
+  _createClass(Form, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "form",
+        null,
+        _react2.default.createElement(
+          "div",
+          { className: "form-group" },
+          _react2.default.createElement(
+            "label",
+            { htmlFor: "exampleInputEmail1" },
+            "Email address"
+          ),
+          _react2.default.createElement("input", { type: "email", className: "form-control", id: "exampleInputEmail1", "aria-describedby": "emailHelp", placeholder: "Enter email" }),
+          _react2.default.createElement(
+            "small",
+            { id: "emailHelp", className: "form-text text-muted" },
+            "We'll never share your email with anyone else."
+          )
+        )
+      );
+    }
+  }]);
+
+  return Form;
+}(_react2.default.Component);
+
+exports.default = Form;
 
 /***/ }),
 
@@ -44409,10 +44508,16 @@ var SellChart = function (_React$Component) {
         'g',
         { transform: 'translate(130,1)' },
         this.state.blocks.map(function (elem, index) {
-          return _react2.default.createElement(_Block2.default, { addBlock: _this2.addBlock, params: elem, index: index });
+          return _react2.default.createElement(_Block2.default, { makeFormActive: _this2.props.makeFormActive,
+            addBlock: _this2.addBlock,
+            params: elem,
+            key: index,
+            index: index });
         }),
         this.state.arrows.map(function (elem, index) {
-          return _react2.default.createElement(_SimpleArrow2.default, { params: elem, index: index });
+          return _react2.default.createElement(_SimpleArrow2.default, { params: elem,
+            index: index,
+            key: index });
         })
       );
     }
@@ -44950,6 +45055,7 @@ var Block = function (_React$Component) {
   _createClass(Block, [{
     key: 'handleClick',
     value: function handleClick(event) {
+      this.props.makeFormActive();
       this.setState({
         status: 'active'
       });

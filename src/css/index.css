@@ -64,6 +64,7 @@ text {
   stroke: #007bff;
 }
 
+.span-title,
 .btn {
   margin-right: 10px;
 }

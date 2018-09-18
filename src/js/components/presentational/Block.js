@@ -13,6 +13,7 @@ export default class Block extends React.Component {
   }
   
   handleClick(event) {
+    this.props.makeFormActive();
     this.setState({
       status: 'active'
     });

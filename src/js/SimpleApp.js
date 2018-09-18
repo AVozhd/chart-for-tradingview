@@ -1,7 +1,8 @@
 import React from 'react';
 import BuyChart from './components/container/BuyChart';
 import SellChart from './components/container/SellChart';
-
+import Form from './components/container/Form';
+  
 export default class SimpleApp extends React.Component {
   constructor(props) {
     super(props);
@@ -9,6 +10,7 @@ export default class SimpleApp extends React.Component {
     this.showBuy = this.showBuy.bind(this);
     this.showSell = this.showSell.bind(this);
     this.changeSVG = this.changeSVG.bind(this);
+    this.makeFormActive = this.makeFormActive.bind(this);
     
     this.state = {
       chartType: 'buy',
@@ -17,6 +19,9 @@ export default class SimpleApp extends React.Component {
       svg: {
         width: 300,
         height: 400
+      },
+      form: {
+        active: false
       }
     }
   }
@@ -50,6 +55,14 @@ export default class SimpleApp extends React.Component {
     }));
   }
   
+  makeFormActive() {
+    this.setState({
+      form: {
+        active: true
+      }
+    });
+  }
+  
   render() {
     return(
       <div className="container">
@@ -57,10 +70,14 @@ export default class SimpleApp extends React.Component {
              xmlns="http://www.w3.org/2000/svg"
              viewBox={"0 0 " + this.state.svg.width + " " + this.state.svg.height}
              className={"svg" + this.props.type} >
-          {this.state.chartType === 'buy' ? <BuyChart changeSVG={this.changeSVG} /> : <SellChart changeSVG={this.changeSVG} /> }
+          {this.state.chartType === 'buy' ?
+            <BuyChart makeFormActive={this.makeFormActive}
+                      changeSVG={this.changeSVG} />
+            : <SellChart makeFormActive={this.makeFormActive}
+                         changeSVG={this.changeSVG} /> }
         </svg>
         <div>
-          <span className="btn">
+          <span className="span-title">
             Choose chart type:
           </span>
           <button className={this.state.buyBtn.active ? 'btn btn-outline-primary active' : 'btn btn-outline-primary'}
@@ -71,6 +88,9 @@ export default class SimpleApp extends React.Component {
                   onClick={this.showSell}>
             Sell
           </button>
+          <div>
+            {this.state.form.active ? <Form /> : ''}
+          </div>
         </div>
       </div>
     )

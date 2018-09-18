@@ -99,8 +99,14 @@ export default class BuyChart extends React.Component {
   render() {
     return(
       <g transform="translate(130,1)">
-        {this.state.blocks.map((elem, index) => <Block addBlock={this.addBlock} params={elem} index={index} />)}
-        {this.state.arrows.map((elem, index) => <SimpleArrow params={elem} index={index} />)}
+        {this.state.blocks.map((elem, index) => <Block makeFormActive={this.props.makeFormActive}
+                                                       addBlock={this.addBlock}
+                                                       params={elem}
+                                                       key={index}
+                                                       index={index} />)}
+        {this.state.arrows.map((elem, index) => <SimpleArrow params={elem}
+                                                             key={index}
+                                                             index={index} />)}
       </g>
     )
   }
