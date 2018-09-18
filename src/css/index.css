@@ -1,7 +1,6 @@
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css?family=Rubik');
 @import '~bootstrap/dist/css/bootstrap.min.css';
-/*@import 'svgInstanceExample.css';*/
 
 body {
   font-family: 'Rubik', sans-serif;
@@ -10,14 +9,13 @@ body {
 
 .container{
   display: grid;
-  height: 100vh;
+  height: auto;
   grid-template-columns: 1fr 1fr;
 }
 
 svg {
-  height: 100%;
+  height: auto;
   width: 100%;
-  /*background-color: #363636;*/
 }
 
 rect,
@@ -51,62 +49,10 @@ text {
   display: none;
 }
 
-/*circle {*/
-  /*fill: red;*/
-/*}*/
-
-/*
-.container{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.active {
+  stroke: #007bff;
 }
 
-.svg-container {
-  min-height: 700px;
+.btn {
+  margin-right: 10px;
 }
-
-svg {
-  height: auto;
-  width: 100%;
-}
-
-circle {
-  fill: none;
-  stroke: #008B6F;
-  stroke-width: 7px;
-}
-
-line {
-  stroke: black;
-  stroke-width: 5px;
-}
-
-text {
-  font-size: 60px;
-  text-anchor: middle;
-  font-family: 'FilmotypeMajor', sans-serif;
-  stroke: #000;
-  stroke-width: 3px;
-  fill: #F6F7F3;
-}
-
-polygon {
-  fill: #008B6F;
-  stroke: black;
-  stroke-width: 2px;
-}
-
-.triangle_group polygon {
-  stroke-width: 1px;
-}
-*/
-
-/*
-path {
-  stroke - the color of  the stroke
-  stroke-width - thickness of the stroke
-  stroke-linecap - shape of lineCap (e.g., round)
-  stroke-dasharray - legth of dashes for the stroke
-  stroke-dashoffset - offset for when the stroke begins
-}
-*/

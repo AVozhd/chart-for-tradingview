@@ -4250,7 +4250,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "/*@import 'svgInstanceExample.css';*/\n\nbody {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n.container{\n  display: grid;\n  height: 100vh;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: 100%;\n  width: 100%;\n  /*background-color: #363636;*/\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\n.hidden {\n  display: none;\n}\n\n/*circle {*/\n  /*fill: red;*/\n/*}*/\n\n/*\n.container{\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n}\n\n.svg-container {\n  min-height: 700px;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\ncircle {\n  fill: none;\n  stroke: #008B6F;\n  stroke-width: 7px;\n}\n\nline {\n  stroke: black;\n  stroke-width: 5px;\n}\n\ntext {\n  font-size: 60px;\n  text-anchor: middle;\n  font-family: 'FilmotypeMajor', sans-serif;\n  stroke: #000;\n  stroke-width: 3px;\n  fill: #F6F7F3;\n}\n\npolygon {\n  fill: #008B6F;\n  stroke: black;\n  stroke-width: 2px;\n}\n\n.triangle_group polygon {\n  stroke-width: 1px;\n}\n*/\n\n/*\npath {\n  stroke - the color of  the stroke\n  stroke-width - thickness of the stroke\n  stroke-linecap - shape of lineCap (e.g., round)\n  stroke-dasharray - legth of dashes for the stroke\n  stroke-dashoffset - offset for when the stroke begins\n}\n*/\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.btn {\n  margin-right: 10px;\n}\n", ""]);
 
 // exports
 
@@ -43924,9 +43924,9 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _SimpleBlock = __webpack_require__(/*! ./components/presentational/SimpleBlock */ "./src/js/components/presentational/SimpleBlock.js");
+var _Block = __webpack_require__(/*! ./components/presentational/Block */ "./src/js/components/presentational/Block.js");
 
-var _SimpleBlock2 = _interopRequireDefault(_SimpleBlock);
+var _Block2 = _interopRequireDefault(_Block);
 
 var _SimpleArrow = __webpack_require__(/*! ./components/presentational/SimpleArrow */ "./src/js/components/presentational/SimpleArrow.js");
 
@@ -43948,67 +43948,112 @@ var SimpleApp = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (SimpleApp.__proto__ || Object.getPrototypeOf(SimpleApp)).call(this, props));
 
+    _this.showBuy = _this.showBuy.bind(_this);
+    _this.showSell = _this.showSell.bind(_this);
     _this.addBlock = _this.addBlock.bind(_this);
     _this.drawArrow = _this.drawArrow.bind(_this);
-    // this.draw = this.draw.bind(this);
 
     _this.state = {
-      arrows: [],
+      chartType: 'buy',
+      arrows: [{
+        x1: 0,
+        y1: 50,
+        x2: 0,
+        y2: 100
+      }, {
+        x1: 0,
+        y1: 200,
+        x2: 0,
+        y2: 250
+      }],
       blocks: [{
+        blockType: 'simple',
         title: 'buy',
-        x: 100,
-        y: 1
+        x: 0,
+        y: 0,
+        width: 100,
+        height: 50
+      }, {
+        blockType: 'complex',
+        x: 0,
+        y: 100,
+        width: 250,
+        height: 100,
+        leftParamsTitle: 'RS1',
+        rightParamsTitle: 'BB'
+      }, {
+        blockType: 'simple',
+        title: 'finish',
+        x: 0,
+        y: 250,
+        width: 100,
+        height: 50
       }]
     };
-
     return _this;
   }
 
   _createClass(SimpleApp, [{
+    key: 'showBuy',
+    value: function showBuy() {
+      if (this.state.chartType !== 'buy') {
+        this.setState({
+          chartType: 'buy'
+        });
+      }
+    }
+  }, {
+    key: 'showSell',
+    value: function showSell() {
+      if (this.state.chartType !== 'sell') {
+        this.setState({
+          chartType: 'sell'
+        });
+      }
+    }
+  }, {
     key: 'addBlock',
     value: function addBlock() {
       var blocks = this.state.blocks;
-      var newBlockY = blocks[blocks.length - 1].y + 100;
-      blocks.push({
-        title: 'buy',
-        x: 100,
-        y: newBlockY
+      var newBlocksState = blocks.slice(0, blocks.length - 1);
+      newBlocksState.push({
+        blockType: 'complex',
+        x: 0,
+        y: newBlocksState[newBlocksState.length - 1].y + newBlocksState[newBlocksState.length - 1].height + 50,
+        width: 250,
+        height: 100,
+        leftParamsTitle: 'RS1',
+        rightParamsTitle: 'BB'
       });
-      this.drawArrow(blocks);
+      newBlocksState.push({
+        blockType: 'simple',
+        title: 'finish',
+        x: 0,
+        y: newBlocksState[newBlocksState.length - 1].y + newBlocksState[newBlocksState.length - 1].height + 50,
+        width: 100,
+        height: 50
+      });
       this.setState({
-        blocks: blocks
+        blocks: newBlocksState
       });
-
-      /*this.setState((prevState, props) => ({
-        blocks: prevState.blocks.push({
-          title: 'buy',
-          x: 100,
-          y: prevState.blocks[prevState.blocks.length - 1].y + 100
-        })
-      }));*/
+      this.drawArrow(newBlocksState);
     }
   }, {
     key: 'drawArrow',
-    value: function drawArrow() {}
-
-    /*drawArrow() {
-      return(
-        <g transform="translate(150,50)">
-          <line x1="0" y1="0" x2="0" y2="23" />
-          <polygon points="-2,23 2,23 0,28" />
-        </g>
-      )
-    }*/
-
-    /*drawBlock(block, index) {
-      return (
-        <g key={index} transform={"translate(" + block.x + "," + block.y + ")"}>
-          <rect height="50" width="100" x="-50" y="0" />
-          <text x="0" y="30" >{block.title}</text>
-        </g>
-      )
-    }*/
-
+    value: function drawArrow(blocks) {
+      var newBlock = blocks[blocks.length - 1];
+      var lastBlock = blocks[blocks.length - 2];
+      var arrows = this.state.arrows;
+      arrows.push({
+        x1: lastBlock.x,
+        y1: lastBlock.y + lastBlock.height,
+        x2: newBlock.x,
+        y2: newBlock.y
+      });
+      this.setState({
+        arrows: arrows
+      });
+    }
   }, {
     key: 'render',
     value: function render() {
@@ -44019,20 +44064,35 @@ var SimpleApp = function (_React$Component) {
           'svg',
           { version: '1.1',
             xmlns: 'http://www.w3.org/2000/svg',
-            viewBox: '0 0 300 500', className: "svg" + this.props.type },
-          this.state.blocks.map(function (elem, index) {
-            return _react2.default.createElement(_SimpleBlock2.default, { params: elem, index: index });
-          }),
-          this.state.arrows.map(function (elem, index) {
-            return _react2.default.createElement(_SimpleArrow2.default, { params: elem, index: index });
-          })
+            viewBox: '0 0 300 500',
+            className: "svg" + this.props.type },
+          _react2.default.createElement(
+            'g',
+            { transform: 'translate(150,1)' },
+            this.state.blocks.map(function (elem, index) {
+              return _react2.default.createElement(_Block2.default, { params: elem, index: index });
+            }),
+            this.state.arrows.map(function (elem, index) {
+              return _react2.default.createElement(_SimpleArrow2.default, { params: elem, index: index });
+            })
+          )
         ),
         _react2.default.createElement(
           'div',
           null,
           _react2.default.createElement(
             'button',
-            { onClick: this.addBlock },
+            { className: 'btn btn-outline-primary', onClick: this.showBuy },
+            'Buy'
+          ),
+          _react2.default.createElement(
+            'button',
+            { className: 'btn btn-outline-primary', onClick: this.showSell },
+            'Sell'
+          ),
+          _react2.default.createElement(
+            'button',
+            { className: 'btn btn-outline-primary', onClick: this.addBlock },
             'add block'
           )
         )
@@ -44042,9 +44102,6 @@ var SimpleApp = function (_React$Component) {
 
   return SimpleApp;
 }(_react2.default.Component);
-
-// {this.state.blocks.map(this.drawBlock)}
-
 
 exports.default = SimpleApp;
 
@@ -44635,34 +44692,105 @@ var Block = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Block.__proto__ || Object.getPrototypeOf(Block)).call(this, props));
 
-    console.log(props);
+    _this.handleClick = _this.handleClick.bind(_this);
+
+    _this.state = {
+      status: ''
+    };
     return _this;
   }
 
   _createClass(Block, [{
+    key: 'handleClick',
+    value: function handleClick(event) {
+      this.setState({
+        status: 'active'
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(
-        'g',
-        { key: 'test', transform: "translate(" + 100 + "," + 1 + ")" },
-        _react2.default.createElement('rect', { height: '50', width: '100', x: '-50', y: '0' }),
-        _react2.default.createElement(
-          'text',
-          { x: '0', y: '30' },
-          'test'
-        )
-      );
+      if (this.props.params.blockType === 'simple') {
+        return _react2.default.createElement(
+          'g',
+          { key: this.props.index,
+            transform: "translate(" + this.props.params.x + "," + this.props.params.y + ")" },
+          _react2.default.createElement('rect', { className: this.state.status,
+            height: this.props.params.height,
+            width: this.props.params.width,
+            x: this.props.params.width - this.props.params.width * 1.5 + "",
+            y: '0',
+            onClick: this.handleClick }),
+          _react2.default.createElement(
+            'text',
+            { x: '0',
+              y: this.props.params.height - this.props.params.height / 2.5 },
+            this.props.params.title
+          )
+        );
+      } else if (this.props.params.blockType === 'complex') {
+        return _react2.default.createElement(
+          'g',
+          { key: this.props.index, transform: "translate(" + this.props.params.x + "," + this.props.params.y + ")" },
+          _react2.default.createElement('rect', { height: this.props.params.height,
+            width: this.props.params.width,
+            x: "-" + this.props.params.width / 2,
+            y: '0' }),
+          _react2.default.createElement(
+            'text',
+            { x: '0',
+              y: this.props.params.height - this.props.params.height / 2.5 },
+            'and'
+          ),
+          _react2.default.createElement(
+            'g',
+            { transform: "translate(" + "-" + this.props.params.width / 2 + ",0)" },
+            _react2.default.createElement('rect', { className: this.state.status,
+              height: '100',
+              width: '100',
+              x: '0',
+              y: '0',
+              onClick: this.handleClick }),
+            _react2.default.createElement('line', { x1: '1', y1: '50', x2: '99', y2: '50' }),
+            _react2.default.createElement(
+              'text',
+              { x: '50', y: '30' },
+              this.props.params.leftParamsTitle
+            ),
+            _react2.default.createElement(
+              'text',
+              { x: '50', y: '80' },
+              'Params'
+            )
+          ),
+          _react2.default.createElement(
+            'g',
+            { transform: "translate(" + this.props.params.width * 0.1 + ",0)" },
+            _react2.default.createElement('rect', { className: this.state.status,
+              height: '100',
+              width: '100',
+              x: '0',
+              y: '0',
+              onClick: this.handleClick }),
+            _react2.default.createElement('line', { x1: '1', y1: '50', x2: '99', y2: '50' }),
+            _react2.default.createElement(
+              'text',
+              { x: '50', y: '30' },
+              this.props.params.rightParamsTitle
+            ),
+            _react2.default.createElement(
+              'text',
+              { x: '50', y: '80' },
+              'Params'
+            )
+          )
+        );
+      }
     }
   }]);
 
   return Block;
 }(_react2.default.Component);
-
-// <g key={index} transform={"translate(" + block.x + "," + block.y + ")"}>
-//  <rect height="50" width="100" x="-50" y="0" />
-//  <text x="0" y="30" >{block.title}</text>
-// </g>
-
 
 exports.default = Block;
 
@@ -44710,9 +44838,12 @@ var SimpleArrow = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         "g",
-        { key: this.props.index, transform: "translate(" + this.props.params.x + "," + this.props.params.y + ")" },
-        _react2.default.createElement("line", { x1: "0", y1: "0", x2: "0", y2: "23" }),
-        _react2.default.createElement("polygon", { points: "-2,23 2,23 0,28" })
+        { key: this.props.index },
+        _react2.default.createElement("line", { x1: "" + this.props.params.x1,
+          y1: "" + this.props.params.y1,
+          x2: "" + this.props.params.x2,
+          y2: "" + this.props.params.y2 - 2 }),
+        _react2.default.createElement("polygon", { points: this.props.params.x2 + "," + (this.props.params.y2 - 1) + " " + (this.props.params.x2 - 3) + "," + (this.props.params.y2 - 8) + " " + (this.props.params.x2 + 3) + "," + (this.props.params.y2 - 8) })
       );
     }
   }]);
@@ -44720,67 +44851,15 @@ var SimpleArrow = function (_React$Component) {
   return SimpleArrow;
 }(_react2.default.Component);
 
+/*
+<g key={this.props.index} transform={"translate(" + this.props.params.x + "," + this.props.params.y + ")"} >
+  <line x1="0" y1="0" x2="0" y2="23" />
+  <polygon points="-2,23 2,23 0,28" />
+</g>
+*/
+
+
 exports.default = SimpleArrow;
-
-/***/ }),
-
-/***/ "./src/js/components/presentational/SimpleBlock.js":
-/*!*********************************************************!*\
-  !*** ./src/js/components/presentational/SimpleBlock.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var SimpleBlock = function (_React$Component) {
-  _inherits(SimpleBlock, _React$Component);
-
-  function SimpleBlock(props) {
-    _classCallCheck(this, SimpleBlock);
-
-    return _possibleConstructorReturn(this, (SimpleBlock.__proto__ || Object.getPrototypeOf(SimpleBlock)).call(this, props));
-  }
-
-  _createClass(SimpleBlock, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "g",
-        { key: this.props.index, transform: "translate(" + this.props.params.x + "," + this.props.params.y + ")" },
-        _react2.default.createElement("rect", { height: "50", width: "100", x: "-50", y: "0" }),
-        _react2.default.createElement(
-          "text",
-          { x: "0", y: "30" },
-          this.props.params.title
-        )
-      );
-    }
-  }]);
-
-  return SimpleBlock;
-}(_react2.default.Component);
-
-exports.default = SimpleBlock;
 
 /***/ }),
 
