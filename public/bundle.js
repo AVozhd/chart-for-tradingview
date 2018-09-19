@@ -41950,6 +41950,7 @@ var MainComponent = function (_React$Component) {
           this.props.chartType === 'buy' ? _react2.default.createElement(_BuyChart2.default, { options: this.props.buyChart,
             onChange: this.props.addBlockToChart,
             recalcSvgParams: this.props.recalcSvgParams,
+            removeBlock: this.props.removeBlockFromChart,
             svgParams: this.props.svg }) : _react2.default.createElement(_SellChart2.default, null)
         ),
         _react2.default.createElement(
@@ -42056,7 +42057,7 @@ var BuyChart = function (_React$Component) {
         rightParamsTitle: 'BB'
       });
       blocks.push({
-        key: blocks[blocks.length - 1].key + 2,
+        key: blocks[blocks.length - 1].key + 1,
         blockType: 'simple',
         title: 'finish',
         x: 0,
@@ -42088,8 +42089,18 @@ var BuyChart = function (_React$Component) {
   }, {
     key: 'removeBlock',
     value: function removeBlock(blockId) {
+      var arrows = this.props.options.arrows;
       var blocks = this.props.options.blocks;
-      console.log(blockId);
+      blocks = blocks.filter(function (block) {
+        return block.key !== blockId;
+      });
+      this.props.removeBlock({ blocks: blocks, arrows: arrows });
+
+      /*let newTotalHeight = [];
+      blocks.map((block) => newTotalHeight.push(block.height));
+      newTotalHeight = newTotalHeight.reduce((accumulator, currentValue) => accumulator + currentValue);
+      newTotalHeight = newTotalHeight + arrows.length * 50;
+      this.props.recalcSvgParams({width: this.props.svgParams.width, height: newTotalHeight + 2});*/
     }
   }, {
     key: 'render',

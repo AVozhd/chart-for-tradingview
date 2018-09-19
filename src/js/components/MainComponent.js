@@ -19,7 +19,8 @@ class MainComponent extends React.Component {
               <BuyChart options={ this.props.buyChart }
                         onChange={ this.props.addBlockToChart }
                         recalcSvgParams={ this.props.recalcSvgParams }
-                        svgParams={this.props.svg} />
+                        removeBlock={ this.props.removeBlockFromChart }
+                        svgParams={ this.props.svg } />
               :
               <SellChart />
           }
