@@ -41847,8 +41847,6 @@ if(false) {}
 "use strict";
 
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 
 __webpack_require__(/*! ./css/index.css */ "./src/css/index.css");
@@ -41861,76 +41859,32 @@ var _reactDom = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/i
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _reducers = __webpack_require__(/*! ./js/store/reducers */ "./src/js/store/reducers.js");
+
 var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
 var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
-var _SimpleApp = __webpack_require__(/*! ./js/SimpleApp */ "./src/js/SimpleApp.js");
+var _MainComponent = __webpack_require__(/*! ./js/components/MainComponent */ "./src/js/components/MainComponent.js");
 
-var _SimpleApp2 = _interopRequireDefault(_SimpleApp);
+var _MainComponent2 = _interopRequireDefault(_MainComponent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var initialState = {
-  chartType: 'buy',
-  svg: {
-    width: 300,
-    height: 400
-  }
-};
-
-var ACTION_CHANGE_CHART_TYPE = 'ACTION_CHANGE_CHART_TYPE';
-
-var changeChartType = function changeChartType(newChartType) {
-  return {
-    type: types.ACTION_CHANGE_CHART_TYPE,
-    payload: newChartType
-  };
-};
-
-var rootReducer = function rootReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case ACTION_CHANGE_CHART_TYPE:
-      return _extends({}, state, { chartType: action.payload });
-  }
-  return state;
-};
-
-var store = (0, _redux.createStore)(rootReducer);
-
-var putStateToProps = function putStateToProps(state) {
-  return {
-    chartType: state.chartType,
-    svg: {
-      width: state.svg.width,
-      height: state.svg.height
-    }
-  };
-};
-
-var putActionsToProps = function putActionsToProps(dispatch) {
-  return {
-    changeChartType: (0, _redux.bindActionCreators)(changeChartType, dispatch)
-  };
-};
-
-var WrappedMainComponent = (0, _reactRedux.connect)(putStateToProps, putActionsToProps)(_SimpleApp2.default);
+var store = (0, _redux.createStore)(_reducers.rootReducer);
 
 _reactDom2.default.render(_react2.default.createElement(
   _reactRedux.Provider,
   { store: store },
-  _react2.default.createElement(WrappedMainComponent, null)
+  _react2.default.createElement(_MainComponent2.default, null)
 ), document.getElementById('root'));
 
 /***/ }),
 
-/***/ "./src/js/SimpleApp.js":
-/*!*****************************!*\
-  !*** ./src/js/SimpleApp.js ***!
-  \*****************************/
+/***/ "./src/js/components/MainComponent.js":
+/*!********************************************!*\
+  !*** ./src/js/components/MainComponent.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -41947,21 +41901,23 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _BuyChart = __webpack_require__(/*! ./components/container/BuyChart */ "./src/js/components/container/BuyChart.js");
+var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _actions = __webpack_require__(/*! ../store/actions */ "./src/js/store/actions.js");
+
+var _BuyChart = __webpack_require__(/*! ./container/BuyChart */ "./src/js/components/container/BuyChart.js");
 
 var _BuyChart2 = _interopRequireDefault(_BuyChart);
 
-var _SellChart = __webpack_require__(/*! ./components/container/SellChart */ "./src/js/components/container/SellChart.js");
+var _SellChart = __webpack_require__(/*! ./container/SellChart */ "./src/js/components/container/SellChart.js");
 
 var _SellChart2 = _interopRequireDefault(_SellChart);
 
-var _Form = __webpack_require__(/*! ./components/container/Form */ "./src/js/components/container/Form.js");
+var _ChartTypeSelectorInput = __webpack_require__(/*! ./presentational/ChartTypeSelectorInput */ "./src/js/components/presentational/ChartTypeSelectorInput.js");
 
-var _Form2 = _interopRequireDefault(_Form);
-
-var _ChartTypeSelector = __webpack_require__(/*! ./components/presentational/ChartTypeSelector */ "./src/js/components/presentational/ChartTypeSelector.js");
-
-var _ChartTypeSelector2 = _interopRequireDefault(_ChartTypeSelector);
+var _ChartTypeSelectorInput2 = _interopRequireDefault(_ChartTypeSelectorInput);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41971,73 +41927,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SimpleApp = function (_React$Component) {
-  _inherits(SimpleApp, _React$Component);
+var MainComponent = function (_React$Component) {
+  _inherits(MainComponent, _React$Component);
 
-  function SimpleApp(props) {
-    _classCallCheck(this, SimpleApp);
+  function MainComponent() {
+    _classCallCheck(this, MainComponent);
 
-    var _this = _possibleConstructorReturn(this, (SimpleApp.__proto__ || Object.getPrototypeOf(SimpleApp)).call(this, props));
-
-    _this.showBuy = _this.showBuy.bind(_this);
-    _this.showSell = _this.showSell.bind(_this);
-    // this.changeSVG = this.changeSVG.bind(this);
-    _this.makeFormActive = _this.makeFormActive.bind(_this);
-    // this.dispatch = props.dispatch.bind(this);
-
-
-    _this.state = {
-      buyBtn: { active: true },
-      sellBtn: { active: false },
-      form: {
-        active: false
-      }
-    };
-    return _this;
+    return _possibleConstructorReturn(this, (MainComponent.__proto__ || Object.getPrototypeOf(MainComponent)).apply(this, arguments));
   }
 
-  _createClass(SimpleApp, [{
-    key: 'showBuy',
-    value: function showBuy() {
-      if (this.state.chartType !== 'buy') {
-        this.setState({
-          chartType: 'buy',
-          buyBtn: { active: true },
-          sellBtn: { active: false }
-        });
-      }
-    }
-  }, {
-    key: 'showSell',
-    value: function showSell() {
-      if (this.state.chartType !== 'sell') {
-        this.setState({
-          chartType: 'sell',
-          buyBtn: { active: false },
-          sellBtn: { active: true }
-        });
-      }
-    }
-
-    // changeSVG() {
-    //   this.setState((prevState, props) => ({
-    //     svg: {
-    //       width: prevState.svg.width,
-    //       height: prevState.svg.height + 200
-    //     }
-    //   }));
-    // }
-
-  }, {
-    key: 'makeFormActive',
-    value: function makeFormActive() {
-      this.setState({
-        form: {
-          active: true
-        }
-      });
-    }
-  }, {
+  _createClass(MainComponent, [{
     key: 'render',
     value: function render() {
       console.log(this.props);
@@ -42053,63 +41952,44 @@ var SimpleApp = function (_React$Component) {
             changeSVG: this.changeSVG }) : _react2.default.createElement(_SellChart2.default, { makeFormActive: this.makeFormActive,
             changeSVG: this.changeSVG })
         ),
-        _react2.default.createElement(_ChartTypeSelector2.default, null)
+        _react2.default.createElement(
+          'div',
+          null,
+          'Choose chart type:',
+          _react2.default.createElement(_ChartTypeSelectorInput2.default, { value: 'buy',
+            id: 'exampleRadios1',
+            title: 'Buy',
+            checked: this.props.selectedChart }),
+          _react2.default.createElement(_ChartTypeSelectorInput2.default, { value: 'sell',
+            id: 'exampleRadios2',
+            title: 'Sell',
+            checked: this.props.selectedChart })
+        )
       );
     }
   }]);
 
-  return SimpleApp;
+  return MainComponent;
 }(_react2.default.Component);
 
-exports.default = SimpleApp;
-
-/***/ }),
-
-/***/ "./src/js/actions/actionTypes.js":
-/*!***************************************!*\
-  !*** ./src/js/actions/actionTypes.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var ACTION_CHANGE_CHART_TYPE = exports.ACTION_CHANGE_CHART_TYPE = 'ACTION_CHANGE_CHART_TYPE';
-
-/***/ }),
-
-/***/ "./src/js/actions/appActions.js":
-/*!**************************************!*\
-  !*** ./src/js/actions/appActions.js ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.changeChartType = undefined;
-
-var _actionTypes = __webpack_require__(/*! ./actionTypes */ "./src/js/actions/actionTypes.js");
-
-var types = _interopRequireWildcard(_actionTypes);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-var changeChartType = exports.changeChartType = function changeChartType(newChartType) {
-  console.log(newChartType);
+var putStateToProps = function putStateToProps(state) {
   return {
-    type: types.ACTION_CHANGE_CHART_TYPE,
-    payload: newChartType
+    selectedChart: state.selectedChart,
+    chartType: state.chartType,
+    svg: {
+      width: state.svg.width,
+      height: state.svg.height
+    }
   };
 };
+
+var putActionsToProps = function putActionsToProps(dispatch) {
+  return {
+    changeChartType: (0, _redux.bindActionCreators)(_actions.changeChartType, dispatch)
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(putStateToProps, putActionsToProps)(MainComponent);
 
 /***/ }),
 
@@ -42271,75 +42151,6 @@ var BuyChart = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = BuyChart;
-
-/***/ }),
-
-/***/ "./src/js/components/container/Form.js":
-/*!*********************************************!*\
-  !*** ./src/js/components/container/Form.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Form = function (_React$Component) {
-  _inherits(Form, _React$Component);
-
-  function Form() {
-    _classCallCheck(this, Form);
-
-    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).apply(this, arguments));
-  }
-
-  _createClass(Form, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "form",
-        null,
-        _react2.default.createElement(
-          "div",
-          { className: "form-group" },
-          _react2.default.createElement(
-            "label",
-            { htmlFor: "exampleInputEmail1" },
-            "Email address"
-          ),
-          _react2.default.createElement("input", { type: "email", className: "form-control", id: "exampleInputEmail1", "aria-describedby": "emailHelp", placeholder: "Enter email" }),
-          _react2.default.createElement(
-            "small",
-            { id: "emailHelp", className: "form-text text-muted" },
-            "We'll never share your email with anyone else."
-          )
-        )
-      );
-    }
-  }]);
-
-  return Form;
-}(_react2.default.Component);
-
-exports.default = Form;
 
 /***/ }),
 
@@ -42667,10 +42478,10 @@ exports.default = Block;
 
 /***/ }),
 
-/***/ "./src/js/components/presentational/ChartTypeSelector.js":
-/*!***************************************************************!*\
-  !*** ./src/js/components/presentational/ChartTypeSelector.js ***!
-  \***************************************************************/
+/***/ "./src/js/components/presentational/ChartTypeSelectorInput.js":
+/*!********************************************************************!*\
+  !*** ./src/js/components/presentational/ChartTypeSelectorInput.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -42685,58 +42496,31 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _appActions = __webpack_require__(/*! ../../actions/appActions */ "./src/js/actions/appActions.js");
-
-var _appActions2 = _interopRequireDefault(_appActions);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ChartTypeSelector = function ChartTypeSelector(props) {
-  var dispatch = props.dispatch;
+var ChartTypeSelectorInput = function ChartTypeSelectorInput(props) {
+  var value = props.value,
+      id = props.id,
+      title = props.title,
+      checked = props.checked;
+
   return _react2.default.createElement(
-    'div',
-    null,
-    'Choose chart type:',
+    "div",
+    { className: "form-check" },
+    _react2.default.createElement("input", { className: "form-check-input",
+      type: "radio",
+      name: "exampleRadios",
+      id: id,
+      value: value, checked: checked === value }),
     _react2.default.createElement(
-      'div',
-      { className: 'form-check' },
-      _react2.default.createElement('input', { className: 'form-check-input',
-        type: 'radio',
-        name: 'exampleRadios',
-        id: 'exampleRadios1',
-        value: 'buy',
-        onChange: function onChange(event) {
-          dispatch((0, _appActions2.default)(event.target.value));
-        }
-      }),
-      _react2.default.createElement(
-        'label',
-        { className: 'form-check-label', htmlFor: 'exampleRadios1' },
-        'Buy'
-      )
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'form-check' },
-      _react2.default.createElement('input', { className: 'form-check-input',
-        type: 'radio',
-        name: 'exampleRadios',
-        id: 'exampleRadios2',
-        value: 'sell',
-        onChange: function onChange(event) {
-          dispatch((0, _appActions2.default)(event.target.value));
-        }
-      }),
-      _react2.default.createElement(
-        'label',
-        { className: 'form-check-label', htmlFor: 'exampleRadios2' },
-        'Sell'
-      )
+      "label",
+      { className: "form-check-label", htmlFor: id },
+      title
     )
   );
 };
 
-exports.default = ChartTypeSelector;
+exports.default = ChartTypeSelectorInput;
 
 /***/ }),
 
@@ -42796,6 +42580,98 @@ var SimpleArrow = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = SimpleArrow;
+
+/***/ }),
+
+/***/ "./src/js/store/actions.js":
+/*!*********************************!*\
+  !*** ./src/js/store/actions.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.changeChartType = undefined;
+
+var _actionsTypes = __webpack_require__(/*! ./actionsTypes */ "./src/js/store/actionsTypes.js");
+
+var types = _interopRequireWildcard(_actionsTypes);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var changeChartType = exports.changeChartType = function changeChartType(newChartType) {
+  return {
+    type: types.ACTION_CHANGE_CHART_TYPE,
+    payload: newChartType
+  };
+};
+
+/***/ }),
+
+/***/ "./src/js/store/actionsTypes.js":
+/*!**************************************!*\
+  !*** ./src/js/store/actionsTypes.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var ACTION_CHANGE_CHART_TYPE = exports.ACTION_CHANGE_CHART_TYPE = 'ACTION_CHANGE_CHART_TYPE';
+
+/***/ }),
+
+/***/ "./src/js/store/reducers.js":
+/*!**********************************!*\
+  !*** ./src/js/store/reducers.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.rootReducer = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _actionsTypes = __webpack_require__(/*! ./actionsTypes */ "./src/js/store/actionsTypes.js");
+
+var types = _interopRequireWildcard(_actionsTypes);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var initialState = {
+  chartType: 'buy',
+  selectedChart: 'buy',
+  svg: {
+    width: 300,
+    height: 400
+  }
+};
+
+var rootReducer = exports.rootReducer = function rootReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case types.ACTION_CHANGE_CHART_TYPE:
+      return _extends({}, state, { chartType: action.payload });
+  }
+  return state;
+};
 
 /***/ })
 
