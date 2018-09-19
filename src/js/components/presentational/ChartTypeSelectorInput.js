@@ -1,16 +1,15 @@
 import React from 'react';
 
-const ChartTypeSelectorInput = (props) => {
-  const { value, id, title, checked } = props;
+const ChartTypeSelectorInput = ({ value, title, checked, onChange }) => {
   return(
     <div className="form-check">
-      <input className="form-check-input"
-             type="radio"
-             name="exampleRadios"
-             id={id}
-             value={value} checked={checked === value} />
-      <label className="form-check-label" htmlFor={id}>
-        {title}
+      <label className="form-check-label">
+        <input className="form-check-input"
+               type="radio"
+               checked={checked}
+               onChange={() => onChange(value) }
+        />
+          {title}
       </label>
     </div>
   )

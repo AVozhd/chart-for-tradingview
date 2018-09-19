@@ -4073,7 +4073,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ncircle {\n  stroke: #007bff;\n  stroke-width: 1px;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn line {\n  stroke: #007bff;\n  stroke-width: 1px;\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n  stroke-width: 1px;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n  stroke-width: 1px;\n}\n\n", ""]);
 
 // exports
 
@@ -41939,7 +41939,6 @@ var MainComponent = function (_React$Component) {
   _createClass(MainComponent, [{
     key: 'render',
     value: function render() {
-      console.log(this.props);
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -41948,22 +41947,23 @@ var MainComponent = function (_React$Component) {
           { version: '1.1',
             xmlns: 'http://www.w3.org/2000/svg',
             viewBox: "0 0 " + this.props.svg.width + " " + this.props.svg.height },
-          this.props.chartType === 'buy' ? _react2.default.createElement(_BuyChart2.default, { makeFormActive: this.makeFormActive,
-            changeSVG: this.changeSVG }) : _react2.default.createElement(_SellChart2.default, { makeFormActive: this.makeFormActive,
-            changeSVG: this.changeSVG })
+          this.props.chartType === 'buy' ? _react2.default.createElement(_BuyChart2.default, { options: this.props.buyChart,
+            onChange: this.props.addBlockToChart,
+            recalcSvgParams: this.props.recalcSvgParams,
+            svgParams: this.props.svg }) : _react2.default.createElement(_SellChart2.default, null)
         ),
         _react2.default.createElement(
           'div',
           null,
           'Choose chart type:',
-          _react2.default.createElement(_ChartTypeSelectorInput2.default, { value: 'buy',
-            id: 'exampleRadios1',
-            title: 'Buy',
-            checked: this.props.selectedChart }),
-          _react2.default.createElement(_ChartTypeSelectorInput2.default, { value: 'sell',
-            id: 'exampleRadios2',
-            title: 'Sell',
-            checked: this.props.selectedChart })
+          _react2.default.createElement(_ChartTypeSelectorInput2.default, { title: 'Buy',
+            value: 'buy',
+            checked: this.props.selectedChart === 'buy',
+            onChange: this.props.changeChartType }),
+          _react2.default.createElement(_ChartTypeSelectorInput2.default, { title: 'Sell',
+            value: 'sell',
+            checked: this.props.selectedChart === 'sell',
+            onChange: this.props.changeChartType })
         )
       );
     }
@@ -41972,24 +41972,21 @@ var MainComponent = function (_React$Component) {
   return MainComponent;
 }(_react2.default.Component);
 
-var putStateToProps = function putStateToProps(state) {
+exports.default = (0, _reactRedux.connect)(function (state) {
   return {
     selectedChart: state.selectedChart,
     chartType: state.chartType,
-    svg: {
-      width: state.svg.width,
-      height: state.svg.height
-    }
+    svg: state.svg,
+    buyChart: state.buyChart
   };
-};
-
-var putActionsToProps = function putActionsToProps(dispatch) {
+}, function (dispatch) {
   return {
-    changeChartType: (0, _redux.bindActionCreators)(_actions.changeChartType, dispatch)
+    changeChartType: (0, _redux.bindActionCreators)(_actions.changeChartType, dispatch),
+    addBlockToChart: (0, _redux.bindActionCreators)(_actions.addBlockToChart, dispatch),
+    recalcSvgParams: (0, _redux.bindActionCreators)(_actions.recalcSvgParams, dispatch),
+    removeBlockFromChart: (0, _redux.bindActionCreators)(_actions.removeBlockFromChart, dispatch)
   };
-};
-
-exports.default = (0, _reactRedux.connect)(putStateToProps, putActionsToProps)(MainComponent);
+})(MainComponent);
 
 /***/ }),
 
@@ -42012,6 +42009,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
 var _Block = __webpack_require__(/*! ../presentational/Block */ "./src/js/components/presentational/Block.js");
 
@@ -42038,90 +42037,59 @@ var BuyChart = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (BuyChart.__proto__ || Object.getPrototypeOf(BuyChart)).call(this, props));
 
     _this.addBlock = _this.addBlock.bind(_this);
-    _this.drawArrow = _this.drawArrow.bind(_this);
-
-    _this.state = {
-      arrows: [{
-        x1: 0,
-        y1: 50,
-        x2: 0,
-        y2: 100
-      }, {
-        x1: 0,
-        y1: 200,
-        x2: 0,
-        y2: 250
-      }],
-      blocks: [{
-        blockType: 'simple',
-        title: 'BUY',
-        x: 0,
-        y: 0,
-        width: 100,
-        height: 50
-      }, {
-        blockType: 'complex',
-        x: 0,
-        y: 100,
-        width: 250,
-        height: 100,
-        leftParamsTitle: 'RS1',
-        rightParamsTitle: 'BB'
-      }, {
-        blockType: 'simple',
-        title: 'finish',
-        x: 0,
-        y: 250,
-        width: 100,
-        height: 50
-      }]
-    };
+    _this.removeBlock = _this.removeBlock.bind(_this);
     return _this;
   }
 
   _createClass(BuyChart, [{
     key: 'addBlock',
     value: function addBlock() {
-      this.props.changeSVG();
-      var blocks = this.state.blocks;
-      var newBlocksState = blocks.slice(0, blocks.length - 1);
-      newBlocksState.push({
+      var blocks = this.props.options.blocks.slice(0, this.props.options.blocks.length - 1);
+      blocks.push({
+        key: blocks[blocks.length - 1].key + 1,
         blockType: 'complex',
         x: 0,
-        y: newBlocksState[newBlocksState.length - 1].y + newBlocksState[newBlocksState.length - 1].height + 50,
+        y: blocks[blocks.length - 1].y + blocks[blocks.length - 1].height + 50,
         width: 250,
         height: 100,
         leftParamsTitle: 'RS1',
         rightParamsTitle: 'BB'
       });
-      newBlocksState.push({
+      blocks.push({
+        key: blocks[blocks.length - 1].key + 2,
         blockType: 'simple',
         title: 'finish',
         x: 0,
-        y: newBlocksState[newBlocksState.length - 1].y + newBlocksState[newBlocksState.length - 1].height + 50,
+        y: blocks[blocks.length - 1].y + blocks[blocks.length - 1].height + 50,
         width: 100,
         height: 50
       });
-      this.setState({
-        blocks: newBlocksState
-      });
-      this.drawArrow(newBlocksState);
-    }
-  }, {
-    key: 'drawArrow',
-    value: function drawArrow(blocks) {
       var newBlock = blocks[blocks.length - 1];
       var lastBlock = blocks[blocks.length - 2];
-      var arrows = this.state.arrows;
+      var arrows = this.props.options.arrows;
       arrows.push({
         x1: lastBlock.x,
         y1: lastBlock.y + lastBlock.height,
         x2: newBlock.x,
         y2: newBlock.y
       });
-      this.setState({
-        arrows: arrows
+      this.props.onChange({ blocks: blocks, arrows: arrows });
+
+      var newTotalHeight = [];
+      blocks.map(function (block) {
+        return newTotalHeight.push(block.height);
       });
+      newTotalHeight = newTotalHeight.reduce(function (accumulator, currentValue) {
+        return accumulator + currentValue;
+      });
+      newTotalHeight = newTotalHeight + arrows.length * 50;
+      this.props.recalcSvgParams({ width: this.props.svgParams.width, height: newTotalHeight + 2 });
+    }
+  }, {
+    key: 'removeBlock',
+    value: function removeBlock(blockId) {
+      var blocks = this.props.options.blocks;
+      console.log(blockId);
     }
   }, {
     key: 'render',
@@ -42131,14 +42099,14 @@ var BuyChart = function (_React$Component) {
       return _react2.default.createElement(
         'g',
         { transform: 'translate(130,1)' },
-        this.state.blocks.map(function (elem, index) {
-          return _react2.default.createElement(_Block2.default, { makeFormActive: _this2.props.makeFormActive,
-            addBlock: _this2.addBlock,
+        this.props.options.blocks.map(function (elem, index) {
+          return _react2.default.createElement(_Block2.default, { addBlock: _this2.addBlock,
+            removeBlock: _this2.removeBlock,
             params: elem,
             key: index,
             index: index });
         }),
-        this.state.arrows.map(function (elem, index) {
+        this.props.options.arrows.map(function (elem, index) {
           return _react2.default.createElement(_SimpleArrow2.default, { params: elem,
             key: index,
             index: index });
@@ -42345,47 +42313,26 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Block = function (_React$Component) {
   _inherits(Block, _React$Component);
 
-  function Block(props) {
+  function Block() {
     _classCallCheck(this, Block);
 
-    var _this = _possibleConstructorReturn(this, (Block.__proto__ || Object.getPrototypeOf(Block)).call(this, props));
-
-    _this.handleClick = _this.handleClick.bind(_this);
-    _this.addBlock = _this.addBlock.bind(_this);
-
-    _this.state = {
-      status: ''
-    };
-    return _this;
+    return _possibleConstructorReturn(this, (Block.__proto__ || Object.getPrototypeOf(Block)).apply(this, arguments));
   }
 
   _createClass(Block, [{
-    key: 'handleClick',
-    value: function handleClick(event) {
-      this.props.makeFormActive();
-      this.setState({
-        status: 'active'
-      });
-    }
-  }, {
-    key: 'addBlock',
-    value: function addBlock() {
-      this.props.addBlock();
-    }
-  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       if (this.props.params.blockType === 'simple') {
         return _react2.default.createElement(
           'g',
           { key: this.props.index,
             transform: "translate(" + this.props.params.x + "," + this.props.params.y + ")" },
-          _react2.default.createElement('rect', { className: this.state.status,
-            height: this.props.params.height,
+          _react2.default.createElement('rect', { height: this.props.params.height,
             width: this.props.params.width,
             x: this.props.params.width - this.props.params.width * 1.5 + "",
-            y: '0',
-            onClick: this.handleClick }),
+            y: '0' }),
           _react2.default.createElement(
             'text',
             { x: '0',
@@ -42410,12 +42357,10 @@ var Block = function (_React$Component) {
           _react2.default.createElement(
             'g',
             { transform: "translate(" + "-" + this.props.params.width / 2 + ",0)" },
-            _react2.default.createElement('rect', { className: this.state.status,
-              height: '100',
+            _react2.default.createElement('rect', { height: '100',
               width: '100',
               x: '0',
-              y: '0',
-              onClick: this.handleClick }),
+              y: '0' }),
             _react2.default.createElement('line', { x1: '1', y1: '50', x2: '99', y2: '50' }),
             _react2.default.createElement(
               'text',
@@ -42431,12 +42376,10 @@ var Block = function (_React$Component) {
           _react2.default.createElement(
             'g',
             { transform: "translate(" + this.props.params.width * 0.1 + ",0)" },
-            _react2.default.createElement('rect', { className: this.state.status,
-              height: '100',
+            _react2.default.createElement('rect', { height: '100',
               width: '100',
               x: '0',
-              y: '0',
-              onClick: this.handleClick }),
+              y: '0' }),
             _react2.default.createElement('line', { x1: '1', y1: '50', x2: '99', y2: '50' }),
             _react2.default.createElement(
               'text',
@@ -42452,8 +42395,10 @@ var Block = function (_React$Component) {
           _react2.default.createElement(
             'g',
             { className: 'addBlockBtn',
-              transform: "translate(" + (this.props.params.width / 2 + 20) + "," + this.props.params.height / 2 + ")",
-              onClick: this.addBlock },
+              transform: "translate(" + (this.props.params.width / 2 + 20) + "," + (this.props.params.height / 2 + this.props.params.height / 6) + ")",
+              onClick: function onClick() {
+                return _this2.props.addBlock();
+              } },
             _react2.default.createElement('circle', { cx: '0',
               cy: '0',
               r: this.props.params.height / 10 + "" }),
@@ -42465,6 +42410,21 @@ var Block = function (_React$Component) {
               y1: "" + (this.props.params.height / 10 - 5),
               x2: '0',
               y2: "-" + (this.props.params.height / 10 - 5) })
+          ),
+          _react2.default.createElement(
+            'g',
+            { className: 'removeBlockBtn',
+              transform: "translate(" + (this.props.params.width / 2 + 20) + "," + (this.props.params.height / 2 - this.props.params.height / 6) + ")",
+              onClick: function onClick() {
+                return _this2.props.removeBlock(_this2.props.params.key);
+              } },
+            _react2.default.createElement('circle', { cx: '0',
+              cy: '0',
+              r: this.props.params.height / 10 + "" }),
+            _react2.default.createElement('line', { x1: "-" + (this.props.params.height / 10 - 5),
+              y1: '0',
+              x2: "" + (this.props.params.height / 10 - 5),
+              y2: '0' })
           )
         );
       }
@@ -42498,23 +42458,25 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ChartTypeSelectorInput = function ChartTypeSelectorInput(props) {
-  var value = props.value,
-      id = props.id,
-      title = props.title,
-      checked = props.checked;
+var ChartTypeSelectorInput = function ChartTypeSelectorInput(_ref) {
+  var value = _ref.value,
+      title = _ref.title,
+      checked = _ref.checked,
+      _onChange = _ref.onChange;
 
   return _react2.default.createElement(
     "div",
     { className: "form-check" },
-    _react2.default.createElement("input", { className: "form-check-input",
-      type: "radio",
-      name: "exampleRadios",
-      id: id,
-      value: value, checked: checked === value }),
     _react2.default.createElement(
       "label",
-      { className: "form-check-label", htmlFor: id },
+      { className: "form-check-label" },
+      _react2.default.createElement("input", { className: "form-check-input",
+        type: "radio",
+        checked: checked,
+        onChange: function onChange() {
+          return _onChange(value);
+        }
+      }),
       title
     )
   );
@@ -42596,7 +42558,7 @@ exports.default = SimpleArrow;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.changeChartType = undefined;
+exports.removeBlockFromChart = exports.recalcSvgParams = exports.addBlockToChart = exports.changeChartType = undefined;
 
 var _actionsTypes = __webpack_require__(/*! ./actionsTypes */ "./src/js/store/actionsTypes.js");
 
@@ -42608,6 +42570,27 @@ var changeChartType = exports.changeChartType = function changeChartType(newChar
   return {
     type: types.ACTION_CHANGE_CHART_TYPE,
     payload: newChartType
+  };
+};
+
+var addBlockToChart = exports.addBlockToChart = function addBlockToChart(newChartState) {
+  return {
+    type: types.ACTION_ADD_BLOCK_TO_CHART,
+    payload: newChartState
+  };
+};
+
+var recalcSvgParams = exports.recalcSvgParams = function recalcSvgParams(newSvgParams) {
+  return {
+    type: types.ACTION_RECALC_SVG_PARAMS,
+    payload: newSvgParams
+  };
+};
+
+var removeBlockFromChart = exports.removeBlockFromChart = function removeBlockFromChart(newChartState) {
+  return {
+    type: types.ACTION_REMOVE_BLOCK_FROM_CHART,
+    payload: newChartState
   };
 };
 
@@ -42627,6 +42610,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var ACTION_CHANGE_CHART_TYPE = exports.ACTION_CHANGE_CHART_TYPE = 'ACTION_CHANGE_CHART_TYPE';
+var ACTION_ADD_BLOCK_TO_CHART = exports.ACTION_ADD_BLOCK_TO_CHART = 'ACTION_ADD_BLOCK_TO_CHART';
+var ACTION_RECALC_SVG_PARAMS = exports.ACTION_RECALC_SVG_PARAMS = 'ACTION_RECALC_SVG_PARAMS';
+var ACTION_REMOVE_BLOCK_FROM_CHART = exports.ACTION_REMOVE_BLOCK_FROM_CHART = 'ACTION_REMOVE_BLOCK_FROM_CHART';
 
 /***/ }),
 
@@ -42653,22 +42639,67 @@ var types = _interopRequireWildcard(_actionsTypes);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var initialState = {
+var initialAppState = {
   chartType: 'buy',
   selectedChart: 'buy',
   svg: {
     width: 300,
     height: 400
+  },
+  buyChart: {
+    arrows: [{
+      x1: 0,
+      y1: 50,
+      x2: 0,
+      y2: 100
+    }, {
+      x1: 0,
+      y1: 200,
+      x2: 0,
+      y2: 250
+    }],
+    blocks: [{
+      key: 1,
+      blockType: 'simple',
+      title: 'BUY',
+      x: 0,
+      y: 0,
+      width: 100,
+      height: 50
+    }, {
+      key: 2,
+      blockType: 'complex',
+      x: 0,
+      y: 100,
+      width: 250,
+      height: 100,
+      leftParamsTitle: 'RS1',
+      rightParamsTitle: 'BB'
+    }, {
+      key: 3,
+      blockType: 'simple',
+      title: 'finish',
+      x: 0,
+      y: 250,
+      width: 100,
+      height: 50
+    }]
   }
 };
 
 var rootReducer = exports.rootReducer = function rootReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialAppState;
   var action = arguments[1];
 
   switch (action.type) {
     case types.ACTION_CHANGE_CHART_TYPE:
-      return _extends({}, state, { chartType: action.payload });
+      return _extends({}, state, { chartType: action.payload, selectedChart: action.payload });
+    case types.ACTION_ADD_BLOCK_TO_CHART:
+      return _extends({}, state, { buyChart: action.payload });
+    case types.ACTION_RECALC_SVG_PARAMS:
+      return _extends({}, state, { svg: action.payload });
+    case types.ACTION_REMOVE_BLOCK_FROM_CHART:
+      return _extends({}, state, { svg: action.payload });
   }
   return state;
 };

@@ -42,11 +42,6 @@ circle {
   fill: white;
 }
 
-circle {
-  stroke: #007bff;
-  stroke-width: 1px;
-}
-
 text {
   font-family: 'Rubik', sans-serif;
   text-anchor: middle;
@@ -69,7 +64,15 @@ text {
   margin-right: 10px;
 }
 
+.addBlockBtn circle,
 .addBlockBtn line {
   stroke: #007bff;
   stroke-width: 1px;
 }
+
+.removeBlockBtn circle,
+.removeBlockBtn line {
+  stroke: #a94442;
+  stroke-width: 1px;
+}
+
