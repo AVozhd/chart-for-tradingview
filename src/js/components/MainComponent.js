@@ -9,7 +9,8 @@ import { changeChartType,
          editBlockParamsBuyChart,
          removeBlockFromSellChart,
          addBlockToSellChart,
-         editBlockParamsSellChart } from '../store/actions';
+         editBlockParamsSellChart,
+         changeDropdownTitle } from '../store/actions';
 import BuyChart from './container/BuyChart';
 import SellChart from './container/SellChart';
 import ChartTypeSelectorInput from './presentational/ChartTypeSelectorInput';
@@ -78,7 +79,10 @@ class MainComponent extends React.Component {
             </div>
           </div>
           <div style={ divStyle }>
-            { this.props.form.active ? <Form onCancel={ this.props.changeFormState } formOptions={ this.props.form } /> : '' }
+            { this.props.form.active ? <Form onCancel={ this.props.changeFormState }
+                                             formOptions={ this.props.form }
+                                             formDropdown={ this.props.formDropdown }
+                                             changeDropdownTitle={this.props.changeDropdownTitle} /> : '' }
           </div>
         </div>
       </div>
@@ -93,6 +97,7 @@ MainComponent.propTypes = {
   buyChart: PropTypes.object,
   sellChart: PropTypes.object,
   form: PropTypes.object,
+  formDropdown: PropTypes.object,
   changeChartType: PropTypes.func,
   changeFormState: PropTypes.func,
   recalcSvgParams: PropTypes.func,
@@ -102,6 +107,7 @@ MainComponent.propTypes = {
   removeBlockFromSellChart: PropTypes.func,
   editBlockParamsSellChart: PropTypes.func,
   addBlockToSellChart: PropTypes.func,
+  changeDropdownTitle: PropTypes.func,
 };
 
 export default connect((state => ({
@@ -111,6 +117,7 @@ export default connect((state => ({
   buyChart: state.buyChart,
   sellChart: state.sellChart,
   form: state.form,
+  formDropdown: state.formDropdown,
 })), (dispatch => ({
   changeChartType: bindActionCreators(changeChartType, dispatch),
   recalcSvgParams: bindActionCreators(recalcSvgParams, dispatch),
@@ -121,4 +128,5 @@ export default connect((state => ({
   removeBlockFromSellChart: bindActionCreators(removeBlockFromSellChart, dispatch),
   editBlockParamsSellChart: bindActionCreators(editBlockParamsSellChart, dispatch),
   addBlockToSellChart: bindActionCreators(addBlockToSellChart, dispatch),
+  changeDropdownTitle: bindActionCreators(changeDropdownTitle, dispatch),
 })))(MainComponent);

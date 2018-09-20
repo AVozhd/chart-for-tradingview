@@ -62,3 +62,10 @@ export const editBlockParamsSellChart = (newBlockParams) => {
     payload: newBlockParams
   };
 };
+
+export const changeDropdownTitle = (newDropdownTitle) => {
+  return {
+    type: types.ACTION_CHANGE_DROPDOWN_TITLE,
+    payload: newDropdownTitle
+  };
+};

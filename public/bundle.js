@@ -4073,7 +4073,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n  .dropdown-div {\n    display: grid;\n    align-items: center;\n    grid-template-columns: min-content min-content;\n  }\n}\n", ""]);
 
 // exports
 
@@ -42021,7 +42021,10 @@ var MainComponent = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { style: divStyle },
-            this.props.form.active ? _react2.default.createElement(_Form2.default, { onCancel: this.props.changeFormState, formOptions: this.props.form }) : ''
+            this.props.form.active ? _react2.default.createElement(_Form2.default, { onCancel: this.props.changeFormState,
+              formOptions: this.props.form,
+              formDropdown: this.props.formDropdown,
+              changeDropdownTitle: this.props.changeDropdownTitle }) : ''
           )
         )
       );
@@ -42038,6 +42041,7 @@ MainComponent.propTypes = {
   buyChart: _propTypes2.default.object,
   sellChart: _propTypes2.default.object,
   form: _propTypes2.default.object,
+  formDropdown: _propTypes2.default.object,
   changeChartType: _propTypes2.default.func,
   changeFormState: _propTypes2.default.func,
   recalcSvgParams: _propTypes2.default.func,
@@ -42046,7 +42050,8 @@ MainComponent.propTypes = {
   addBlockToBuyChart: _propTypes2.default.func,
   removeBlockFromSellChart: _propTypes2.default.func,
   editBlockParamsSellChart: _propTypes2.default.func,
-  addBlockToSellChart: _propTypes2.default.func
+  addBlockToSellChart: _propTypes2.default.func,
+  changeDropdownTitle: _propTypes2.default.func
 };
 
 exports.default = (0, _reactRedux.connect)(function (state) {
@@ -42056,7 +42061,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     svg: state.svg,
     buyChart: state.buyChart,
     sellChart: state.sellChart,
-    form: state.form
+    form: state.form,
+    formDropdown: state.formDropdown
   };
 }, function (dispatch) {
   return {
@@ -42068,7 +42074,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     addBlockToBuyChart: (0, _redux.bindActionCreators)(_actions.addBlockToBuyChart, dispatch),
     removeBlockFromSellChart: (0, _redux.bindActionCreators)(_actions.removeBlockFromSellChart, dispatch),
     editBlockParamsSellChart: (0, _redux.bindActionCreators)(_actions.editBlockParamsSellChart, dispatch),
-    addBlockToSellChart: (0, _redux.bindActionCreators)(_actions.addBlockToSellChart, dispatch)
+    addBlockToSellChart: (0, _redux.bindActionCreators)(_actions.addBlockToSellChart, dispatch),
+    changeDropdownTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownTitle, dispatch)
   };
 })(MainComponent);
 
@@ -42301,14 +42308,64 @@ var Form = function (_React$Component) {
         null,
         _react2.default.createElement(
           "div",
-          { className: "form-group" },
+          { className: "dropdown-div" },
           _react2.default.createElement(
-            "label",
-            { className: "form-check-label" },
-            "RS1",
-            _react2.default.createElement("input", { className: "form-control",
-              type: "text",
-              placeholder: "choose params" })
+            "div",
+            { className: "dropdown" },
+            _react2.default.createElement(
+              "button",
+              { className: "btn btn-outline-secondary dropdown-toggle",
+                type: "button",
+                id: "dropdownMenuButton",
+                "data-toggle": "dropdown",
+                "aria-haspopup": "true",
+                "aria-expanded": "false" },
+              this.props.formDropdown.first.title
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "dropdown-menu", "aria-labelledby": "dropdownMenuButton" },
+              this.props.formDropdown.first.options.map(function (option, index) {
+                return _react2.default.createElement(
+                  "span",
+                  { key: index,
+                    className: "dropdown-item",
+                    onClick: function onClick() {
+                      return _this2.props.changeDropdownTitle(option);
+                    } },
+                  option
+                );
+              })
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "dropdown" },
+            _react2.default.createElement(
+              "button",
+              { className: "btn btn-outline-secondary dropdown-toggle",
+                type: "button",
+                id: "dropdownMenuButton",
+                "data-toggle": "dropdown",
+                "aria-haspopup": "true",
+                "aria-expanded": "false" },
+              this.props.formDropdown.first.title
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "dropdown-menu", "aria-labelledby": "dropdownMenuButton" },
+              this.props.formDropdown.first.options.map(function (option, index) {
+                return _react2.default.createElement(
+                  "span",
+                  { key: index,
+                    className: "dropdown-item",
+                    onClick: function onClick() {
+                      return _this2.props.changeDropdownTitle(option);
+                    } },
+                  option
+                );
+              })
+            )
           )
         ),
         _react2.default.createElement(
@@ -42346,6 +42403,20 @@ var Form = function (_React$Component) {
 
   return Form;
 }(_react2.default.Component);
+
+/*
+<div className="dropdown">
+  <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a className="dropdown-item" href="#">Action</a>
+    <a className="dropdown-item" href="#">Another action</a>
+    <a className="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+*/
+
 
 exports.default = Form;
 
@@ -42818,7 +42889,7 @@ exports.default = SimpleArrow;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.editBlockParamsSellChart = exports.addBlockToSellChart = exports.removeBlockFromSellChart = exports.editBlockParamsBuyChart = exports.addBlockToBuyChart = exports.removeBlockFromBuyChart = exports.changeFormState = exports.recalcSvgParams = exports.changeChartType = undefined;
+exports.changeDropdownTitle = exports.editBlockParamsSellChart = exports.addBlockToSellChart = exports.removeBlockFromSellChart = exports.editBlockParamsBuyChart = exports.addBlockToBuyChart = exports.removeBlockFromBuyChart = exports.changeFormState = exports.recalcSvgParams = exports.changeChartType = undefined;
 
 var _actionsTypes = __webpack_require__(/*! ./actionsTypes */ "./src/js/store/actionsTypes.js");
 
@@ -42889,6 +42960,13 @@ var editBlockParamsSellChart = exports.editBlockParamsSellChart = function editB
   };
 };
 
+var changeDropdownTitle = exports.changeDropdownTitle = function changeDropdownTitle(newDropdownTitle) {
+  return {
+    type: types.ACTION_CHANGE_DROPDOWN_TITLE,
+    payload: newDropdownTitle
+  };
+};
+
 /***/ }),
 
 /***/ "./src/js/store/actionsTypes.js":
@@ -42913,13 +42991,14 @@ var ACTION_ADD_BLOCK_TO_BUY_CHART = exports.ACTION_ADD_BLOCK_TO_BUY_CHART = 'ACT
 var ACTION_REMOVE_BLOCK_FROM_SELL_CHART = exports.ACTION_REMOVE_BLOCK_FROM_SELL_CHART = 'ACTION_REMOVE_BLOCK_FROM_SELL_CHART';
 var ACTION_EDIT_BLOCK_PARAMS_SELL_CHART = exports.ACTION_EDIT_BLOCK_PARAMS_SELL_CHART = 'ACTION_EDIT_BLOCK_PARAMS_SELL_CHART';
 var ACTION_ADD_BLOCK_TO_CHART_SELL_CHART = exports.ACTION_ADD_BLOCK_TO_CHART_SELL_CHART = 'ACTION_ADD_BLOCK_TO_CHART_SELL_CHART';
+var ACTION_CHANGE_DROPDOWN_TITLE = exports.ACTION_CHANGE_DROPDOWN_TITLE = 'ACTION_CHANGE_DROPDOWN_TITLE';
 
 /***/ }),
 
-/***/ "./src/js/store/reducers.js":
-/*!**********************************!*\
-  !*** ./src/js/store/reducers.js ***!
-  \**********************************/
+/***/ "./src/js/store/initialAppState.js":
+/*!*****************************************!*\
+  !*** ./src/js/store/initialAppState.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -42929,16 +43008,6 @@ var ACTION_ADD_BLOCK_TO_CHART_SELL_CHART = exports.ACTION_ADD_BLOCK_TO_CHART_SEL
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.rootReducer = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _actionsTypes = __webpack_require__(/*! ./actionsTypes */ "./src/js/store/actionsTypes.js");
-
-var types = _interopRequireWildcard(_actionsTypes);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 var initialAppState = {
   chartType: 'buy',
   selectedChart: 'buy',
@@ -42955,6 +43024,12 @@ var initialAppState = {
   form: {
     active: false,
     top: 0
+  },
+  formDropdown: {
+    first: {
+      title: 'Choose option',
+      options: ['Param 1', 'Param 2', 'Param 3']
+    }
   },
   buyChart: {
     arrows: [{
@@ -43052,15 +43127,54 @@ var initialAppState = {
   }
 };
 
+exports.default = initialAppState;
+
+/***/ }),
+
+/***/ "./src/js/store/reducers.js":
+/*!**********************************!*\
+  !*** ./src/js/store/reducers.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.rootReducer = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _actionsTypes = __webpack_require__(/*! ./actionsTypes */ "./src/js/store/actionsTypes.js");
+
+var types = _interopRequireWildcard(_actionsTypes);
+
+var _initialAppState = __webpack_require__(/*! ./initialAppState */ "./src/js/store/initialAppState.js");
+
+var _initialAppState2 = _interopRequireDefault(_initialAppState);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 var rootReducer = exports.rootReducer = function rootReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialAppState;
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialAppState2.default;
   var action = arguments[1];
 
   switch (action.type) {
     case types.ACTION_CHANGE_CHART_TYPE:
-      return _extends({}, state, { chartType: action.payload, selectedChart: action.payload });
+      return _extends({}, state, {
+        chartType: action.payload,
+        selectedChart: action.payload
+      });
     case types.ACTION_CHANGE_FORM_STATE:
-      return _extends({}, state, { form: action.payload });
+      return _extends({}, state, {
+        form: action.payload,
+        formDropdown: _initialAppState2.default.formDropdown
+      });
     case types.ACTION_RECALC_SVG_PARAMS:
       return _extends({}, state, { svg: action.payload });
     case types.ACTION_REMOVE_BLOCK_FROM_BUY_CHART:
@@ -43075,6 +43189,14 @@ var rootReducer = exports.rootReducer = function rootReducer() {
       return _extends({}, state, { sellChart: action.payload });
     case types.ACTION_ADD_BLOCK_TO_CHART_SELL_CHART:
       return _extends({}, state, { sellChart: action.payload });
+    case types.ACTION_CHANGE_DROPDOWN_TITLE:
+      return _extends({}, state, {
+        formDropdown: _extends({}, state.formDropdown, {
+          first: _extends({}, state.formDropdown.first, {
+            title: action.payload
+          })
+        })
+      });
   }
   return state;
 };
