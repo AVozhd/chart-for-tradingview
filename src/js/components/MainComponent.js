@@ -17,8 +17,8 @@ import PropTypes from 'prop-types';
 class MainComponent extends React.Component {
   render() {
     const divStyle = {
-      // position: 'absolute',
-      // top:
+      position: 'absolute',
+      top: this.props.form.top,
     };
     return(
       <div className="container">
@@ -52,7 +52,7 @@ class MainComponent extends React.Component {
                                     onChange={ this.props.changeChartType } />
           </div>
           <div style={ divStyle }>
-            { this.props.form.active ? <Form /> : '' }
+            { this.props.form.active ? <Form onCancel={ this.props.changeFormState } formOptions={ this.props.form } /> : '' }
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Block from '../presentational/Block';
 import SimpleArrow from '../presentational/SimpleArrow';
+import $ from 'jquery';
 
 export default class BuyChart extends React.Component {
   constructor(props) {
@@ -11,10 +12,11 @@ export default class BuyChart extends React.Component {
     this.changeFormState = this.changeFormState.bind(this);
   }
   
-  changeFormState() {
-    let form = this.props.form;
-    form.active = true;
-    this.props.changeFormState(form);
+  changeFormState(eventTarget) {
+    this.props.changeFormState({
+      active: true,
+      top: $(eventTarget).position().top,
+    });
   }
   
   addBlock() {

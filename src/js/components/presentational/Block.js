@@ -23,7 +23,7 @@ export default class Block extends React.Component {
            transform={"translate(" + this.props.params.x + "," + this.props.params.y + ")"}>
           <rect height={this.props.params.height}
                 width={this.props.params.width}
-                onClick={() => this.props.changeFormState()}
+                onClick={(event) => this.props.changeFormState(event.target)}
                 x={"-" + this.props.params.width/2}
                 y="0" />
           <text x="0"

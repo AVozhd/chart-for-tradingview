@@ -41948,8 +41948,8 @@ var MainComponent = function (_React$Component) {
     key: 'render',
     value: function render() {
       var divStyle = {
-        // position: 'absolute',
-        // top:
+        position: 'absolute',
+        top: this.props.form.top
       };
       return _react2.default.createElement(
         'div',
@@ -41987,7 +41987,7 @@ var MainComponent = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { style: divStyle },
-            this.props.form.active ? _react2.default.createElement(_Form2.default, null) : ''
+            this.props.form.active ? _react2.default.createElement(_Form2.default, { onCancel: this.props.changeFormState, formOptions: this.props.form }) : ''
           )
         )
       );
@@ -42062,6 +42062,10 @@ var _SimpleArrow = __webpack_require__(/*! ../presentational/SimpleArrow */ "./s
 
 var _SimpleArrow2 = _interopRequireDefault(_SimpleArrow);
 
+var _jquery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -42086,10 +42090,11 @@ var BuyChart = function (_React$Component) {
 
   _createClass(BuyChart, [{
     key: 'changeFormState',
-    value: function changeFormState() {
-      var form = this.props.form;
-      form.active = true;
-      this.props.changeFormState(form);
+    value: function changeFormState(eventTarget) {
+      this.props.changeFormState({
+        active: true,
+        top: (0, _jquery2.default)(eventTarget).position().top
+      });
     }
   }, {
     key: 'addBlock',
@@ -42241,6 +42246,8 @@ var Form = function (_React$Component) {
   _createClass(Form, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         "form",
         null,
@@ -42266,7 +42273,14 @@ var Form = function (_React$Component) {
         ),
         _react2.default.createElement(
           "button",
-          { type: "button", className: "btn btn-outline-danger" },
+          { type: "button",
+            className: "btn btn-outline-danger",
+            onClick: function onClick() {
+              return _this2.props.onCancel({
+                active: false,
+                top: _this2.props.formOptions.top
+              });
+            } },
           "Cancel"
         )
       );
@@ -42505,8 +42519,8 @@ var Block = function (_React$Component) {
             transform: "translate(" + this.props.params.x + "," + this.props.params.y + ")" },
           _react2.default.createElement('rect', { height: this.props.params.height,
             width: this.props.params.width,
-            onClick: function onClick() {
-              return _this2.props.changeFormState();
+            onClick: function onClick(event) {
+              return _this2.props.changeFormState(event.target);
             },
             x: "-" + this.props.params.width / 2,
             y: '0' }),

@@ -10,7 +10,14 @@ export default class Form extends React.Component {
             <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <button type="button" className="btn btn-outline-primary">Save</button>
-        <button type="button" className="btn btn-outline-danger">Cancel</button>
+        <button type="button"
+                className="btn btn-outline-danger"
+                onClick={() => this.props.onCancel({
+                  active: false,
+                  top: this.props.formOptions.top,
+                })} >
+          Cancel
+        </button>
       </form>
     )
   }
