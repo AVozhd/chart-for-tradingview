@@ -36,7 +36,14 @@ class MainComponent extends React.Component {
                         changeFormState={ this.props.changeFormState }
                         form={ this.props.form } />
               :
-              <SellChart />
+              <SellChart options={ this.props.sellChart }
+                         onChange={ this.props.addBlockToChart }
+                         recalcSvgParams={ this.props.recalcSvgParams }
+                         removeBlock={ this.props.removeBlockFromChart }
+                         svgParams={ this.props.svg }
+                         editBlockParams={ this.props.editBlockParams }
+                         changeFormState={ this.props.changeFormState }
+                         form={ this.props.form } />
           }
         </svg>
         <div className="relative">
@@ -65,6 +72,7 @@ MainComponent.propTypes = {
   chartType: PropTypes.string,
   svg: PropTypes.object,
   buyChart: PropTypes.object,
+  sellChart: PropTypes.object,
   form: PropTypes.object,
   changeChartType: PropTypes.func,
   addBlockToChart: PropTypes.func,
@@ -79,6 +87,7 @@ export default connect((state => ({
   chartType: state.chartType,
   svg: state.svg,
   buyChart: state.buyChart,
+  sellChart: state.sellChart,
   form: state.form,
 })), (dispatch => ({
   changeChartType: bindActionCreators(changeChartType, dispatch),

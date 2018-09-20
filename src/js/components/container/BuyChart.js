@@ -15,7 +15,7 @@ export default class BuyChart extends React.Component {
   changeFormState(eventTarget) {
     this.props.changeFormState({
       active: true,
-      top: $(eventTarget).position().top,
+      top: Math.floor($(eventTarget).position().top) - 5,
     });
   }
   

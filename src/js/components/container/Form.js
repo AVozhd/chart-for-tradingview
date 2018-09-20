@@ -5,9 +5,20 @@ export default class Form extends React.Component {
     return(
       <form>
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Email address</label>
-          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+          <label className="form-check-label">
+            RS1
+            <input className="form-control"
+                   type="text"
+                   placeholder="choose params" />
+          </label>
+        </div>
+        <div className="form-group">
+          <label className="form-check-label">
+            BB
+            <input className="form-control"
+                   type="text"
+                   placeholder="choose params" />
+          </label>
         </div>
         <button type="button" className="btn btn-outline-primary">Save</button>
         <button type="button"

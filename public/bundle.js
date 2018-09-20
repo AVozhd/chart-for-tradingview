@@ -41966,7 +41966,14 @@ var MainComponent = function (_React$Component) {
             svgParams: this.props.svg,
             editBlockParams: this.props.editBlockParams,
             changeFormState: this.props.changeFormState,
-            form: this.props.form }) : _react2.default.createElement(_SellChart2.default, null)
+            form: this.props.form }) : _react2.default.createElement(_SellChart2.default, { options: this.props.sellChart,
+            onChange: this.props.addBlockToChart,
+            recalcSvgParams: this.props.recalcSvgParams,
+            removeBlock: this.props.removeBlockFromChart,
+            svgParams: this.props.svg,
+            editBlockParams: this.props.editBlockParams,
+            changeFormState: this.props.changeFormState,
+            form: this.props.form })
         ),
         _react2.default.createElement(
           'div',
@@ -42002,6 +42009,7 @@ MainComponent.propTypes = {
   chartType: _propTypes2.default.string,
   svg: _propTypes2.default.object,
   buyChart: _propTypes2.default.object,
+  sellChart: _propTypes2.default.object,
   form: _propTypes2.default.object,
   changeChartType: _propTypes2.default.func,
   addBlockToChart: _propTypes2.default.func,
@@ -42017,6 +42025,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     chartType: state.chartType,
     svg: state.svg,
     buyChart: state.buyChart,
+    sellChart: state.sellChart,
     form: state.form
   };
 }, function (dispatch) {
@@ -42093,7 +42102,7 @@ var BuyChart = function (_React$Component) {
     value: function changeFormState(eventTarget) {
       this.props.changeFormState({
         active: true,
-        top: (0, _jquery2.default)(eventTarget).position().top
+        top: Math.floor((0, _jquery2.default)(eventTarget).position().top) - 5
       });
     }
   }, {
@@ -42256,14 +42265,23 @@ var Form = function (_React$Component) {
           { className: "form-group" },
           _react2.default.createElement(
             "label",
-            { htmlFor: "exampleInputEmail1" },
-            "Email address"
-          ),
-          _react2.default.createElement("input", { type: "email", className: "form-control", id: "exampleInputEmail1", "aria-describedby": "emailHelp", placeholder: "Enter email" }),
+            { className: "form-check-label" },
+            "RS1",
+            _react2.default.createElement("input", { className: "form-control",
+              type: "text",
+              placeholder: "choose params" })
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "form-group" },
           _react2.default.createElement(
-            "small",
-            { id: "emailHelp", className: "form-text text-muted" },
-            "We'll never share your email with anyone else."
+            "label",
+            { className: "form-check-label" },
+            "BB",
+            _react2.default.createElement("input", { className: "form-control",
+              type: "text",
+              placeholder: "choose params" })
           )
         ),
         _react2.default.createElement(
@@ -42314,6 +42332,8 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
 var _Block = __webpack_require__(/*! ../presentational/Block */ "./src/js/components/presentational/Block.js");
 
 var _Block2 = _interopRequireDefault(_Block);
@@ -42321,6 +42341,10 @@ var _Block2 = _interopRequireDefault(_Block);
 var _SimpleArrow = __webpack_require__(/*! ../presentational/SimpleArrow */ "./src/js/components/presentational/SimpleArrow.js");
 
 var _SimpleArrow2 = _interopRequireDefault(_SimpleArrow);
+
+var _jquery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42330,98 +42354,105 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SellChart = function (_React$Component) {
-  _inherits(SellChart, _React$Component);
+var BuyChart = function (_React$Component) {
+  _inherits(BuyChart, _React$Component);
 
-  function SellChart(props) {
-    _classCallCheck(this, SellChart);
+  function BuyChart(props) {
+    _classCallCheck(this, BuyChart);
 
-    var _this = _possibleConstructorReturn(this, (SellChart.__proto__ || Object.getPrototypeOf(SellChart)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (BuyChart.__proto__ || Object.getPrototypeOf(BuyChart)).call(this, props));
 
     _this.addBlock = _this.addBlock.bind(_this);
-    _this.drawArrow = _this.drawArrow.bind(_this);
-
-    _this.state = {
-      arrows: [{
-        x1: 0,
-        y1: 50,
-        x2: 0,
-        y2: 100
-      }, {
-        x1: 0,
-        y1: 200,
-        x2: 0,
-        y2: 250
-      }],
-      blocks: [{
-        blockType: 'simple',
-        title: 'SELL',
-        x: 0,
-        y: 0,
-        width: 100,
-        height: 50
-      }, {
-        blockType: 'complex',
-        x: 0,
-        y: 100,
-        width: 250,
-        height: 100,
-        leftParamsTitle: 'RS1',
-        rightParamsTitle: 'BB'
-      }, {
-        blockType: 'simple',
-        title: 'finish',
-        x: 0,
-        y: 250,
-        width: 100,
-        height: 50
-      }]
-    };
+    _this.removeBlock = _this.removeBlock.bind(_this);
+    _this.changeFormState = _this.changeFormState.bind(_this);
     return _this;
   }
 
-  _createClass(SellChart, [{
+  _createClass(BuyChart, [{
+    key: 'changeFormState',
+    value: function changeFormState(eventTarget) {
+      this.props.changeFormState({
+        active: true,
+        top: Math.floor((0, _jquery2.default)(eventTarget).position().top) - 5
+      });
+    }
+  }, {
     key: 'addBlock',
     value: function addBlock() {
-      var blocks = this.state.blocks;
-      var newBlocksState = blocks.slice(0, blocks.length - 1);
-      newBlocksState.push({
+      var blocks = this.props.options.blocks.slice(0, this.props.options.blocks.length - 1);
+      blocks.push({
+        key: blocks[blocks.length - 1].key + 1,
         blockType: 'complex',
         x: 0,
-        y: newBlocksState[newBlocksState.length - 1].y + newBlocksState[newBlocksState.length - 1].height + 50,
+        y: blocks[blocks.length - 1].y + blocks[blocks.length - 1].height + 50,
         width: 250,
         height: 100,
-        leftParamsTitle: 'RS1',
-        rightParamsTitle: 'BB'
+        options: {
+          left: {
+            title: 'RS1',
+            param1: 'left params'
+          },
+          right: {
+            title: 'BB',
+            param1: 'right params'
+          }
+        }
       });
-      newBlocksState.push({
+      blocks.push({
+        key: blocks[blocks.length - 1].key + 1,
         blockType: 'simple',
         title: 'finish',
         x: 0,
-        y: newBlocksState[newBlocksState.length - 1].y + newBlocksState[newBlocksState.length - 1].height + 50,
+        y: blocks[blocks.length - 1].y + blocks[blocks.length - 1].height + 50,
         width: 100,
         height: 50
       });
-      this.setState({
-        blocks: newBlocksState
-      });
-      this.drawArrow(newBlocksState);
-    }
-  }, {
-    key: 'drawArrow',
-    value: function drawArrow(blocks) {
       var newBlock = blocks[blocks.length - 1];
       var lastBlock = blocks[blocks.length - 2];
-      var arrows = this.state.arrows;
+      var arrows = this.props.options.arrows;
       arrows.push({
         x1: lastBlock.x,
         y1: lastBlock.y + lastBlock.height,
         x2: newBlock.x,
         y2: newBlock.y
       });
-      this.setState({
-        arrows: arrows
+      this.props.onChange({ blocks: blocks, arrows: arrows });
+      this.recalcSvgParams(blocks, arrows);
+    }
+  }, {
+    key: 'removeBlock',
+    value: function removeBlock(blockId) {
+      var blocks = this.props.options.blocks;
+      var arrows = [];
+      blocks = blocks.filter(function (block) {
+        return block.key !== blockId;
       });
+      blocks.map(function (block, index) {
+        if (index > 0) {
+          block.y = blocks[index - 1].y + blocks[index - 1].height + 50;
+          arrows.push({
+            x1: blocks[index - 1].x,
+            y1: blocks[index - 1].y + blocks[index - 1].height,
+            x2: block.x,
+            y2: block.y
+          });
+        }
+      });
+      this.recalcSvgParams(blocks, arrows);
+    }
+  }, {
+    key: 'recalcSvgParams',
+    value: function recalcSvgParams(blocks, arrows) {
+      var newTotalHeight = [];
+      blocks.map(function (block) {
+        return newTotalHeight.push(block.height);
+      });
+      newTotalHeight = newTotalHeight.reduce(function (accumulator, currentValue) {
+        return accumulator + currentValue;
+      });
+      newTotalHeight = newTotalHeight + arrows.length * 50;
+      this.props.recalcSvgParams({ width: this.props.svgParams.width, height: newTotalHeight + 2 });
+      this.props.removeBlock({ blocks: blocks, arrows: arrows });
     }
   }, {
     key: 'render',
@@ -42431,26 +42462,27 @@ var SellChart = function (_React$Component) {
       return _react2.default.createElement(
         'g',
         { transform: 'translate(130,1)' },
-        this.state.blocks.map(function (elem, index) {
-          return _react2.default.createElement(_Block2.default, { makeFormActive: _this2.props.makeFormActive,
-            addBlock: _this2.addBlock,
+        this.props.options.blocks.map(function (elem, index) {
+          return _react2.default.createElement(_Block2.default, { addBlock: _this2.addBlock,
+            removeBlock: _this2.removeBlock,
+            changeFormState: _this2.changeFormState,
             params: elem,
             key: index,
             index: index });
         }),
-        this.state.arrows.map(function (elem, index) {
+        this.props.options.arrows.map(function (elem, index) {
           return _react2.default.createElement(_SimpleArrow2.default, { params: elem,
-            index: index,
-            key: index });
+            key: index,
+            index: index });
         })
       );
     }
   }]);
 
-  return SellChart;
+  return BuyChart;
 }(_react2.default.Component);
 
-exports.default = SellChart;
+exports.default = BuyChart;
 
 /***/ }),
 
@@ -42858,6 +42890,53 @@ var initialAppState = {
       key: 1,
       blockType: 'simple',
       title: 'BUY',
+      x: 0,
+      y: 0,
+      width: 100,
+      height: 50
+    }, {
+      key: 2,
+      blockType: 'complex',
+      x: 0,
+      y: 100,
+      width: 250,
+      height: 100,
+      options: {
+        left: {
+          title: 'RS1',
+          param1: 'left params'
+        },
+        right: {
+          title: 'BB',
+          param1: 'right params'
+        }
+      }
+    }, {
+      key: 3,
+      blockType: 'simple',
+      title: 'finish',
+      x: 0,
+      y: 250,
+      width: 100,
+      height: 50
+    }]
+  },
+  sellChart: {
+    arrows: [{
+      x1: 0,
+      y1: 50,
+      x2: 0,
+      y2: 100
+    }, {
+      x1: 0,
+      y1: 200,
+      x2: 0,
+      y2: 250
+    }],
+    blocks: [{
+      key: 1,
+      blockType: 'simple',
+      title: 'SELL',
       x: 0,
       y: 0,
       width: 100,
