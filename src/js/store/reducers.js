@@ -5,7 +5,11 @@ const initialAppState = {
   selectedChart: 'buy',
   svg: {
     width: 300,
-    height: 400
+    height: 400,
+  },
+  form: {
+    active: false,
+    top: 0,
   },
   buyChart: {
     arrows: [
@@ -13,13 +17,13 @@ const initialAppState = {
         x1: 0,
         y1: 50,
         x2: 0,
-        y2: 100
+        y2: 100,
       },
       {
         x1: 0,
         y1: 200,
         x2: 0,
-        y2: 250
+        y2: 250,
       }
     ],
     blocks: [
@@ -30,7 +34,7 @@ const initialAppState = {
         x: 0,
         y: 0,
         width: 100,
-        height: 50
+        height: 50,
       },
       {
         key: 2,
@@ -39,8 +43,16 @@ const initialAppState = {
         y: 100,
         width: 250,
         height: 100,
-        leftParamsTitle: 'RS1',
-        rightParamsTitle: 'BB'
+        options: {
+          left: {
+            title: 'RS1',
+            param1: 'left params',
+          },
+          right: {
+            title: 'BB',
+            param1: 'right params',
+          },
+        },
       },
       {
         key: 3,
@@ -49,7 +61,7 @@ const initialAppState = {
         x: 0,
         y: 250,
         width: 100,
-        height: 50
+        height: 50,
       }
     ],
   },
@@ -64,7 +76,11 @@ export const rootReducer = (state = initialAppState, action) => {
     case types.ACTION_RECALC_SVG_PARAMS:
       return { ...state, svg: action.payload };
     case types.ACTION_REMOVE_BLOCK_FROM_CHART:
-      return { ...state, svg: action.payload };
+      return { ...state, buyChart: action.payload };
+    case types.ACTION_EDIT_BLOCK_PARAMS:
+      return { ...state, buyChart: action.payload };
+    case types.ACTION_CHANGE_FORM_STATE:
+      return { ...state, form: action.payload };
   }
   return state;
 };

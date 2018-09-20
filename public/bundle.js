@@ -4073,7 +4073,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n  stroke-width: 1px;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n  stroke-width: 1px;\n}\n\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n", ""]);
 
 // exports
 
@@ -41919,6 +41919,14 @@ var _ChartTypeSelectorInput = __webpack_require__(/*! ./presentational/ChartType
 
 var _ChartTypeSelectorInput2 = _interopRequireDefault(_ChartTypeSelectorInput);
 
+var _Form = __webpack_require__(/*! ./container/Form */ "./src/js/components/container/Form.js");
+
+var _Form2 = _interopRequireDefault(_Form);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41939,6 +41947,10 @@ var MainComponent = function (_React$Component) {
   _createClass(MainComponent, [{
     key: 'render',
     value: function render() {
+      var divStyle = {
+        // position: 'absolute',
+        // top:
+      };
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -41951,20 +41963,32 @@ var MainComponent = function (_React$Component) {
             onChange: this.props.addBlockToChart,
             recalcSvgParams: this.props.recalcSvgParams,
             removeBlock: this.props.removeBlockFromChart,
-            svgParams: this.props.svg }) : _react2.default.createElement(_SellChart2.default, null)
+            svgParams: this.props.svg,
+            editBlockParams: this.props.editBlockParams,
+            changeFormState: this.props.changeFormState,
+            form: this.props.form }) : _react2.default.createElement(_SellChart2.default, null)
         ),
         _react2.default.createElement(
           'div',
-          null,
-          'Choose chart type:',
-          _react2.default.createElement(_ChartTypeSelectorInput2.default, { title: 'Buy',
-            value: 'buy',
-            checked: this.props.selectedChart === 'buy',
-            onChange: this.props.changeChartType }),
-          _react2.default.createElement(_ChartTypeSelectorInput2.default, { title: 'Sell',
-            value: 'sell',
-            checked: this.props.selectedChart === 'sell',
-            onChange: this.props.changeChartType })
+          { className: 'relative' },
+          _react2.default.createElement(
+            'div',
+            null,
+            'Choose chart type:',
+            _react2.default.createElement(_ChartTypeSelectorInput2.default, { title: 'Buy',
+              value: 'buy',
+              checked: this.props.selectedChart === 'buy',
+              onChange: this.props.changeChartType }),
+            _react2.default.createElement(_ChartTypeSelectorInput2.default, { title: 'Sell',
+              value: 'sell',
+              checked: this.props.selectedChart === 'sell',
+              onChange: this.props.changeChartType })
+          ),
+          _react2.default.createElement(
+            'div',
+            { style: divStyle },
+            this.props.form.active ? _react2.default.createElement(_Form2.default, null) : ''
+          )
         )
       );
     }
@@ -41973,19 +41997,36 @@ var MainComponent = function (_React$Component) {
   return MainComponent;
 }(_react2.default.Component);
 
+MainComponent.propTypes = {
+  selectedChart: _propTypes2.default.string,
+  chartType: _propTypes2.default.string,
+  svg: _propTypes2.default.object,
+  buyChart: _propTypes2.default.object,
+  form: _propTypes2.default.object,
+  changeChartType: _propTypes2.default.func,
+  addBlockToChart: _propTypes2.default.func,
+  recalcSvgParams: _propTypes2.default.func,
+  removeBlockFromChart: _propTypes2.default.func,
+  editBlockParams: _propTypes2.default.func,
+  changeFormState: _propTypes2.default.func
+};
+
 exports.default = (0, _reactRedux.connect)(function (state) {
   return {
     selectedChart: state.selectedChart,
     chartType: state.chartType,
     svg: state.svg,
-    buyChart: state.buyChart
+    buyChart: state.buyChart,
+    form: state.form
   };
 }, function (dispatch) {
   return {
     changeChartType: (0, _redux.bindActionCreators)(_actions.changeChartType, dispatch),
     addBlockToChart: (0, _redux.bindActionCreators)(_actions.addBlockToChart, dispatch),
     recalcSvgParams: (0, _redux.bindActionCreators)(_actions.recalcSvgParams, dispatch),
-    removeBlockFromChart: (0, _redux.bindActionCreators)(_actions.removeBlockFromChart, dispatch)
+    removeBlockFromChart: (0, _redux.bindActionCreators)(_actions.removeBlockFromChart, dispatch),
+    editBlockParams: (0, _redux.bindActionCreators)(_actions.editBlockParams, dispatch),
+    changeFormState: (0, _redux.bindActionCreators)(_actions.changeFormState, dispatch)
   };
 })(MainComponent);
 
@@ -42039,10 +42080,18 @@ var BuyChart = function (_React$Component) {
 
     _this.addBlock = _this.addBlock.bind(_this);
     _this.removeBlock = _this.removeBlock.bind(_this);
+    _this.changeFormState = _this.changeFormState.bind(_this);
     return _this;
   }
 
   _createClass(BuyChart, [{
+    key: 'changeFormState',
+    value: function changeFormState() {
+      var form = this.props.form;
+      form.active = true;
+      this.props.changeFormState(form);
+    }
+  }, {
     key: 'addBlock',
     value: function addBlock() {
       var blocks = this.props.options.blocks.slice(0, this.props.options.blocks.length - 1);
@@ -42053,8 +42102,16 @@ var BuyChart = function (_React$Component) {
         y: blocks[blocks.length - 1].y + blocks[blocks.length - 1].height + 50,
         width: 250,
         height: 100,
-        leftParamsTitle: 'RS1',
-        rightParamsTitle: 'BB'
+        options: {
+          left: {
+            title: 'RS1',
+            param1: 'left params'
+          },
+          right: {
+            title: 'BB',
+            param1: 'right params'
+          }
+        }
       });
       blocks.push({
         key: blocks[blocks.length - 1].key + 1,
@@ -42075,7 +42132,32 @@ var BuyChart = function (_React$Component) {
         y2: newBlock.y
       });
       this.props.onChange({ blocks: blocks, arrows: arrows });
-
+      this.recalcSvgParams(blocks, arrows);
+    }
+  }, {
+    key: 'removeBlock',
+    value: function removeBlock(blockId) {
+      var blocks = this.props.options.blocks;
+      var arrows = [];
+      blocks = blocks.filter(function (block) {
+        return block.key !== blockId;
+      });
+      blocks.map(function (block, index) {
+        if (index > 0) {
+          block.y = blocks[index - 1].y + blocks[index - 1].height + 50;
+          arrows.push({
+            x1: blocks[index - 1].x,
+            y1: blocks[index - 1].y + blocks[index - 1].height,
+            x2: block.x,
+            y2: block.y
+          });
+        }
+      });
+      this.recalcSvgParams(blocks, arrows);
+    }
+  }, {
+    key: 'recalcSvgParams',
+    value: function recalcSvgParams(blocks, arrows) {
       var newTotalHeight = [];
       blocks.map(function (block) {
         return newTotalHeight.push(block.height);
@@ -42085,22 +42167,7 @@ var BuyChart = function (_React$Component) {
       });
       newTotalHeight = newTotalHeight + arrows.length * 50;
       this.props.recalcSvgParams({ width: this.props.svgParams.width, height: newTotalHeight + 2 });
-    }
-  }, {
-    key: 'removeBlock',
-    value: function removeBlock(blockId) {
-      var arrows = this.props.options.arrows;
-      var blocks = this.props.options.blocks;
-      blocks = blocks.filter(function (block) {
-        return block.key !== blockId;
-      });
       this.props.removeBlock({ blocks: blocks, arrows: arrows });
-
-      /*let newTotalHeight = [];
-      blocks.map((block) => newTotalHeight.push(block.height));
-      newTotalHeight = newTotalHeight.reduce((accumulator, currentValue) => accumulator + currentValue);
-      newTotalHeight = newTotalHeight + arrows.length * 50;
-      this.props.recalcSvgParams({width: this.props.svgParams.width, height: newTotalHeight + 2});*/
     }
   }, {
     key: 'render',
@@ -42113,6 +42180,7 @@ var BuyChart = function (_React$Component) {
         this.props.options.blocks.map(function (elem, index) {
           return _react2.default.createElement(_Block2.default, { addBlock: _this2.addBlock,
             removeBlock: _this2.removeBlock,
+            changeFormState: _this2.changeFormState,
             params: elem,
             key: index,
             index: index });
@@ -42130,6 +42198,85 @@ var BuyChart = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = BuyChart;
+
+/***/ }),
+
+/***/ "./src/js/components/container/Form.js":
+/*!*********************************************!*\
+  !*** ./src/js/components/container/Form.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Form = function (_React$Component) {
+  _inherits(Form, _React$Component);
+
+  function Form() {
+    _classCallCheck(this, Form);
+
+    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).apply(this, arguments));
+  }
+
+  _createClass(Form, [{
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "form",
+        null,
+        _react2.default.createElement(
+          "div",
+          { className: "form-group" },
+          _react2.default.createElement(
+            "label",
+            { htmlFor: "exampleInputEmail1" },
+            "Email address"
+          ),
+          _react2.default.createElement("input", { type: "email", className: "form-control", id: "exampleInputEmail1", "aria-describedby": "emailHelp", placeholder: "Enter email" }),
+          _react2.default.createElement(
+            "small",
+            { id: "emailHelp", className: "form-text text-muted" },
+            "We'll never share your email with anyone else."
+          )
+        ),
+        _react2.default.createElement(
+          "button",
+          { type: "button", className: "btn btn-outline-primary" },
+          "Save"
+        ),
+        _react2.default.createElement(
+          "button",
+          { type: "button", className: "btn btn-outline-danger" },
+          "Cancel"
+        )
+      );
+    }
+  }]);
+
+  return Form;
+}(_react2.default.Component);
+
+exports.default = Form;
 
 /***/ }),
 
@@ -42354,9 +42501,13 @@ var Block = function (_React$Component) {
       } else if (this.props.params.blockType === 'complex') {
         return _react2.default.createElement(
           'g',
-          { key: this.props.index, transform: "translate(" + this.props.params.x + "," + this.props.params.y + ")" },
+          { key: this.props.index,
+            transform: "translate(" + this.props.params.x + "," + this.props.params.y + ")" },
           _react2.default.createElement('rect', { height: this.props.params.height,
             width: this.props.params.width,
+            onClick: function onClick() {
+              return _this2.props.changeFormState();
+            },
             x: "-" + this.props.params.width / 2,
             y: '0' }),
           _react2.default.createElement(
@@ -42376,12 +42527,12 @@ var Block = function (_React$Component) {
             _react2.default.createElement(
               'text',
               { x: '50', y: '30' },
-              this.props.params.leftParamsTitle
+              this.props.params.options.left.title
             ),
             _react2.default.createElement(
               'text',
               { x: '50', y: '80' },
-              'Params'
+              this.props.params.options.left.param1
             )
           ),
           _react2.default.createElement(
@@ -42395,12 +42546,12 @@ var Block = function (_React$Component) {
             _react2.default.createElement(
               'text',
               { x: '50', y: '30' },
-              this.props.params.rightParamsTitle
+              this.props.params.options.right.title
             ),
             _react2.default.createElement(
               'text',
               { x: '50', y: '80' },
-              'Params'
+              this.props.params.options.right.param1
             )
           ),
           _react2.default.createElement(
@@ -42569,7 +42720,7 @@ exports.default = SimpleArrow;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.removeBlockFromChart = exports.recalcSvgParams = exports.addBlockToChart = exports.changeChartType = undefined;
+exports.changeFormState = exports.editBlockParams = exports.removeBlockFromChart = exports.recalcSvgParams = exports.addBlockToChart = exports.changeChartType = undefined;
 
 var _actionsTypes = __webpack_require__(/*! ./actionsTypes */ "./src/js/store/actionsTypes.js");
 
@@ -42605,6 +42756,20 @@ var removeBlockFromChart = exports.removeBlockFromChart = function removeBlockFr
   };
 };
 
+var editBlockParams = exports.editBlockParams = function editBlockParams(newBlockParams) {
+  return {
+    type: types.ACTION_EDIT_BLOCK_PARAMS,
+    payload: newBlockParams
+  };
+};
+
+var changeFormState = exports.changeFormState = function changeFormState(newFormState) {
+  return {
+    type: types.ACTION_CHANGE_FORM_STATE,
+    payload: newFormState
+  };
+};
+
 /***/ }),
 
 /***/ "./src/js/store/actionsTypes.js":
@@ -42624,6 +42789,8 @@ var ACTION_CHANGE_CHART_TYPE = exports.ACTION_CHANGE_CHART_TYPE = 'ACTION_CHANGE
 var ACTION_ADD_BLOCK_TO_CHART = exports.ACTION_ADD_BLOCK_TO_CHART = 'ACTION_ADD_BLOCK_TO_CHART';
 var ACTION_RECALC_SVG_PARAMS = exports.ACTION_RECALC_SVG_PARAMS = 'ACTION_RECALC_SVG_PARAMS';
 var ACTION_REMOVE_BLOCK_FROM_CHART = exports.ACTION_REMOVE_BLOCK_FROM_CHART = 'ACTION_REMOVE_BLOCK_FROM_CHART';
+var ACTION_EDIT_BLOCK_PARAMS = exports.ACTION_EDIT_BLOCK_PARAMS = 'ACTION_EDIT_BLOCK_PARAMS';
+var ACTION_CHANGE_FORM_STATE = exports.ACTION_CHANGE_FORM_STATE = 'ACTION_CHANGE_FORM_STATE';
 
 /***/ }),
 
@@ -42657,6 +42824,10 @@ var initialAppState = {
     width: 300,
     height: 400
   },
+  form: {
+    active: false,
+    top: 0
+  },
   buyChart: {
     arrows: [{
       x1: 0,
@@ -42684,8 +42855,16 @@ var initialAppState = {
       y: 100,
       width: 250,
       height: 100,
-      leftParamsTitle: 'RS1',
-      rightParamsTitle: 'BB'
+      options: {
+        left: {
+          title: 'RS1',
+          param1: 'left params'
+        },
+        right: {
+          title: 'BB',
+          param1: 'right params'
+        }
+      }
     }, {
       key: 3,
       blockType: 'simple',
@@ -42710,7 +42889,11 @@ var rootReducer = exports.rootReducer = function rootReducer() {
     case types.ACTION_RECALC_SVG_PARAMS:
       return _extends({}, state, { svg: action.payload });
     case types.ACTION_REMOVE_BLOCK_FROM_CHART:
-      return _extends({}, state, { svg: action.payload });
+      return _extends({}, state, { buyChart: action.payload });
+    case types.ACTION_EDIT_BLOCK_PARAMS:
+      return _extends({}, state, { buyChart: action.payload });
+    case types.ACTION_CHANGE_FORM_STATE:
+      return _extends({}, state, { form: action.payload });
   }
   return state;
 };

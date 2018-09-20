@@ -47,10 +47,6 @@ text {
   text-anchor: middle;
 }
 
-.pointer {
-  cursor: pointer;
-}
-
 .hidden {
   display: none;
 }
@@ -65,14 +61,23 @@ text {
 }
 
 .addBlockBtn circle,
+.addBlockBtn line,
+.removeBlockBtn circle,
+.removeBlockBtn line {
+  stroke-width: 1px;
+  cursor: pointer;
+}
+
+.addBlockBtn circle,
 .addBlockBtn line {
   stroke: #007bff;
-  stroke-width: 1px;
 }
 
 .removeBlockBtn circle,
 .removeBlockBtn line {
   stroke: #a94442;
-  stroke-width: 1px;
 }
 
+.relative {
+  position: relative;
+}

@@ -8,6 +8,13 @@ export default class BuyChart extends React.Component {
     super(props);
     this.addBlock = this.addBlock.bind(this);
     this.removeBlock = this.removeBlock.bind(this);
+    this.changeFormState = this.changeFormState.bind(this);
+  }
+  
+  changeFormState() {
+    let form = this.props.form;
+    form.active = true;
+    this.props.changeFormState(form);
   }
   
   addBlock() {
@@ -19,8 +26,16 @@ export default class BuyChart extends React.Component {
       y: blocks[blocks.length - 1].y + blocks[blocks.length - 1].height + 50,
       width: 250,
       height: 100,
-      leftParamsTitle: 'RS1',
-      rightParamsTitle: 'BB'
+      options: {
+        left: {
+          title: 'RS1',
+          param1: 'left params',
+        },
+        right: {
+          title: 'BB',
+          param1: 'right params',
+        },
+      },
     });
     blocks.push({
       key: blocks[blocks.length - 1].key + 1,
@@ -41,25 +56,34 @@ export default class BuyChart extends React.Component {
       y2: newBlock.y
     });
     this.props.onChange({blocks, arrows});
-    
+    this.recalcSvgParams(blocks, arrows);
+  }
+  
+  removeBlock(blockId) {
+    let blocks = this.props.options.blocks;
+    let arrows = [];
+    blocks = blocks.filter(block => block.key !== blockId);
+    blocks.map((block, index) => {
+      if(index > 0) {
+        block.y = blocks[index-1].y + blocks[index-1].height + 50;
+        arrows.push({
+          x1: blocks[index-1].x,
+          y1: blocks[index-1].y + blocks[index-1].height,
+          x2: block.x,
+          y2: block.y
+        });
+      }
+    });
+    this.recalcSvgParams(blocks, arrows);
+  }
+  
+  recalcSvgParams(blocks, arrows) {
     let newTotalHeight = [];
     blocks.map((block) => newTotalHeight.push(block.height));
     newTotalHeight = newTotalHeight.reduce((accumulator, currentValue) => accumulator + currentValue);
     newTotalHeight = newTotalHeight + arrows.length * 50;
     this.props.recalcSvgParams({width: this.props.svgParams.width, height: newTotalHeight + 2});
-  }
-  
-  removeBlock(blockId) {
-    let arrows = this.props.options.arrows;
-    let blocks = this.props.options.blocks;
-    blocks = blocks.filter(block => block.key !== blockId);
     this.props.removeBlock({blocks, arrows});
-  
-    /*let newTotalHeight = [];
-    blocks.map((block) => newTotalHeight.push(block.height));
-    newTotalHeight = newTotalHeight.reduce((accumulator, currentValue) => accumulator + currentValue);
-    newTotalHeight = newTotalHeight + arrows.length * 50;
-    this.props.recalcSvgParams({width: this.props.svgParams.width, height: newTotalHeight + 2});*/
   }
   
   
@@ -68,6 +92,7 @@ export default class BuyChart extends React.Component {
       <g transform="translate(130,1)">
         {this.props.options.blocks.map((elem, index) => <Block addBlock={this.addBlock}
                                                                removeBlock={this.removeBlock}
+                                                               changeFormState={this.changeFormState}
                                                                params={elem}
                                                                key={index}
                                                                index={index} />)}

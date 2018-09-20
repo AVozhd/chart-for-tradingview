@@ -27,3 +27,18 @@ export const removeBlockFromChart = (newChartState) => {
     payload: newChartState
   };
 };
+
+export const editBlockParams = (newBlockParams) => {
+  return {
+    type: types.ACTION_EDIT_BLOCK_PARAMS,
+    payload: newBlockParams
+  };
+};
+
+export const changeFormState = (newFormState) => {
+  return {
+    type: types.ACTION_CHANGE_FORM_STATE,
+    payload: newFormState
+  };
+};
+

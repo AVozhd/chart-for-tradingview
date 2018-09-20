@@ -19,9 +19,11 @@ export default class Block extends React.Component {
       )
     } else if(this.props.params.blockType === 'complex') {
       return(
-        <g key={this.props.index} transform={"translate(" + this.props.params.x + "," + this.props.params.y + ")"}>
+        <g key={this.props.index}
+           transform={"translate(" + this.props.params.x + "," + this.props.params.y + ")"}>
           <rect height={this.props.params.height}
                 width={this.props.params.width}
+                onClick={() => this.props.changeFormState()}
                 x={"-" + this.props.params.width/2}
                 y="0" />
           <text x="0"
@@ -34,8 +36,8 @@ export default class Block extends React.Component {
                   x="0"
                   y="0" />
             <line x1="1" y1="50" x2="99" y2="50" />
-            <text x="50" y="30" >{this.props.params.leftParamsTitle}</text>
-            <text x="50" y="80" >Params</text>
+            <text x="50" y="30" >{this.props.params.options.left.title}</text>
+            <text x="50" y="80" >{this.props.params.options.left.param1}</text>
           </g>
           <g transform={"translate(" +  this.props.params.width*0.1 + ",0)"}>
             <rect height="100"
@@ -43,8 +45,8 @@ export default class Block extends React.Component {
                   x="0"
                   y="0" />
             <line x1="1" y1="50" x2="99" y2="50" />
-            <text x="50" y="30" >{this.props.params.rightParamsTitle}</text>
-            <text x="50" y="80" >Params</text>
+            <text x="50" y="30" >{this.props.params.options.right.title}</text>
+            <text x="50" y="80" >{this.props.params.options.right.param1}</text>
           </g>
           <g className="addBlockBtn"
              transform={"translate(" + (this.props.params.width/2 + 20) + "," + (this.props.params.height/2 + this.props.params.height/6) + ")"}
