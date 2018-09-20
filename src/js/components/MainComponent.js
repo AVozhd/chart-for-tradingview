@@ -53,18 +53,29 @@ class MainComponent extends React.Component {
           }
         </svg>
         <div className="relative">
-          <div>
-            Choose chart type:
-            <ChartTypeSelectorInput title="Buy"
-                                    value="buy"
-                                    checked={ this.props.selectedChart === 'buy' }
-                                    onChange={ this.props.changeChartType }
-                                    changeFormState={ this.props.changeFormState } />
-            <ChartTypeSelectorInput title="Sell"
-                                    value="sell"
-                                    checked={ this.props.selectedChart === 'sell' }
-                                    onChange={ this.props.changeChartType }
-                                    changeFormState={ this.props.changeFormState } />
+          <div className="topMenu">
+            <div>
+              <span className="title">
+                Choose chart type:
+              </span>
+              <div className="inline">
+                <ChartTypeSelectorInput title="Buy"
+                                        value="buy"
+                                        checked={ this.props.selectedChart === 'buy' }
+                                        onChange={ this.props.changeChartType }
+                                        changeFormState={ this.props.changeFormState } />
+              </div>
+              <div className="inline">
+                <ChartTypeSelectorInput title="Sell"
+                                        value="sell"
+                                        checked={ this.props.selectedChart === 'sell' }
+                                        onChange={ this.props.changeChartType }
+                                        changeFormState={ this.props.changeFormState } />
+              </div>
+            </div>
+            <div>
+              <button type="button" className="btn btn-outline-success">Get Script</button>
+            </div>
           </div>
           <div style={ divStyle }>
             { this.props.form.active ? <Form onCancel={ this.props.changeFormState } formOptions={ this.props.form } /> : '' }

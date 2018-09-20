@@ -4073,7 +4073,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n}\n", ""]);
 
 // exports
 
@@ -41980,18 +41980,43 @@ var MainComponent = function (_React$Component) {
           { className: 'relative' },
           _react2.default.createElement(
             'div',
-            null,
-            'Choose chart type:',
-            _react2.default.createElement(_ChartTypeSelectorInput2.default, { title: 'Buy',
-              value: 'buy',
-              checked: this.props.selectedChart === 'buy',
-              onChange: this.props.changeChartType,
-              changeFormState: this.props.changeFormState }),
-            _react2.default.createElement(_ChartTypeSelectorInput2.default, { title: 'Sell',
-              value: 'sell',
-              checked: this.props.selectedChart === 'sell',
-              onChange: this.props.changeChartType,
-              changeFormState: this.props.changeFormState })
+            { className: 'topMenu' },
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'span',
+                { className: 'title' },
+                'Choose chart type:'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'inline' },
+                _react2.default.createElement(_ChartTypeSelectorInput2.default, { title: 'Buy',
+                  value: 'buy',
+                  checked: this.props.selectedChart === 'buy',
+                  onChange: this.props.changeChartType,
+                  changeFormState: this.props.changeFormState })
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'inline' },
+                _react2.default.createElement(_ChartTypeSelectorInput2.default, { title: 'Sell',
+                  value: 'sell',
+                  checked: this.props.selectedChart === 'sell',
+                  onChange: this.props.changeChartType,
+                  changeFormState: this.props.changeFormState })
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'button',
+                { type: 'button', className: 'btn btn-outline-success' },
+                'Get Script'
+              )
+            )
           ),
           _react2.default.createElement(
             'div',
