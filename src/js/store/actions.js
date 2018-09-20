@@ -7,31 +7,10 @@ export const changeChartType = (newChartType) => {
   };
 };
 
-export const addBlockToChart = (newChartState) => {
-  return {
-    type: types.ACTION_ADD_BLOCK_TO_CHART,
-    payload: newChartState
-  };
-};
-
 export const recalcSvgParams = (newSvgParams) => {
   return {
     type: types.ACTION_RECALC_SVG_PARAMS,
     payload: newSvgParams
-  };
-};
-
-export const removeBlockFromChart = (newChartState) => {
-  return {
-    type: types.ACTION_REMOVE_BLOCK_FROM_CHART,
-    payload: newChartState
-  };
-};
-
-export const editBlockParams = (newBlockParams) => {
-  return {
-    type: types.ACTION_EDIT_BLOCK_PARAMS,
-    payload: newBlockParams
   };
 };
 
@@ -42,3 +21,44 @@ export const changeFormState = (newFormState) => {
   };
 };
 
+export const removeBlockFromBuyChart = (newChartState) => {
+  return {
+    type: types.ACTION_REMOVE_BLOCK_FROM_BUY_CHART,
+    payload: newChartState
+  };
+};
+
+export const addBlockToBuyChart = (newChartState) => {
+  return {
+    type: types.ACTION_ADD_BLOCK_TO_BUY_CHART,
+    payload: newChartState
+  };
+};
+
+export const editBlockParamsBuyChart = (newBlockParams) => {
+  return {
+    type: types.ACTION_EDIT_BLOCK_PARAMS_BUY_CHART,
+    payload: newBlockParams
+  };
+};
+
+export const removeBlockFromSellChart = (newChartState) => {
+  return {
+    type: types.ACTION_REMOVE_BLOCK_FROM_SELL_CHART,
+    payload: newChartState
+  };
+};
+
+export const addBlockToSellChart = (newChartState) => {
+  return {
+    type: types.ACTION_ADD_BLOCK_TO_CHART_SELL_CHART,
+    payload: newChartState
+  };
+};
+
+export const editBlockParamsSellChart = (newBlockParams) => {
+  return {
+    type: types.ACTION_EDIT_BLOCK_PARAMS_SELL_CHART,
+    payload: newBlockParams
+  };
+};

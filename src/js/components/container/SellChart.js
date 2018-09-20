@@ -76,6 +76,7 @@ export default class BuyChart extends React.Component {
         });
       }
     });
+    this.props.removeBlock({blocks, arrows});
     this.recalcSvgParams(blocks, arrows);
   }
   
@@ -84,8 +85,13 @@ export default class BuyChart extends React.Component {
     blocks.map((block) => newTotalHeight.push(block.height));
     newTotalHeight = newTotalHeight.reduce((accumulator, currentValue) => accumulator + currentValue);
     newTotalHeight = newTotalHeight + arrows.length * 50;
-    this.props.recalcSvgParams({width: this.props.svgParams.width, height: newTotalHeight + 2});
-    this.props.removeBlock({blocks, arrows});
+    this.props.recalcSvgParams({
+      buyChart: this.props.svgParams.buyChart,
+      sellChart: {
+        width: this.props.svgParams.sellChart.width,
+        height: newTotalHeight + 2,
+      },
+    });
   }
   
   

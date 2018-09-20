@@ -4073,7 +4073,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container{\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n}\n", ""]);
 
 // exports
 
@@ -41958,20 +41958,20 @@ var MainComponent = function (_React$Component) {
           'svg',
           { version: '1.1',
             xmlns: 'http://www.w3.org/2000/svg',
-            viewBox: "0 0 " + this.props.svg.width + " " + this.props.svg.height },
+            viewBox: this.props.chartType === 'buy' ? "0 0 " + this.props.svg.buyChart.width + " " + this.props.svg.buyChart.height : "0 0 " + this.props.svg.sellChart.width + " " + this.props.svg.sellChart.height },
           this.props.chartType === 'buy' ? _react2.default.createElement(_BuyChart2.default, { options: this.props.buyChart,
-            onChange: this.props.addBlockToChart,
+            onChange: this.props.addBlockToBuyChart,
             recalcSvgParams: this.props.recalcSvgParams,
-            removeBlock: this.props.removeBlockFromChart,
+            removeBlock: this.props.removeBlockFromBuyChart,
             svgParams: this.props.svg,
-            editBlockParams: this.props.editBlockParams,
+            editBlockParams: this.props.editBlockParamsBuyChart,
             changeFormState: this.props.changeFormState,
             form: this.props.form }) : _react2.default.createElement(_SellChart2.default, { options: this.props.sellChart,
-            onChange: this.props.addBlockToChart,
+            onChange: this.props.addBlockToSellChart,
             recalcSvgParams: this.props.recalcSvgParams,
-            removeBlock: this.props.removeBlockFromChart,
+            removeBlock: this.props.removeBlockFromSellChart,
             svgParams: this.props.svg,
-            editBlockParams: this.props.editBlockParams,
+            editBlockParams: this.props.editBlockParamsSellChart,
             changeFormState: this.props.changeFormState,
             form: this.props.form })
         ),
@@ -41985,11 +41985,13 @@ var MainComponent = function (_React$Component) {
             _react2.default.createElement(_ChartTypeSelectorInput2.default, { title: 'Buy',
               value: 'buy',
               checked: this.props.selectedChart === 'buy',
-              onChange: this.props.changeChartType }),
+              onChange: this.props.changeChartType,
+              changeFormState: this.props.changeFormState }),
             _react2.default.createElement(_ChartTypeSelectorInput2.default, { title: 'Sell',
               value: 'sell',
               checked: this.props.selectedChart === 'sell',
-              onChange: this.props.changeChartType })
+              onChange: this.props.changeChartType,
+              changeFormState: this.props.changeFormState })
           ),
           _react2.default.createElement(
             'div',
@@ -42012,11 +42014,14 @@ MainComponent.propTypes = {
   sellChart: _propTypes2.default.object,
   form: _propTypes2.default.object,
   changeChartType: _propTypes2.default.func,
-  addBlockToChart: _propTypes2.default.func,
+  changeFormState: _propTypes2.default.func,
   recalcSvgParams: _propTypes2.default.func,
-  removeBlockFromChart: _propTypes2.default.func,
-  editBlockParams: _propTypes2.default.func,
-  changeFormState: _propTypes2.default.func
+  removeBlockFromBuyChart: _propTypes2.default.func,
+  editBlockParamsBuyChart: _propTypes2.default.func,
+  addBlockToBuyChart: _propTypes2.default.func,
+  removeBlockFromSellChart: _propTypes2.default.func,
+  editBlockParamsSellChart: _propTypes2.default.func,
+  addBlockToSellChart: _propTypes2.default.func
 };
 
 exports.default = (0, _reactRedux.connect)(function (state) {
@@ -42031,11 +42036,14 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 }, function (dispatch) {
   return {
     changeChartType: (0, _redux.bindActionCreators)(_actions.changeChartType, dispatch),
-    addBlockToChart: (0, _redux.bindActionCreators)(_actions.addBlockToChart, dispatch),
     recalcSvgParams: (0, _redux.bindActionCreators)(_actions.recalcSvgParams, dispatch),
-    removeBlockFromChart: (0, _redux.bindActionCreators)(_actions.removeBlockFromChart, dispatch),
-    editBlockParams: (0, _redux.bindActionCreators)(_actions.editBlockParams, dispatch),
-    changeFormState: (0, _redux.bindActionCreators)(_actions.changeFormState, dispatch)
+    changeFormState: (0, _redux.bindActionCreators)(_actions.changeFormState, dispatch),
+    removeBlockFromBuyChart: (0, _redux.bindActionCreators)(_actions.removeBlockFromBuyChart, dispatch),
+    editBlockParamsBuyChart: (0, _redux.bindActionCreators)(_actions.editBlockParamsBuyChart, dispatch),
+    addBlockToBuyChart: (0, _redux.bindActionCreators)(_actions.addBlockToBuyChart, dispatch),
+    removeBlockFromSellChart: (0, _redux.bindActionCreators)(_actions.removeBlockFromSellChart, dispatch),
+    editBlockParamsSellChart: (0, _redux.bindActionCreators)(_actions.editBlockParamsSellChart, dispatch),
+    addBlockToSellChart: (0, _redux.bindActionCreators)(_actions.addBlockToSellChart, dispatch)
   };
 })(MainComponent);
 
@@ -42167,6 +42175,7 @@ var BuyChart = function (_React$Component) {
           });
         }
       });
+      this.props.removeBlock({ blocks: blocks, arrows: arrows });
       this.recalcSvgParams(blocks, arrows);
     }
   }, {
@@ -42180,8 +42189,13 @@ var BuyChart = function (_React$Component) {
         return accumulator + currentValue;
       });
       newTotalHeight = newTotalHeight + arrows.length * 50;
-      this.props.recalcSvgParams({ width: this.props.svgParams.width, height: newTotalHeight + 2 });
-      this.props.removeBlock({ blocks: blocks, arrows: arrows });
+      this.props.recalcSvgParams({
+        buyChart: {
+          width: this.props.svgParams.buyChart.width,
+          height: newTotalHeight + 2
+        },
+        sellChart: this.props.svgParams.sellChart
+      });
     }
   }, {
     key: 'render',
@@ -42438,6 +42452,7 @@ var BuyChart = function (_React$Component) {
           });
         }
       });
+      this.props.removeBlock({ blocks: blocks, arrows: arrows });
       this.recalcSvgParams(blocks, arrows);
     }
   }, {
@@ -42451,8 +42466,13 @@ var BuyChart = function (_React$Component) {
         return accumulator + currentValue;
       });
       newTotalHeight = newTotalHeight + arrows.length * 50;
-      this.props.recalcSvgParams({ width: this.props.svgParams.width, height: newTotalHeight + 2 });
-      this.props.removeBlock({ blocks: blocks, arrows: arrows });
+      this.props.recalcSvgParams({
+        buyChart: this.props.svgParams.buyChart,
+        sellChart: {
+          width: this.props.svgParams.sellChart.width,
+          height: newTotalHeight + 2
+        }
+      });
     }
   }, {
     key: 'render',
@@ -42670,14 +42690,21 @@ var ChartTypeSelectorInput = function ChartTypeSelectorInput(_ref) {
   var value = _ref.value,
       title = _ref.title,
       checked = _ref.checked,
-      _onChange = _ref.onChange;
+      _onChange = _ref.onChange,
+      changeFormState = _ref.changeFormState;
 
   return _react2.default.createElement(
     "div",
     { className: "form-check" },
     _react2.default.createElement(
       "label",
-      { className: "form-check-label" },
+      { className: "form-check-label",
+        onClick: function onClick() {
+          return changeFormState({
+            active: false,
+            top: 0
+          });
+        } },
       _react2.default.createElement("input", { className: "form-check-input",
         type: "radio",
         checked: checked,
@@ -42766,7 +42793,7 @@ exports.default = SimpleArrow;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.changeFormState = exports.editBlockParams = exports.removeBlockFromChart = exports.recalcSvgParams = exports.addBlockToChart = exports.changeChartType = undefined;
+exports.editBlockParamsSellChart = exports.addBlockToSellChart = exports.removeBlockFromSellChart = exports.editBlockParamsBuyChart = exports.addBlockToBuyChart = exports.removeBlockFromBuyChart = exports.changeFormState = exports.recalcSvgParams = exports.changeChartType = undefined;
 
 var _actionsTypes = __webpack_require__(/*! ./actionsTypes */ "./src/js/store/actionsTypes.js");
 
@@ -42781,13 +42808,6 @@ var changeChartType = exports.changeChartType = function changeChartType(newChar
   };
 };
 
-var addBlockToChart = exports.addBlockToChart = function addBlockToChart(newChartState) {
-  return {
-    type: types.ACTION_ADD_BLOCK_TO_CHART,
-    payload: newChartState
-  };
-};
-
 var recalcSvgParams = exports.recalcSvgParams = function recalcSvgParams(newSvgParams) {
   return {
     type: types.ACTION_RECALC_SVG_PARAMS,
@@ -42795,24 +42815,52 @@ var recalcSvgParams = exports.recalcSvgParams = function recalcSvgParams(newSvgP
   };
 };
 
-var removeBlockFromChart = exports.removeBlockFromChart = function removeBlockFromChart(newChartState) {
-  return {
-    type: types.ACTION_REMOVE_BLOCK_FROM_CHART,
-    payload: newChartState
-  };
-};
-
-var editBlockParams = exports.editBlockParams = function editBlockParams(newBlockParams) {
-  return {
-    type: types.ACTION_EDIT_BLOCK_PARAMS,
-    payload: newBlockParams
-  };
-};
-
 var changeFormState = exports.changeFormState = function changeFormState(newFormState) {
   return {
     type: types.ACTION_CHANGE_FORM_STATE,
     payload: newFormState
+  };
+};
+
+var removeBlockFromBuyChart = exports.removeBlockFromBuyChart = function removeBlockFromBuyChart(newChartState) {
+  return {
+    type: types.ACTION_REMOVE_BLOCK_FROM_BUY_CHART,
+    payload: newChartState
+  };
+};
+
+var addBlockToBuyChart = exports.addBlockToBuyChart = function addBlockToBuyChart(newChartState) {
+  return {
+    type: types.ACTION_ADD_BLOCK_TO_BUY_CHART,
+    payload: newChartState
+  };
+};
+
+var editBlockParamsBuyChart = exports.editBlockParamsBuyChart = function editBlockParamsBuyChart(newBlockParams) {
+  return {
+    type: types.ACTION_EDIT_BLOCK_PARAMS_BUY_CHART,
+    payload: newBlockParams
+  };
+};
+
+var removeBlockFromSellChart = exports.removeBlockFromSellChart = function removeBlockFromSellChart(newChartState) {
+  return {
+    type: types.ACTION_REMOVE_BLOCK_FROM_SELL_CHART,
+    payload: newChartState
+  };
+};
+
+var addBlockToSellChart = exports.addBlockToSellChart = function addBlockToSellChart(newChartState) {
+  return {
+    type: types.ACTION_ADD_BLOCK_TO_CHART_SELL_CHART,
+    payload: newChartState
+  };
+};
+
+var editBlockParamsSellChart = exports.editBlockParamsSellChart = function editBlockParamsSellChart(newBlockParams) {
+  return {
+    type: types.ACTION_EDIT_BLOCK_PARAMS_SELL_CHART,
+    payload: newBlockParams
   };
 };
 
@@ -42832,11 +42880,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var ACTION_CHANGE_CHART_TYPE = exports.ACTION_CHANGE_CHART_TYPE = 'ACTION_CHANGE_CHART_TYPE';
-var ACTION_ADD_BLOCK_TO_CHART = exports.ACTION_ADD_BLOCK_TO_CHART = 'ACTION_ADD_BLOCK_TO_CHART';
-var ACTION_RECALC_SVG_PARAMS = exports.ACTION_RECALC_SVG_PARAMS = 'ACTION_RECALC_SVG_PARAMS';
-var ACTION_REMOVE_BLOCK_FROM_CHART = exports.ACTION_REMOVE_BLOCK_FROM_CHART = 'ACTION_REMOVE_BLOCK_FROM_CHART';
-var ACTION_EDIT_BLOCK_PARAMS = exports.ACTION_EDIT_BLOCK_PARAMS = 'ACTION_EDIT_BLOCK_PARAMS';
 var ACTION_CHANGE_FORM_STATE = exports.ACTION_CHANGE_FORM_STATE = 'ACTION_CHANGE_FORM_STATE';
+var ACTION_RECALC_SVG_PARAMS = exports.ACTION_RECALC_SVG_PARAMS = 'ACTION_RECALC_SVG_PARAMS';
+var ACTION_REMOVE_BLOCK_FROM_BUY_CHART = exports.ACTION_REMOVE_BLOCK_FROM_BUY_CHART = 'ACTION_REMOVE_BLOCK_FROM_BUY_CHART';
+var ACTION_EDIT_BLOCK_PARAMS_BUY_CHART = exports.ACTION_EDIT_BLOCK_PARAMS_BUY_CHART = 'ACTION_EDIT_BLOCK_PARAMS_BUY_CHART';
+var ACTION_ADD_BLOCK_TO_BUY_CHART = exports.ACTION_ADD_BLOCK_TO_BUY_CHART = 'ACTION_ADD_BLOCK_TO_BUY_CHART';
+var ACTION_REMOVE_BLOCK_FROM_SELL_CHART = exports.ACTION_REMOVE_BLOCK_FROM_SELL_CHART = 'ACTION_REMOVE_BLOCK_FROM_SELL_CHART';
+var ACTION_EDIT_BLOCK_PARAMS_SELL_CHART = exports.ACTION_EDIT_BLOCK_PARAMS_SELL_CHART = 'ACTION_EDIT_BLOCK_PARAMS_SELL_CHART';
+var ACTION_ADD_BLOCK_TO_CHART_SELL_CHART = exports.ACTION_ADD_BLOCK_TO_CHART_SELL_CHART = 'ACTION_ADD_BLOCK_TO_CHART_SELL_CHART';
 
 /***/ }),
 
@@ -42867,8 +42918,14 @@ var initialAppState = {
   chartType: 'buy',
   selectedChart: 'buy',
   svg: {
-    width: 300,
-    height: 400
+    buyChart: {
+      width: 300,
+      height: 400
+    },
+    sellChart: {
+      width: 300,
+      height: 400
+    }
   },
   form: {
     active: false,
@@ -42977,16 +43034,22 @@ var rootReducer = exports.rootReducer = function rootReducer() {
   switch (action.type) {
     case types.ACTION_CHANGE_CHART_TYPE:
       return _extends({}, state, { chartType: action.payload, selectedChart: action.payload });
-    case types.ACTION_ADD_BLOCK_TO_CHART:
-      return _extends({}, state, { buyChart: action.payload });
-    case types.ACTION_RECALC_SVG_PARAMS:
-      return _extends({}, state, { svg: action.payload });
-    case types.ACTION_REMOVE_BLOCK_FROM_CHART:
-      return _extends({}, state, { buyChart: action.payload });
-    case types.ACTION_EDIT_BLOCK_PARAMS:
-      return _extends({}, state, { buyChart: action.payload });
     case types.ACTION_CHANGE_FORM_STATE:
       return _extends({}, state, { form: action.payload });
+    case types.ACTION_RECALC_SVG_PARAMS:
+      return _extends({}, state, { svg: action.payload });
+    case types.ACTION_REMOVE_BLOCK_FROM_BUY_CHART:
+      return _extends({}, state, { buyChart: action.payload });
+    case types.ACTION_EDIT_BLOCK_PARAMS_BUY_CHART:
+      return _extends({}, state, { buyChart: action.payload });
+    case types.ACTION_ADD_BLOCK_TO_BUY_CHART:
+      return _extends({}, state, { buyChart: action.payload });
+    case types.ACTION_REMOVE_BLOCK_FROM_SELL_CHART:
+      return _extends({}, state, { sellChart: action.payload });
+    case types.ACTION_EDIT_BLOCK_PARAMS_SELL_CHART:
+      return _extends({}, state, { sellChart: action.payload });
+    case types.ACTION_ADD_BLOCK_TO_CHART_SELL_CHART:
+      return _extends({}, state, { sellChart: action.payload });
   }
   return state;
 };
