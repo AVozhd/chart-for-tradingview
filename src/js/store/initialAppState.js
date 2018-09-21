@@ -145,12 +145,12 @@ const initialAppState = {
         height: 100,
         options: {
           left: {
-            title: 'RS1',
-            param1: 'left params',
+            title: 'condition',
+            param1: 'none',
           },
           right: {
-            title: 'BB',
-            param1: 'right params',
+            title: 'condition',
+            param1: 'none',
           },
         },
       },

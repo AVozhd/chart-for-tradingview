@@ -25,25 +25,20 @@ export default class Block extends React.Component {
                 width={this.props.params.width}
                 onClick={(event) => this.props.changeFormState(event.target, this.props.blockStateKey)}
                 x={"-" + this.props.params.width/2}
-                y="0" />
+                y="0"
+                className="" />
           <text x="0"
                 y={this.props.params.height - this.props.params.height/2.5} >
             and
           </text>
           <g transform={"translate(" + "-" + this.props.params.width/2 + ",0)"}>
-            <rect height="100"
-                  width="100"
-                  x="0"
-                  y="0" />
+            <line x1="100" y1="1" x2="100" y2="99" />
             <line x1="1" y1="50" x2="99" y2="50" />
             <text x="50" y="30" >{this.props.params.options.left.title}</text>
             <text x="50" y="80" >{this.props.params.options.left.param1}</text>
           </g>
           <g transform={"translate(" +  this.props.params.width*0.1 + ",0)"}>
-            <rect height="100"
-                  width="100"
-                  x="0"
-                  y="0" />
+            <line x1="0" y1="1" x2="0" y2="99" />
             <line x1="1" y1="50" x2="99" y2="50" />
             <text x="50" y="30" >{this.props.params.options.right.title}</text>
             <text x="50" y="80" >{this.props.params.options.right.param1}</text>

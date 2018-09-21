@@ -42194,12 +42194,12 @@ var BuyChart = function (_React$Component) {
         height: 100,
         options: {
           left: {
-            title: 'RS1',
-            param1: 'left params'
+            title: 'condition',
+            param1: 'none'
           },
           right: {
-            title: 'BB',
-            param1: 'right params'
+            title: 'condition',
+            param1: 'none'
           }
         }
       });
@@ -42616,12 +42616,12 @@ var BuyChart = function (_React$Component) {
         height: 100,
         options: {
           left: {
-            title: 'RS1',
-            param1: 'left params'
+            title: 'condition',
+            param1: 'none'
           },
           right: {
-            title: 'BB',
-            param1: 'right params'
+            title: 'condition',
+            param1: 'none'
           }
         }
       });
@@ -42789,7 +42789,8 @@ var Block = function (_React$Component) {
               return _this2.props.changeFormState(event.target, _this2.props.blockStateKey);
             },
             x: "-" + this.props.params.width / 2,
-            y: '0' }),
+            y: '0',
+            className: '' }),
           _react2.default.createElement(
             'text',
             { x: '0',
@@ -42799,10 +42800,7 @@ var Block = function (_React$Component) {
           _react2.default.createElement(
             'g',
             { transform: "translate(" + "-" + this.props.params.width / 2 + ",0)" },
-            _react2.default.createElement('rect', { height: '100',
-              width: '100',
-              x: '0',
-              y: '0' }),
+            _react2.default.createElement('line', { x1: '100', y1: '1', x2: '100', y2: '99' }),
             _react2.default.createElement('line', { x1: '1', y1: '50', x2: '99', y2: '50' }),
             _react2.default.createElement(
               'text',
@@ -42818,10 +42816,7 @@ var Block = function (_React$Component) {
           _react2.default.createElement(
             'g',
             { transform: "translate(" + this.props.params.width * 0.1 + ",0)" },
-            _react2.default.createElement('rect', { height: '100',
-              width: '100',
-              x: '0',
-              y: '0' }),
+            _react2.default.createElement('line', { x1: '0', y1: '1', x2: '0', y2: '99' }),
             _react2.default.createElement('line', { x1: '1', y1: '50', x2: '99', y2: '50' }),
             _react2.default.createElement(
               'text',
@@ -43348,12 +43343,12 @@ var initialAppState = {
       height: 100,
       options: {
         left: {
-          title: 'RS1',
-          param1: 'left params'
+          title: 'condition',
+          param1: 'none'
         },
         right: {
-          title: 'BB',
-          param1: 'right params'
+          title: 'condition',
+          param1: 'none'
         }
       }
     }, {
