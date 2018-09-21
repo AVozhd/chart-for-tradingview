@@ -4073,7 +4073,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n  .dropdown-div {\n    display: grid;\n    align-items: center;\n    grid-template-columns: min-content min-content;\n  }\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n.dropdown-div {\n  margin-bottom: 10px;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n  .dropdown-div {\n    display: grid;\n    align-items: center;\n    grid-template-columns: min-content min-content;\n  }\n}\n", ""]);
 
 // exports
 
@@ -41959,21 +41959,25 @@ var MainComponent = function (_React$Component) {
           { version: '1.1',
             xmlns: 'http://www.w3.org/2000/svg',
             viewBox: this.props.chartType === 'buy' ? "0 0 " + this.props.svg.buyChart.width + " " + this.props.svg.buyChart.height : "0 0 " + this.props.svg.sellChart.width + " " + this.props.svg.sellChart.height },
-          this.props.chartType === 'buy' ? _react2.default.createElement(_BuyChart2.default, { options: this.props.buyChart,
+          this.props.chartType === 'buy' ? _react2.default.createElement(_BuyChart2.default, {
+            options: this.props.buyChart,
             onChange: this.props.addBlockToBuyChart,
             recalcSvgParams: this.props.recalcSvgParams,
             removeBlock: this.props.removeBlockFromBuyChart,
             svgParams: this.props.svg,
             editBlockParams: this.props.editBlockParamsBuyChart,
             changeFormState: this.props.changeFormState,
-            form: this.props.form }) : _react2.default.createElement(_SellChart2.default, { options: this.props.sellChart,
+            form: this.props.form
+          }) : _react2.default.createElement(_SellChart2.default, {
+            options: this.props.sellChart,
             onChange: this.props.addBlockToSellChart,
             recalcSvgParams: this.props.recalcSvgParams,
             removeBlock: this.props.removeBlockFromSellChart,
             svgParams: this.props.svg,
             editBlockParams: this.props.editBlockParamsSellChart,
             changeFormState: this.props.changeFormState,
-            form: this.props.form })
+            form: this.props.form
+          })
         ),
         _react2.default.createElement(
           'div',
@@ -42024,7 +42028,12 @@ var MainComponent = function (_React$Component) {
             this.props.form.active ? _react2.default.createElement(_Form2.default, { onCancel: this.props.changeFormState,
               formOptions: this.props.form,
               formDropdown: this.props.formDropdown,
-              changeDropdownTitle: this.props.changeDropdownTitle }) : ''
+              changeDropdownLeftFirstTitle: this.props.changeDropdownLeftFirstTitle,
+              changeDropdownRightFirstTitle: this.props.changeDropdownRightFirstTitle,
+              changeDropdownLeftSecondTitle: this.props.changeDropdownLeftSecondTitle,
+              changeDropdownRightSecondTitle: this.props.changeDropdownRightSecondTitle,
+              saveParamsToBlock: this.props.chartType === 'buy' ? this.props.saveParamsToBuyChartBlock : this.props.saveParamsToSellChartBlock,
+              chartBlockOptions: this.props.chartType === 'buy' ? this.props.buyChart.blocks : this.props.sellChart.blocks }) : ''
           )
         )
       );
@@ -42051,7 +42060,12 @@ MainComponent.propTypes = {
   removeBlockFromSellChart: _propTypes2.default.func,
   editBlockParamsSellChart: _propTypes2.default.func,
   addBlockToSellChart: _propTypes2.default.func,
-  changeDropdownTitle: _propTypes2.default.func
+  changeDropdownLeftSecondTitle: _propTypes2.default.func,
+  changeDropdownLeftFirstTitle: _propTypes2.default.func,
+  changeDropdownRightSecondTitle: _propTypes2.default.func,
+  changeDropdownRightFirstTitle: _propTypes2.default.func,
+  saveParamsToBuyChartBlock: _propTypes2.default.func,
+  saveParamsToSellChartBlock: _propTypes2.default.func
 };
 
 exports.default = (0, _reactRedux.connect)(function (state) {
@@ -42075,7 +42089,12 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     removeBlockFromSellChart: (0, _redux.bindActionCreators)(_actions.removeBlockFromSellChart, dispatch),
     editBlockParamsSellChart: (0, _redux.bindActionCreators)(_actions.editBlockParamsSellChart, dispatch),
     addBlockToSellChart: (0, _redux.bindActionCreators)(_actions.addBlockToSellChart, dispatch),
-    changeDropdownTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownTitle, dispatch)
+    changeDropdownLeftSecondTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownLeftSecondTitle, dispatch),
+    changeDropdownRightSecondTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownRightSecondTitle, dispatch),
+    changeDropdownLeftFirstTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownLeftFirstTitle, dispatch),
+    changeDropdownRightFirstTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownRightFirstTitle, dispatch),
+    saveParamsToBuyChartBlock: (0, _redux.bindActionCreators)(_actions.saveParamsToBuyChartBlock, dispatch),
+    saveParamsToSellChartBlock: (0, _redux.bindActionCreators)(_actions.saveParamsToSellChartBlock, dispatch)
   };
 })(MainComponent);
 
@@ -42139,10 +42158,11 @@ var BuyChart = function (_React$Component) {
 
   _createClass(BuyChart, [{
     key: 'changeFormState',
-    value: function changeFormState(eventTarget) {
+    value: function changeFormState(eventTarget, blockIndex) {
       this.props.changeFormState({
         active: true,
-        top: Math.floor((0, _jquery2.default)(eventTarget).position().top) - 5
+        top: Math.floor((0, _jquery2.default)(eventTarget).position().top) - 5,
+        currentBlock: blockIndex
       });
     }
   }, {
@@ -42243,7 +42263,8 @@ var BuyChart = function (_React$Component) {
             changeFormState: _this2.changeFormState,
             params: elem,
             key: index,
-            index: index });
+            index: index,
+            blockStateKey: _this2.props.options.blocks[index].key });
         }),
         this.props.options.arrows.map(function (elem, index) {
           return _react2.default.createElement(_SimpleArrow2.default, { params: elem,
@@ -42292,17 +42313,49 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Form = function (_React$Component) {
   _inherits(Form, _React$Component);
 
-  function Form() {
+  function Form(props) {
     _classCallCheck(this, Form);
 
-    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
+
+    _this.prepareBlocks = _this.prepareBlocks.bind(_this);
+    return _this;
   }
 
   _createClass(Form, [{
-    key: "render",
-    value: function render() {
+    key: "prepareBlocks",
+    value: function prepareBlocks() {
       var _this2 = this;
 
+      var blockState = this.props.chartBlockOptions;
+      var block = blockState.filter(function (block) {
+        return block.key === _this2.props.formOptions.currentBlock;
+      })[0];
+      block.options = {
+        left: {
+          title: this.props.formDropdown.left.first.title,
+          param1: this.props.formDropdown.left.second.title
+        },
+        right: {
+          title: this.props.formDropdown.right.first.title,
+          param1: this.props.formDropdown.right.second.title
+        }
+      };
+      blockState.map(function (elem) {
+        elem.key === block.key ? block : elem;
+      });
+      this.props.saveParamsToBlock(blockState);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var currBlock = this.props.chartBlockOptions.filter(function (block) {
+        return block.key === _this3.props.formOptions.currentBlock;
+      })[0];
+      var formDropdownLeft = this.props.formDropdown.left;
+      var formDropdownRight = this.props.formDropdown.right;
       return _react2.default.createElement(
         "form",
         null,
@@ -42314,24 +42367,25 @@ var Form = function (_React$Component) {
             { className: "dropdown" },
             _react2.default.createElement(
               "button",
-              { className: "btn btn-outline-secondary dropdown-toggle",
+              {
+                className: "btn btn-outline-secondary dropdown-toggle",
                 type: "button",
                 id: "dropdownMenuButton",
                 "data-toggle": "dropdown",
                 "aria-haspopup": "true",
                 "aria-expanded": "false" },
-              this.props.formDropdown.first.title
+              formDropdownLeft.first.title === '' ? currBlock.options.left.title : formDropdownLeft.first.title
             ),
             _react2.default.createElement(
               "div",
               { className: "dropdown-menu", "aria-labelledby": "dropdownMenuButton" },
-              this.props.formDropdown.first.options.map(function (option, index) {
+              formDropdownLeft.first.options.map(function (option, index) {
                 return _react2.default.createElement(
                   "span",
                   { key: index,
                     className: "dropdown-item",
                     onClick: function onClick() {
-                      return _this2.props.changeDropdownTitle(option);
+                      return _this3.props.changeDropdownLeftFirstTitle(option);
                     } },
                   option
                 );
@@ -42349,18 +42403,18 @@ var Form = function (_React$Component) {
                 "data-toggle": "dropdown",
                 "aria-haspopup": "true",
                 "aria-expanded": "false" },
-              this.props.formDropdown.first.title
+              formDropdownLeft.second.title
             ),
             _react2.default.createElement(
               "div",
               { className: "dropdown-menu", "aria-labelledby": "dropdownMenuButton" },
-              this.props.formDropdown.first.options.map(function (option, index) {
+              formDropdownLeft.second.options.map(function (option, index) {
                 return _react2.default.createElement(
                   "span",
                   { key: index,
                     className: "dropdown-item",
                     onClick: function onClick() {
-                      return _this2.props.changeDropdownTitle(option);
+                      return _this3.props.changeDropdownLeftSecondTitle(option);
                     } },
                   option
                 );
@@ -42370,19 +42424,74 @@ var Form = function (_React$Component) {
         ),
         _react2.default.createElement(
           "div",
-          { className: "form-group" },
+          { className: "dropdown-div" },
           _react2.default.createElement(
-            "label",
-            { className: "form-check-label" },
-            "BB",
-            _react2.default.createElement("input", { className: "form-control",
-              type: "text",
-              placeholder: "choose params" })
+            "div",
+            { className: "dropdown" },
+            _react2.default.createElement(
+              "button",
+              {
+                className: "btn btn-outline-secondary dropdown-toggle",
+                type: "button",
+                id: "dropdownMenuButton",
+                "data-toggle": "dropdown",
+                "aria-haspopup": "true",
+                "aria-expanded": "false" },
+              formDropdownRight.first.title === '' ? currBlock.options.right.title : formDropdownRight.first.title
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "dropdown-menu", "aria-labelledby": "dropdownMenuButton" },
+              formDropdownRight.first.options.map(function (option, index) {
+                return _react2.default.createElement(
+                  "span",
+                  { key: index,
+                    className: "dropdown-item",
+                    onClick: function onClick() {
+                      return _this3.props.changeDropdownRightFirstTitle(option);
+                    } },
+                  option
+                );
+              })
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "dropdown" },
+            _react2.default.createElement(
+              "button",
+              { className: "btn btn-outline-secondary dropdown-toggle",
+                type: "button",
+                id: "dropdownMenuButton",
+                "data-toggle": "dropdown",
+                "aria-haspopup": "true",
+                "aria-expanded": "false" },
+              formDropdownRight.second.title
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "dropdown-menu", "aria-labelledby": "dropdownMenuButton" },
+              formDropdownRight.second.options.map(function (option, index) {
+                return _react2.default.createElement(
+                  "span",
+                  { key: index,
+                    className: "dropdown-item",
+                    onClick: function onClick() {
+                      return _this3.props.changeDropdownRightSecondTitle(option);
+                    } },
+                  option
+                );
+              })
+            )
           )
         ),
         _react2.default.createElement(
           "button",
-          { type: "button", className: "btn btn-outline-primary" },
+          { type: "button",
+            className: "btn btn-outline-primary",
+            onClick: function onClick() {
+              return _this3.prepareBlocks();
+            } },
           "Save"
         ),
         _react2.default.createElement(
@@ -42390,9 +42499,9 @@ var Form = function (_React$Component) {
           { type: "button",
             className: "btn btn-outline-danger",
             onClick: function onClick() {
-              return _this2.props.onCancel({
+              return _this3.props.onCancel({
                 active: false,
-                top: _this2.props.formOptions.top
+                top: _this3.props.formOptions.top
               });
             } },
           "Cancel"
@@ -42404,18 +42513,9 @@ var Form = function (_React$Component) {
   return Form;
 }(_react2.default.Component);
 
-/*
-<div className="dropdown">
-  <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a className="dropdown-item" href="#">Action</a>
-    <a className="dropdown-item" href="#">Another action</a>
-    <a className="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
-*/
+// onClick={() => this.props.saveParamsToBlock([
+//
+// ])}
 
 
 exports.default = Form;
@@ -42480,10 +42580,11 @@ var BuyChart = function (_React$Component) {
 
   _createClass(BuyChart, [{
     key: 'changeFormState',
-    value: function changeFormState(eventTarget) {
+    value: function changeFormState(eventTarget, blockIndex) {
       this.props.changeFormState({
         active: true,
-        top: Math.floor((0, _jquery2.default)(eventTarget).position().top) - 5
+        top: Math.floor((0, _jquery2.default)(eventTarget).position().top) - 5,
+        currentBlock: blockIndex
       });
     }
   }, {
@@ -42584,7 +42685,8 @@ var BuyChart = function (_React$Component) {
             changeFormState: _this2.changeFormState,
             params: elem,
             key: index,
-            index: index });
+            index: index,
+            blockStateKey: _this2.props.options.blocks[index].key });
         }),
         this.props.options.arrows.map(function (elem, index) {
           return _react2.default.createElement(_SimpleArrow2.default, { params: elem,
@@ -42668,7 +42770,7 @@ var Block = function (_React$Component) {
           _react2.default.createElement('rect', { height: this.props.params.height,
             width: this.props.params.width,
             onClick: function onClick(event) {
-              return _this2.props.changeFormState(event.target);
+              return _this2.props.changeFormState(event.target, _this2.props.blockStateKey);
             },
             x: "-" + this.props.params.width / 2,
             y: '0' }),
@@ -42889,7 +42991,7 @@ exports.default = SimpleArrow;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.changeDropdownTitle = exports.editBlockParamsSellChart = exports.addBlockToSellChart = exports.removeBlockFromSellChart = exports.editBlockParamsBuyChart = exports.addBlockToBuyChart = exports.removeBlockFromBuyChart = exports.changeFormState = exports.recalcSvgParams = exports.changeChartType = undefined;
+exports.saveParamsToSellChartBlock = exports.saveParamsToBuyChartBlock = exports.changeDropdownRightSecondTitle = exports.changeDropdownRightFirstTitle = exports.changeDropdownLeftSecondTitle = exports.changeDropdownLeftFirstTitle = exports.editBlockParamsSellChart = exports.addBlockToSellChart = exports.removeBlockFromSellChart = exports.editBlockParamsBuyChart = exports.addBlockToBuyChart = exports.removeBlockFromBuyChart = exports.changeFormState = exports.recalcSvgParams = exports.changeChartType = undefined;
 
 var _actionsTypes = __webpack_require__(/*! ./actionsTypes */ "./src/js/store/actionsTypes.js");
 
@@ -42960,10 +43062,45 @@ var editBlockParamsSellChart = exports.editBlockParamsSellChart = function editB
   };
 };
 
-var changeDropdownTitle = exports.changeDropdownTitle = function changeDropdownTitle(newDropdownTitle) {
+var changeDropdownLeftFirstTitle = exports.changeDropdownLeftFirstTitle = function changeDropdownLeftFirstTitle(newDropdownTitle) {
   return {
-    type: types.ACTION_CHANGE_DROPDOWN_TITLE,
+    type: types.ACTION_CHANGE_DROPDOWN_LEFT_FIRST_TITLE,
     payload: newDropdownTitle
+  };
+};
+
+var changeDropdownLeftSecondTitle = exports.changeDropdownLeftSecondTitle = function changeDropdownLeftSecondTitle(newDropdownTitle) {
+  return {
+    type: types.ACTION_CHANGE_DROPDOWN_LEFT_SECOND_TITLE,
+    payload: newDropdownTitle
+  };
+};
+
+var changeDropdownRightFirstTitle = exports.changeDropdownRightFirstTitle = function changeDropdownRightFirstTitle(newDropdownTitle) {
+  return {
+    type: types.ACTION_CHANGE_DROPDOWN_RIGHT_FIRST_TITLE,
+    payload: newDropdownTitle
+  };
+};
+
+var changeDropdownRightSecondTitle = exports.changeDropdownRightSecondTitle = function changeDropdownRightSecondTitle(newDropdownTitle) {
+  return {
+    type: types.ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE,
+    payload: newDropdownTitle
+  };
+};
+
+var saveParamsToBuyChartBlock = exports.saveParamsToBuyChartBlock = function saveParamsToBuyChartBlock(newBlockParams) {
+  return {
+    type: types.ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK,
+    payload: newBlockParams
+  };
+};
+
+var saveParamsToSellChartBlock = exports.saveParamsToSellChartBlock = function saveParamsToSellChartBlock(newBlockParams) {
+  return {
+    type: types.ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK,
+    payload: newBlockParams
   };
 };
 
@@ -42991,7 +43128,12 @@ var ACTION_ADD_BLOCK_TO_BUY_CHART = exports.ACTION_ADD_BLOCK_TO_BUY_CHART = 'ACT
 var ACTION_REMOVE_BLOCK_FROM_SELL_CHART = exports.ACTION_REMOVE_BLOCK_FROM_SELL_CHART = 'ACTION_REMOVE_BLOCK_FROM_SELL_CHART';
 var ACTION_EDIT_BLOCK_PARAMS_SELL_CHART = exports.ACTION_EDIT_BLOCK_PARAMS_SELL_CHART = 'ACTION_EDIT_BLOCK_PARAMS_SELL_CHART';
 var ACTION_ADD_BLOCK_TO_CHART_SELL_CHART = exports.ACTION_ADD_BLOCK_TO_CHART_SELL_CHART = 'ACTION_ADD_BLOCK_TO_CHART_SELL_CHART';
-var ACTION_CHANGE_DROPDOWN_TITLE = exports.ACTION_CHANGE_DROPDOWN_TITLE = 'ACTION_CHANGE_DROPDOWN_TITLE';
+var ACTION_CHANGE_DROPDOWN_LEFT_FIRST_TITLE = exports.ACTION_CHANGE_DROPDOWN_LEFT_FIRST_TITLE = 'ACTION_CHANGE_DROPDOWN_LEFT_FIRST_TITLE';
+var ACTION_CHANGE_DROPDOWN_RIGHT_FIRST_TITLE = exports.ACTION_CHANGE_DROPDOWN_RIGHT_FIRST_TITLE = 'ACTION_CHANGE_DROPDOWN_RIGHT_FIRST_TITLE';
+var ACTION_CHANGE_DROPDOWN_LEFT_SECOND_TITLE = exports.ACTION_CHANGE_DROPDOWN_LEFT_SECOND_TITLE = 'ACTION_CHANGE_DROPDOWN_LEFT_SECOND_TITLE';
+var ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE = exports.ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE = 'ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE';
+var ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK = exports.ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK = 'ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK';
+var ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK = exports.ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK = 'ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK';
 
 /***/ }),
 
@@ -43023,12 +43165,29 @@ var initialAppState = {
   },
   form: {
     active: false,
-    top: 0
+    top: 0,
+    currentBlock: null
   },
   formDropdown: {
-    first: {
-      title: 'Choose option',
-      options: ['Param 1', 'Param 2', 'Param 3']
+    left: {
+      first: {
+        title: '',
+        options: ['Option 1', 'Option 2', 'Option 3']
+      },
+      second: {
+        title: 'Choose option',
+        options: ['Param 1', 'Param 2', 'Param 3']
+      }
+    },
+    right: {
+      first: {
+        title: '',
+        options: ['Option 1', 'Option 2', 'Option 3']
+      },
+      second: {
+        title: 'Choose option',
+        options: ['Param 1', 'Param 2', 'Param 3']
+      }
     }
   },
   buyChart: {
@@ -43189,13 +43348,59 @@ var rootReducer = exports.rootReducer = function rootReducer() {
       return _extends({}, state, { sellChart: action.payload });
     case types.ACTION_ADD_BLOCK_TO_CHART_SELL_CHART:
       return _extends({}, state, { sellChart: action.payload });
-    case types.ACTION_CHANGE_DROPDOWN_TITLE:
+    case types.ACTION_CHANGE_DROPDOWN_LEFT_FIRST_TITLE:
       return _extends({}, state, {
         formDropdown: _extends({}, state.formDropdown, {
-          first: _extends({}, state.formDropdown.first, {
-            title: action.payload
+          left: _extends({}, state.formDropdown.left, {
+            first: _extends({}, state.formDropdown.left.first, {
+              title: action.payload
+            })
           })
         })
+      });
+    case types.ACTION_CHANGE_DROPDOWN_LEFT_SECOND_TITLE:
+      return _extends({}, state, {
+        formDropdown: _extends({}, state.formDropdown, {
+          left: _extends({}, state.formDropdown.left, {
+            second: _extends({}, state.formDropdown.left.second, {
+              title: action.payload
+            })
+          })
+        })
+      });
+    case types.ACTION_CHANGE_DROPDOWN_RIGHT_FIRST_TITLE:
+      return _extends({}, state, {
+        formDropdown: _extends({}, state.formDropdown, {
+          right: _extends({}, state.formDropdown.right, {
+            first: _extends({}, state.formDropdown.left.first, {
+              title: action.payload
+            })
+          })
+        })
+      });
+    case types.ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE:
+      return _extends({}, state, {
+        formDropdown: _extends({}, state.formDropdown, {
+          right: _extends({}, state.formDropdown.right, {
+            second: _extends({}, state.formDropdown.left.second, {
+              title: action.payload
+            })
+          })
+        })
+      });
+    case types.ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK:
+      return _extends({}, state, {
+        buyChart: _extends({}, state.buyChart, {
+          blocks: action.payload
+        }),
+        form: _initialAppState2.default.form
+      });
+    case types.ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK:
+      return _extends({}, state, {
+        sellChart: _extends({}, state.sellChart, {
+          blocks: action.payload
+        }),
+        form: _initialAppState2.default.form
       });
   }
   return state;

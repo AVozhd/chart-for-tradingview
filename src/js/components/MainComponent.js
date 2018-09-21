@@ -10,7 +10,11 @@ import { changeChartType,
          removeBlockFromSellChart,
          addBlockToSellChart,
          editBlockParamsSellChart,
-         changeDropdownTitle } from '../store/actions';
+         changeDropdownLeftFirstTitle,
+         changeDropdownLeftSecondTitle,
+         changeDropdownRightFirstTitle,
+         changeDropdownRightSecondTitle,
+  saveParamsToBuyChartBlock, saveParamsToSellChartBlock } from '../store/actions';
 import BuyChart from './container/BuyChart';
 import SellChart from './container/SellChart';
 import ChartTypeSelectorInput from './presentational/ChartTypeSelectorInput';
@@ -34,23 +38,27 @@ class MainComponent extends React.Component {
                "0 0 " + this.props.svg.sellChart.width + " " + this.props.svg.sellChart.height }>
           {
             this.props.chartType === 'buy' ?
-              <BuyChart options={ this.props.buyChart }
-                        onChange={ this.props.addBlockToBuyChart }
-                        recalcSvgParams={ this.props.recalcSvgParams }
-                        removeBlock={ this.props.removeBlockFromBuyChart }
-                        svgParams={ this.props.svg }
-                        editBlockParams={ this.props.editBlockParamsBuyChart }
-                        changeFormState={ this.props.changeFormState }
-                        form={ this.props.form } />
+              <BuyChart
+                options={ this.props.buyChart }
+                onChange={ this.props.addBlockToBuyChart }
+                recalcSvgParams={ this.props.recalcSvgParams }
+                removeBlock={ this.props.removeBlockFromBuyChart }
+                svgParams={ this.props.svg }
+                editBlockParams={ this.props.editBlockParamsBuyChart }
+                changeFormState={ this.props.changeFormState }
+                form={ this.props.form }
+              />
               :
-              <SellChart options={ this.props.sellChart }
-                         onChange={ this.props.addBlockToSellChart }
-                         recalcSvgParams={ this.props.recalcSvgParams }
-                         removeBlock={ this.props.removeBlockFromSellChart }
-                         svgParams={ this.props.svg }
-                         editBlockParams={ this.props.editBlockParamsSellChart }
-                         changeFormState={ this.props.changeFormState }
-                         form={ this.props.form } />
+              <SellChart
+                options={ this.props.sellChart }
+                onChange={ this.props.addBlockToSellChart }
+                recalcSvgParams={ this.props.recalcSvgParams }
+                removeBlock={ this.props.removeBlockFromSellChart }
+                svgParams={ this.props.svg }
+                editBlockParams={ this.props.editBlockParamsSellChart }
+                changeFormState={ this.props.changeFormState }
+                form={ this.props.form }
+              />
           }
         </svg>
         <div className="relative">
@@ -82,7 +90,18 @@ class MainComponent extends React.Component {
             { this.props.form.active ? <Form onCancel={ this.props.changeFormState }
                                              formOptions={ this.props.form }
                                              formDropdown={ this.props.formDropdown }
-                                             changeDropdownTitle={this.props.changeDropdownTitle} /> : '' }
+                                             changeDropdownLeftFirstTitle={this.props.changeDropdownLeftFirstTitle}
+                                             changeDropdownRightFirstTitle={this.props.changeDropdownRightFirstTitle}
+                                             changeDropdownLeftSecondTitle={this.props.changeDropdownLeftSecondTitle}
+                                             changeDropdownRightSecondTitle={this.props.changeDropdownRightSecondTitle}
+                                             saveParamsToBlock={ this.props.chartType === 'buy' ?
+                                             this.props.saveParamsToBuyChartBlock
+                                             :
+                                             this.props.saveParamsToSellChartBlock }
+                                             chartBlockOptions={ this.props.chartType === 'buy' ?
+                                             this.props.buyChart.blocks
+                                             :
+                                             this.props.sellChart.blocks } /> : '' }
           </div>
         </div>
       </div>
@@ -107,7 +126,12 @@ MainComponent.propTypes = {
   removeBlockFromSellChart: PropTypes.func,
   editBlockParamsSellChart: PropTypes.func,
   addBlockToSellChart: PropTypes.func,
-  changeDropdownTitle: PropTypes.func,
+  changeDropdownLeftSecondTitle: PropTypes.func,
+  changeDropdownLeftFirstTitle: PropTypes.func,
+  changeDropdownRightSecondTitle: PropTypes.func,
+  changeDropdownRightFirstTitle: PropTypes.func,
+  saveParamsToBuyChartBlock: PropTypes.func,
+  saveParamsToSellChartBlock: PropTypes.func,
 };
 
 export default connect((state => ({
@@ -128,5 +152,10 @@ export default connect((state => ({
   removeBlockFromSellChart: bindActionCreators(removeBlockFromSellChart, dispatch),
   editBlockParamsSellChart: bindActionCreators(editBlockParamsSellChart, dispatch),
   addBlockToSellChart: bindActionCreators(addBlockToSellChart, dispatch),
-  changeDropdownTitle: bindActionCreators(changeDropdownTitle, dispatch),
+  changeDropdownLeftSecondTitle: bindActionCreators(changeDropdownLeftSecondTitle, dispatch),
+  changeDropdownRightSecondTitle: bindActionCreators(changeDropdownRightSecondTitle, dispatch),
+  changeDropdownLeftFirstTitle: bindActionCreators(changeDropdownLeftFirstTitle, dispatch),
+  changeDropdownRightFirstTitle: bindActionCreators(changeDropdownRightFirstTitle, dispatch),
+  saveParamsToBuyChartBlock: bindActionCreators(saveParamsToBuyChartBlock, dispatch),
+  saveParamsToSellChartBlock: bindActionCreators(saveParamsToSellChartBlock, dispatch),
 })))(MainComponent);

@@ -83,6 +83,10 @@ text {
   position: relative;
 }
 
+.dropdown-div {
+  margin-bottom: 10px;
+}
+
 @media (min-width: 1000px) {
   .container > div:last-child {
     padding-left: 50px;

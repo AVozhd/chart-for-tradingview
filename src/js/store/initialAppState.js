@@ -14,16 +14,45 @@ const initialAppState = {
   form: {
     active: false,
     top: 0,
+    currentBlock: null,
   },
   formDropdown: {
-    first: {
-      title: 'Choose option',
-      options: [
-        'Param 1',
-        'Param 2',
-        'Param 3',
-      ],
-    }
+    left: {
+      first: {
+        title: '',
+        options: [
+          'Option 1',
+          'Option 2',
+          'Option 3',
+        ],
+      },
+      second: {
+        title: 'Choose option',
+        options: [
+          'Param 1',
+          'Param 2',
+          'Param 3',
+        ],
+      },
+    },
+    right: {
+      first: {
+        title: '',
+        options: [
+          'Option 1',
+          'Option 2',
+          'Option 3',
+        ],
+      },
+      second: {
+        title: 'Choose option',
+        options: [
+          'Param 1',
+          'Param 2',
+          'Param 3',
+        ],
+      },
+    },
   },
   buyChart: {
     arrows: [

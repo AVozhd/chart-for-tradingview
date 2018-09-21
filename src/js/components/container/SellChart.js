@@ -12,10 +12,11 @@ export default class BuyChart extends React.Component {
     this.changeFormState = this.changeFormState.bind(this);
   }
   
-  changeFormState(eventTarget) {
+  changeFormState(eventTarget, blockIndex) {
     this.props.changeFormState({
       active: true,
       top: Math.floor($(eventTarget).position().top) - 5,
+      currentBlock: blockIndex,
     });
   }
   
@@ -103,7 +104,8 @@ export default class BuyChart extends React.Component {
                                                                changeFormState={this.changeFormState}
                                                                params={elem}
                                                                key={index}
-                                                               index={index} />)}
+                                                               index={index}
+                                                               blockStateKey={ this.props.options.blocks[index].key } />)}
         {this.props.options.arrows.map((elem, index) => <SimpleArrow params={elem}
                                                                      key={index}
                                                                      index={index} />)}

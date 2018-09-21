@@ -63,9 +63,45 @@ export const editBlockParamsSellChart = (newBlockParams) => {
   };
 };
 
-export const changeDropdownTitle = (newDropdownTitle) => {
+export const changeDropdownLeftFirstTitle = (newDropdownTitle) => {
   return {
-    type: types.ACTION_CHANGE_DROPDOWN_TITLE,
+    type: types.ACTION_CHANGE_DROPDOWN_LEFT_FIRST_TITLE,
     payload: newDropdownTitle
   };
 };
+
+export const changeDropdownLeftSecondTitle = (newDropdownTitle) => {
+  return {
+    type: types.ACTION_CHANGE_DROPDOWN_LEFT_SECOND_TITLE,
+    payload: newDropdownTitle
+  };
+};
+
+export const changeDropdownRightFirstTitle = (newDropdownTitle) => {
+  return {
+    type: types.ACTION_CHANGE_DROPDOWN_RIGHT_FIRST_TITLE,
+    payload: newDropdownTitle
+  };
+};
+
+export const changeDropdownRightSecondTitle = (newDropdownTitle) => {
+  return {
+    type: types.ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE,
+    payload: newDropdownTitle
+  };
+};
+
+export const saveParamsToBuyChartBlock = (newBlockParams) => {
+  return {
+    type: types.ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK,
+    payload: newBlockParams
+  };
+};
+
+export const saveParamsToSellChartBlock = (newBlockParams) => {
+  return {
+    type: types.ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK,
+    payload: newBlockParams
+  };
+};
+

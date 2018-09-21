@@ -29,16 +29,79 @@ export const rootReducer = (state = initialAppState, action) => {
       return { ...state, sellChart: action.payload };
     case types.ACTION_ADD_BLOCK_TO_CHART_SELL_CHART:
       return { ...state, sellChart: action.payload };
-    case types.ACTION_CHANGE_DROPDOWN_TITLE:
+    case types.ACTION_CHANGE_DROPDOWN_LEFT_FIRST_TITLE:
       return {
         ...state,
         formDropdown: {
           ...state.formDropdown,
-          first: {
-            ...state.formDropdown.first,
-            title: action.payload
+          left: {
+            ...state.formDropdown.left,
+            first: {
+              ...state.formDropdown.left.first,
+              title: action.payload,
+            }
           }
         }
+      };
+    case types.ACTION_CHANGE_DROPDOWN_LEFT_SECOND_TITLE:
+      return {
+        ...state,
+        formDropdown: {
+          ...state.formDropdown,
+          left: {
+            ...state.formDropdown.left,
+            second: {
+              ...state.formDropdown.left.second,
+              title: action.payload,
+            }
+          }
+        }
+      };
+    case types.ACTION_CHANGE_DROPDOWN_RIGHT_FIRST_TITLE:
+      return {
+        ...state,
+        formDropdown: {
+          ...state.formDropdown,
+          right: {
+            ...state.formDropdown.right,
+            first: {
+              ...state.formDropdown.left.first,
+              title: action.payload,
+            }
+          }
+        }
+      };
+    case types.ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE:
+      return {
+        ...state,
+        formDropdown: {
+          ...state.formDropdown,
+          right: {
+            ...state.formDropdown.right,
+            second: {
+              ...state.formDropdown.left.second,
+              title: action.payload,
+            }
+          }
+        }
+      };
+    case types.ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK:
+      return {
+        ...state,
+        buyChart: {
+          ...state.buyChart,
+          blocks: action.payload
+        },
+        form: initialAppState.form,
+      };
+    case types.ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK:
+      return {
+        ...state,
+        sellChart: {
+          ...state.sellChart,
+          blocks: action.payload
+        },
+        form: initialAppState.form,
       };
   }
   return state;
