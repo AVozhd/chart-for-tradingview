@@ -48,6 +48,11 @@ text {
   text-anchor: middle;
 }
 
+pre.result-script {
+  display: block;
+  margin-top: 20px;
+}
+
 .hidden {
   display: none;
 }
@@ -102,6 +107,6 @@ text {
   .dropdown-div {
     display: grid;
     align-items: center;
-    grid-template-columns: min-content min-content;
+    grid-template-columns: minmax(max-content, 100px) min-content;
   }
 }

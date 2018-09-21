@@ -14,12 +14,13 @@ import { changeChartType,
          changeDropdownLeftSecondTitle,
          changeDropdownRightFirstTitle,
          changeDropdownRightSecondTitle,
-  saveParamsToBuyChartBlock, saveParamsToSellChartBlock } from '../store/actions';
+  saveParamsToBuyChartBlock, saveParamsToSellChartBlock, getScript } from '../store/actions';
 import BuyChart from './container/BuyChart';
 import SellChart from './container/SellChart';
 import ChartTypeSelectorInput from './presentational/ChartTypeSelectorInput';
 import Form from './container/Form';
 import PropTypes from 'prop-types';
+import Pre from './presentational/Pre';
 
 
 class MainComponent extends React.Component {
@@ -83,7 +84,13 @@ class MainComponent extends React.Component {
               </div>
             </div>
             <div>
-              <button type="button" className="btn btn-outline-success">Get Script</button>
+              <button type="button"
+                      className="btn btn-outline-success"
+                      onClick={() => {this.props.getScript({
+                        active: true,
+                      })}} >
+                Get Script
+              </button>
             </div>
           </div>
           <div style={ divStyle }>
@@ -103,6 +110,7 @@ class MainComponent extends React.Component {
                                              :
                                              this.props.sellChart.blocks } /> : '' }
           </div>
+          { this.props.pre.active? <Pre /> : '' }
         </div>
       </div>
     )
@@ -132,6 +140,7 @@ MainComponent.propTypes = {
   changeDropdownRightFirstTitle: PropTypes.func,
   saveParamsToBuyChartBlock: PropTypes.func,
   saveParamsToSellChartBlock: PropTypes.func,
+  getScript: PropTypes.func,
 };
 
 export default connect((state => ({
@@ -142,6 +151,7 @@ export default connect((state => ({
   sellChart: state.sellChart,
   form: state.form,
   formDropdown: state.formDropdown,
+  pre: state.pre,
 })), (dispatch => ({
   changeChartType: bindActionCreators(changeChartType, dispatch),
   recalcSvgParams: bindActionCreators(recalcSvgParams, dispatch),
@@ -158,4 +168,5 @@ export default connect((state => ({
   changeDropdownRightFirstTitle: bindActionCreators(changeDropdownRightFirstTitle, dispatch),
   saveParamsToBuyChartBlock: bindActionCreators(saveParamsToBuyChartBlock, dispatch),
   saveParamsToSellChartBlock: bindActionCreators(saveParamsToSellChartBlock, dispatch),
+  getScript: bindActionCreators(getScript, dispatch),
 })))(MainComponent);

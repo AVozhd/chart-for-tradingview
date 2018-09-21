@@ -4073,7 +4073,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n.dropdown-div {\n  margin-bottom: 10px;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n  .dropdown-div {\n    display: grid;\n    align-items: center;\n    grid-template-columns: min-content min-content;\n  }\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\npre.result-script {\n  display: block;\n  margin-top: 20px;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n.dropdown-div {\n  margin-bottom: 10px;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n  .dropdown-div {\n    display: grid;\n    align-items: center;\n    grid-template-columns: minmax(max-content, 100px) min-content;\n  }\n}\n", ""]);
 
 // exports
 
@@ -41927,6 +41927,10 @@ var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-type
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _Pre = __webpack_require__(/*! ./presentational/Pre */ "./src/js/components/presentational/Pre.js");
+
+var _Pre2 = _interopRequireDefault(_Pre);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41947,6 +41951,8 @@ var MainComponent = function (_React$Component) {
   _createClass(MainComponent, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var divStyle = {
         position: 'absolute',
         top: this.props.form.top
@@ -42017,7 +42023,13 @@ var MainComponent = function (_React$Component) {
               null,
               _react2.default.createElement(
                 'button',
-                { type: 'button', className: 'btn btn-outline-success' },
+                { type: 'button',
+                  className: 'btn btn-outline-success',
+                  onClick: function onClick() {
+                    _this2.props.getScript({
+                      active: true
+                    });
+                  } },
                 'Get Script'
               )
             )
@@ -42034,7 +42046,8 @@ var MainComponent = function (_React$Component) {
               changeDropdownRightSecondTitle: this.props.changeDropdownRightSecondTitle,
               saveParamsToBlock: this.props.chartType === 'buy' ? this.props.saveParamsToBuyChartBlock : this.props.saveParamsToSellChartBlock,
               chartBlockOptions: this.props.chartType === 'buy' ? this.props.buyChart.blocks : this.props.sellChart.blocks }) : ''
-          )
+          ),
+          this.props.pre.active ? _react2.default.createElement(_Pre2.default, null) : ''
         )
       );
     }
@@ -42065,7 +42078,8 @@ MainComponent.propTypes = {
   changeDropdownRightSecondTitle: _propTypes2.default.func,
   changeDropdownRightFirstTitle: _propTypes2.default.func,
   saveParamsToBuyChartBlock: _propTypes2.default.func,
-  saveParamsToSellChartBlock: _propTypes2.default.func
+  saveParamsToSellChartBlock: _propTypes2.default.func,
+  getScript: _propTypes2.default.func
 };
 
 exports.default = (0, _reactRedux.connect)(function (state) {
@@ -42076,7 +42090,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     buyChart: state.buyChart,
     sellChart: state.sellChart,
     form: state.form,
-    formDropdown: state.formDropdown
+    formDropdown: state.formDropdown,
+    pre: state.pre
   };
 }, function (dispatch) {
   return {
@@ -42094,7 +42109,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     changeDropdownLeftFirstTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownLeftFirstTitle, dispatch),
     changeDropdownRightFirstTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownRightFirstTitle, dispatch),
     saveParamsToBuyChartBlock: (0, _redux.bindActionCreators)(_actions.saveParamsToBuyChartBlock, dispatch),
-    saveParamsToSellChartBlock: (0, _redux.bindActionCreators)(_actions.saveParamsToSellChartBlock, dispatch)
+    saveParamsToSellChartBlock: (0, _redux.bindActionCreators)(_actions.saveParamsToSellChartBlock, dispatch),
+    getScript: (0, _redux.bindActionCreators)(_actions.getScript, dispatch)
   };
 })(MainComponent);
 
@@ -42919,6 +42935,61 @@ exports.default = ChartTypeSelectorInput;
 
 /***/ }),
 
+/***/ "./src/js/components/presentational/Pre.js":
+/*!*************************************************!*\
+  !*** ./src/js/components/presentational/Pre.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
+var Pre = function Pre(_ref) {
+  _objectDestructuringEmpty(_ref);
+
+  return _react2.default.createElement(
+    "pre",
+    { className: "result-script" },
+    _react2.default.createElement(
+      "h1",
+      null,
+      "Result script title"
+    ),
+    "study(\"MACD\")",
+    _react2.default.createElement("br", null),
+    "fast = 12, slow = 26",
+    _react2.default.createElement("br", null),
+    "fastMA = ema(close, fast)",
+    _react2.default.createElement("br", null),
+    "slowMA = ema(close, slow)",
+    _react2.default.createElement("br", null),
+    "macd = fastMA - slowMA",
+    _react2.default.createElement("br", null),
+    "signal = sma(macd, 9)",
+    _react2.default.createElement("br", null),
+    "plot(macd, color=blue)",
+    _react2.default.createElement("br", null),
+    "plot(signal, color=orange)"
+  );
+};
+
+exports.default = Pre;
+
+/***/ }),
+
 /***/ "./src/js/components/presentational/SimpleArrow.js":
 /*!*********************************************************!*\
   !*** ./src/js/components/presentational/SimpleArrow.js ***!
@@ -42991,7 +43062,7 @@ exports.default = SimpleArrow;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.saveParamsToSellChartBlock = exports.saveParamsToBuyChartBlock = exports.changeDropdownRightSecondTitle = exports.changeDropdownRightFirstTitle = exports.changeDropdownLeftSecondTitle = exports.changeDropdownLeftFirstTitle = exports.editBlockParamsSellChart = exports.addBlockToSellChart = exports.removeBlockFromSellChart = exports.editBlockParamsBuyChart = exports.addBlockToBuyChart = exports.removeBlockFromBuyChart = exports.changeFormState = exports.recalcSvgParams = exports.changeChartType = undefined;
+exports.getScript = exports.saveParamsToSellChartBlock = exports.saveParamsToBuyChartBlock = exports.changeDropdownRightSecondTitle = exports.changeDropdownRightFirstTitle = exports.changeDropdownLeftSecondTitle = exports.changeDropdownLeftFirstTitle = exports.editBlockParamsSellChart = exports.addBlockToSellChart = exports.removeBlockFromSellChart = exports.editBlockParamsBuyChart = exports.addBlockToBuyChart = exports.removeBlockFromBuyChart = exports.changeFormState = exports.recalcSvgParams = exports.changeChartType = undefined;
 
 var _actionsTypes = __webpack_require__(/*! ./actionsTypes */ "./src/js/store/actionsTypes.js");
 
@@ -43104,6 +43175,13 @@ var saveParamsToSellChartBlock = exports.saveParamsToSellChartBlock = function s
   };
 };
 
+var getScript = exports.getScript = function getScript(something) {
+  return {
+    type: types.ACTION_GET_SCRIPS,
+    payload: something
+  };
+};
+
 /***/ }),
 
 /***/ "./src/js/store/actionsTypes.js":
@@ -43134,6 +43212,7 @@ var ACTION_CHANGE_DROPDOWN_LEFT_SECOND_TITLE = exports.ACTION_CHANGE_DROPDOWN_LE
 var ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE = exports.ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE = 'ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE';
 var ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK = exports.ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK = 'ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK';
 var ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK = exports.ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK = 'ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK';
+var ACTION_GET_SCRIPS = exports.ACTION_GET_SCRIPS = 'ACTION_GET_SCRIPS';
 
 /***/ }),
 
@@ -43190,6 +43269,9 @@ var initialAppState = {
       }
     }
   },
+  pre: {
+    active: false
+  },
   buyChart: {
     arrows: [{
       x1: 0,
@@ -43219,12 +43301,12 @@ var initialAppState = {
       height: 100,
       options: {
         left: {
-          title: 'RS1',
-          param1: 'left params'
+          title: 'condition',
+          param1: 'none'
         },
         right: {
-          title: 'BB',
-          param1: 'right params'
+          title: 'condition',
+          param1: 'none'
         }
       }
     }, {
@@ -43402,6 +43484,8 @@ var rootReducer = exports.rootReducer = function rootReducer() {
         }),
         form: _initialAppState2.default.form
       });
+    case types.ACTION_GET_SCRIPS:
+      return _extends({}, state, { pre: action.payload });
   }
   return state;
 };

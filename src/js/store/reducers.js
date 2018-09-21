@@ -103,6 +103,8 @@ export const rootReducer = (state = initialAppState, action) => {
         },
         form: initialAppState.form,
       };
+    case types.ACTION_GET_SCRIPS:
+      return { ...state, pre: action.payload };
   }
   return state;
 };

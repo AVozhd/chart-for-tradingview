@@ -105,3 +105,9 @@ export const saveParamsToSellChartBlock = (newBlockParams) => {
   };
 };
 
+export const getScript = (something) => {
+  return {
+    type: types.ACTION_GET_SCRIPS,
+    payload: something
+  };
+};
