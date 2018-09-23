@@ -25,6 +25,7 @@ export default class Block extends React.Component {
           <rect height={this.props.params.height}
                 width={this.props.params.width}
                 onClick={(event) => this.props.changeFormState(event.target, this.props.blockStateKey)}
+                className="block-cursor-pointer"
                 x={"-" + this.props.params.width/2}
                 y="0" />
           <text x="0"

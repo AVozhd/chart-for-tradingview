@@ -123,12 +123,18 @@ pre.result-script {
 .deactived {
   stroke: gray !important;
   fill: lightgray !important;
+  cursor: not-allowed;
 }
 
 .deactived-text {
   fill: gray !important;
+  cursor: not-allowed;
 }
 
 .undisplayed {
   display: none;
+}
+
+.block-cursor-pointer {
+  cursor: pointer;
 }
