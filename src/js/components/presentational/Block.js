@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames/bind';
 
 export default class Block extends React.Component {
   
@@ -25,24 +26,41 @@ export default class Block extends React.Component {
                 width={this.props.params.width}
                 onClick={(event) => this.props.changeFormState(event.target, this.props.blockStateKey)}
                 x={"-" + this.props.params.width/2}
-                y="0"
-                className="" />
+                y="0" />
           <text x="0"
                 y={this.props.params.height - this.props.params.height/2.5} >
             and
           </text>
           <g transform={"translate(" + "-" + this.props.params.width/2 + ",0)"}>
-            <line x1="100" y1="1" x2="100" y2="99" />
-            <line x1="1" y1="50" x2="99" y2="50" />
-            <text x="50" y="30" >{this.props.params.options.left.title}</text>
+            <polyline points="0,50 0,0 100,0 100,50 0,50 0,100 100,100 100,50"
+                      className={classNames({
+                        'deactived': this.props.params.options.left.title === 'none'
+                      })} />
+            <text className={classNames({
+                    'deactived-text': this.props.params.options.left.title === 'none'
+                  })}
+                  x="50"
+                  y="30" >{this.props.params.options.left.title}</text>
             <text x="50" y="80" >{this.props.params.options.left.param1}</text>
           </g>
           <g transform={"translate(" +  this.props.params.width*0.1 + ",0)"}>
-            <line x1="0" y1="1" x2="0" y2="99" />
-            <line x1="1" y1="50" x2="99" y2="50" />
-            <text x="50" y="30" >{this.props.params.options.right.title}</text>
+            <polyline points="0,50 0,0 100,0 100,50 0,50 0,100 100,100 100,50"
+                      className={classNames({
+                        'deactived': this.props.params.options.right.title === 'none'
+                      })} />
+            <text className={classNames({
+                    'deactived-text': this.props.params.options.right.title === 'none'
+                  })}
+                  x="50"
+                  y="30" >{this.props.params.options.right.title}</text>
             <text x="50" y="80" >{this.props.params.options.right.param1}</text>
           </g>
+          <polyline points={`0,0 ${this.props.params.width},0 ${this.props.params.width},${this.props.params.height} 0,${this.props.params.height} 0,0`}
+                    transform={`translate(-${this.props.params.width/2},0)`}
+                    className={classNames({
+                      'active': this.props.blockStateKey === this.props.form.currentBlock,
+                      'undisplayed': this.props.blockStateKey !== this.props.form.currentBlock
+                    })} />
           <g className="addBlockBtn"
              transform={"translate(" + (this.props.params.width/2 + 20) + "," + (this.props.params.height/2 + this.props.params.height/6) + ")"}
              onClick={() => this.props.addBlock()} >

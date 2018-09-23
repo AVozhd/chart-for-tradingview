@@ -26,7 +26,8 @@ svg {
 
 rect,
 path,
-line {
+line,
+polyline {
   stroke: #12b495;
   stroke-width: 2px;
 }
@@ -41,6 +42,10 @@ path,
 polygon,
 circle {
   fill: white;
+}
+
+polyline {
+  fill: none;
 }
 
 text {
@@ -109,4 +114,21 @@ pre.result-script {
     align-items: center;
     grid-template-columns: minmax(max-content, 120px) min-content;
   }
+}
+
+.active {
+  stroke: #007bff !important;
+}
+
+.deactived {
+  stroke: gray !important;
+  fill: lightgray !important;
+}
+
+.deactived-text {
+  fill: gray !important;
+}
+
+.undisplayed {
+  display: none;
 }

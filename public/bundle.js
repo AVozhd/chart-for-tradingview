@@ -4040,6 +4040,65 @@
 
 /***/ }),
 
+/***/ "./node_modules/classnames/bind.js":
+/*!*****************************************!*\
+  !*** ./node_modules/classnames/bind.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(this && this[arg] || arg);
+			} else if (Array.isArray(arg)) {
+				classes.push(classNames.apply(this, arg));
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(this && this[key] || key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}());
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css":
 /*!*************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/bootstrap/dist/css/bootstrap.min.css ***!
@@ -4073,7 +4132,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\npre.result-script {\n  display: block;\n  margin-top: 20px;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n.dropdown-div {\n  margin-bottom: 10px;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n  .dropdown-div {\n    display: grid;\n    align-items: center;\n    grid-template-columns: minmax(max-content, 120px) min-content;\n  }\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline,\npolyline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\npolyline {\n  fill: none;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\npre.result-script {\n  display: block;\n  margin-top: 20px;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n.dropdown-div {\n  margin-bottom: 10px;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n  .dropdown-div {\n    display: grid;\n    align-items: center;\n    grid-template-columns: minmax(max-content, 120px) min-content;\n  }\n}\n\n.active {\n  stroke: #007bff !important;\n}\n\n.deactived {\n  stroke: gray !important;\n  fill: lightgray !important;\n}\n\n.deactived-text {\n  fill: gray !important;\n}\n\n.undisplayed {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -42280,7 +42339,8 @@ var BuyChart = function (_React$Component) {
             params: elem,
             key: index,
             index: index,
-            blockStateKey: _this2.props.options.blocks[index].key });
+            blockStateKey: _this2.props.options.blocks[index].key,
+            form: _this2.props.form });
         }),
         this.props.options.arrows.map(function (elem, index) {
           return _react2.default.createElement(_SimpleArrow2.default, { params: elem,
@@ -42712,7 +42772,8 @@ var BuyChart = function (_React$Component) {
             params: elem,
             key: index,
             index: index,
-            blockStateKey: _this2.props.options.blocks[index].key });
+            blockStateKey: _this2.props.options.blocks[index].key,
+            form: _this2.props.form });
         }),
         this.props.options.arrows.map(function (elem, index) {
           return _react2.default.createElement(_SimpleArrow2.default, { params: elem,
@@ -42749,6 +42810,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
+
+var _bind = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
+
+var _bind2 = _interopRequireDefault(_bind);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42799,8 +42864,7 @@ var Block = function (_React$Component) {
               return _this2.props.changeFormState(event.target, _this2.props.blockStateKey);
             },
             x: "-" + this.props.params.width / 2,
-            y: '0',
-            className: '' }),
+            y: '0' }),
           _react2.default.createElement(
             'text',
             { x: '0',
@@ -42810,11 +42874,17 @@ var Block = function (_React$Component) {
           _react2.default.createElement(
             'g',
             { transform: "translate(" + "-" + this.props.params.width / 2 + ",0)" },
-            _react2.default.createElement('line', { x1: '100', y1: '1', x2: '100', y2: '99' }),
-            _react2.default.createElement('line', { x1: '1', y1: '50', x2: '99', y2: '50' }),
+            _react2.default.createElement('polyline', { points: '0,50 0,0 100,0 100,50 0,50 0,100 100,100 100,50',
+              className: (0, _bind2.default)({
+                'deactived': this.props.params.options.left.title === 'none'
+              }) }),
             _react2.default.createElement(
               'text',
-              { x: '50', y: '30' },
+              { className: (0, _bind2.default)({
+                  'deactived-text': this.props.params.options.left.title === 'none'
+                }),
+                x: '50',
+                y: '30' },
               this.props.params.options.left.title
             ),
             _react2.default.createElement(
@@ -42826,11 +42896,17 @@ var Block = function (_React$Component) {
           _react2.default.createElement(
             'g',
             { transform: "translate(" + this.props.params.width * 0.1 + ",0)" },
-            _react2.default.createElement('line', { x1: '0', y1: '1', x2: '0', y2: '99' }),
-            _react2.default.createElement('line', { x1: '1', y1: '50', x2: '99', y2: '50' }),
+            _react2.default.createElement('polyline', { points: '0,50 0,0 100,0 100,50 0,50 0,100 100,100 100,50',
+              className: (0, _bind2.default)({
+                'deactived': this.props.params.options.right.title === 'none'
+              }) }),
             _react2.default.createElement(
               'text',
-              { x: '50', y: '30' },
+              { className: (0, _bind2.default)({
+                  'deactived-text': this.props.params.options.right.title === 'none'
+                }),
+                x: '50',
+                y: '30' },
               this.props.params.options.right.title
             ),
             _react2.default.createElement(
@@ -42839,6 +42915,12 @@ var Block = function (_React$Component) {
               this.props.params.options.right.param1
             )
           ),
+          _react2.default.createElement('polyline', { points: '0,0 ' + this.props.params.width + ',0 ' + this.props.params.width + ',' + this.props.params.height + ' 0,' + this.props.params.height + ' 0,0',
+            transform: 'translate(-' + this.props.params.width / 2 + ',0)',
+            className: (0, _bind2.default)({
+              'active': this.props.blockStateKey === this.props.form.currentBlock,
+              'undisplayed': this.props.blockStateKey !== this.props.form.currentBlock
+            }) }),
           _react2.default.createElement(
             'g',
             { className: 'addBlockBtn',

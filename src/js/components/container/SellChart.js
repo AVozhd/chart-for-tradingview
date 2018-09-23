@@ -105,7 +105,8 @@ export default class BuyChart extends React.Component {
                                                                params={elem}
                                                                key={index}
                                                                index={index}
-                                                               blockStateKey={ this.props.options.blocks[index].key } />)}
+                                                               blockStateKey={ this.props.options.blocks[index].key }
+                                                               form={ this.props.form } />)}
         {this.props.options.arrows.map((elem, index) => <SimpleArrow params={elem}
                                                                      key={index}
                                                                      index={index} />)}
