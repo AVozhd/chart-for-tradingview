@@ -4073,7 +4073,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\npre.result-script {\n  display: block;\n  margin-top: 20px;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n.dropdown-div {\n  margin-bottom: 10px;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n  .dropdown-div {\n    display: grid;\n    align-items: center;\n    grid-template-columns: minmax(max-content, 100px) min-content;\n  }\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\npre.result-script {\n  display: block;\n  margin-top: 20px;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n.dropdown-div {\n  margin-bottom: 10px;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n  .dropdown-div {\n    display: grid;\n    align-items: center;\n    grid-template-columns: minmax(max-content, 120px) min-content;\n  }\n}\n", ""]);
 
 // exports
 
@@ -42318,6 +42318,14 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _LeftOptionsList = __webpack_require__(/*! ../presentational/LeftOptionsList */ "./src/js/components/presentational/LeftOptionsList.js");
+
+var _LeftOptionsList2 = _interopRequireDefault(_LeftOptionsList);
+
+var _RightOptionsList = __webpack_require__(/*! ../presentational/RightOptionsList */ "./src/js/components/presentational/RightOptionsList.js");
+
+var _RightOptionsList2 = _interopRequireDefault(_RightOptionsList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -42335,11 +42343,27 @@ var Form = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
 
     _this.prepareBlocks = _this.prepareBlocks.bind(_this);
+    _this.setSecondDefaultValue = _this.setSecondDefaultValue.bind(_this);
     return _this;
   }
 
   _createClass(Form, [{
-    key: "prepareBlocks",
+    key: 'setSecondDefaultValue',
+    value: function setSecondDefaultValue(option, type) {
+      if (type === 'left') {
+        var keys = Object.keys(this.props.formDropdown.left.second.options);
+        var values = Object.values(this.props.formDropdown.left.second.options);
+        this.props.changeDropdownLeftFirstTitle(option);
+        this.props.changeDropdownLeftSecondTitle(newOption(option, keys, values));
+      } else {
+        var _keys = Object.keys(this.props.formDropdown.right.second.options);
+        var _values = Object.values(this.props.formDropdown.right.second.options);
+        this.props.changeDropdownRightFirstTitle(option);
+        this.props.changeDropdownRightSecondTitle(newOption(option, _keys, _values));
+      }
+    }
+  }, {
+    key: 'prepareBlocks',
     value: function prepareBlocks() {
       var _this2 = this;
 
@@ -42363,7 +42387,7 @@ var Form = function (_React$Component) {
       this.props.saveParamsToBlock(blockState);
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       var _this3 = this;
 
@@ -42373,35 +42397,36 @@ var Form = function (_React$Component) {
       var formDropdownLeft = this.props.formDropdown.left;
       var formDropdownRight = this.props.formDropdown.right;
       return _react2.default.createElement(
-        "form",
+        'form',
         null,
         _react2.default.createElement(
-          "div",
-          { className: "dropdown-div" },
+          'div',
+          { className: 'dropdown-div' },
           _react2.default.createElement(
-            "div",
-            { className: "dropdown" },
+            'div',
+            { className: 'dropdown' },
             _react2.default.createElement(
-              "button",
+              'button',
               {
-                className: "btn btn-outline-secondary dropdown-toggle",
-                type: "button",
-                id: "dropdownMenuButton",
-                "data-toggle": "dropdown",
-                "aria-haspopup": "true",
-                "aria-expanded": "false" },
+                className: 'btn btn-outline-secondary dropdown-toggle',
+                type: 'button',
+                id: 'dropdownMenuButton',
+                'data-toggle': 'dropdown',
+                'aria-haspopup': 'true',
+                'aria-expanded': 'false' },
               formDropdownLeft.first.title === '' ? currBlock.options.left.title : formDropdownLeft.first.title
             ),
             _react2.default.createElement(
-              "div",
-              { className: "dropdown-menu", "aria-labelledby": "dropdownMenuButton" },
+              'div',
+              { className: 'dropdown-menu',
+                'aria-labelledby': 'dropdownMenuButton' },
               formDropdownLeft.first.options.map(function (option, index) {
                 return _react2.default.createElement(
-                  "span",
+                  'span',
                   { key: index,
-                    className: "dropdown-item",
+                    className: 'dropdown-item',
                     onClick: function onClick() {
-                      return _this3.props.changeDropdownLeftFirstTitle(option);
+                      return _this3.setSecondDefaultValue(option, 'left');
                     } },
                   option
                 );
@@ -42409,62 +42434,53 @@ var Form = function (_React$Component) {
             )
           ),
           _react2.default.createElement(
-            "div",
-            { className: "dropdown" },
+            'div',
+            { className: 'dropdown' },
             _react2.default.createElement(
-              "button",
-              { className: "btn btn-outline-secondary dropdown-toggle",
-                type: "button",
-                id: "dropdownMenuButton",
-                "data-toggle": "dropdown",
-                "aria-haspopup": "true",
-                "aria-expanded": "false" },
+              'button',
+              { className: 'btn btn-outline-secondary dropdown-toggle',
+                type: 'button',
+                id: 'dropdownMenuButton',
+                'data-toggle': 'dropdown',
+                'aria-haspopup': 'true',
+                'aria-expanded': 'false',
+                disabled: formDropdownLeft.first.title === '' || formDropdownLeft.first.title === 'none' ? "disabled" : false },
               formDropdownLeft.second.title
             ),
             _react2.default.createElement(
-              "div",
-              { className: "dropdown-menu", "aria-labelledby": "dropdownMenuButton" },
-              formDropdownLeft.second.options.map(function (option, index) {
-                return _react2.default.createElement(
-                  "span",
-                  { key: index,
-                    className: "dropdown-item",
-                    onClick: function onClick() {
-                      return _this3.props.changeDropdownLeftSecondTitle(option);
-                    } },
-                  option
-                );
-              })
+              'div',
+              { className: 'dropdown-menu', 'aria-labelledby': 'dropdownMenuButton' },
+              _react2.default.createElement(_LeftOptionsList2.default, null)
             )
           )
         ),
         _react2.default.createElement(
-          "div",
-          { className: "dropdown-div" },
+          'div',
+          { className: 'dropdown-div' },
           _react2.default.createElement(
-            "div",
-            { className: "dropdown" },
+            'div',
+            { className: 'dropdown' },
             _react2.default.createElement(
-              "button",
+              'button',
               {
-                className: "btn btn-outline-secondary dropdown-toggle",
-                type: "button",
-                id: "dropdownMenuButton",
-                "data-toggle": "dropdown",
-                "aria-haspopup": "true",
-                "aria-expanded": "false" },
+                className: 'btn btn-outline-secondary dropdown-toggle',
+                type: 'button',
+                id: 'dropdownMenuButton',
+                'data-toggle': 'dropdown',
+                'aria-haspopup': 'true',
+                'aria-expanded': 'false' },
               formDropdownRight.first.title === '' ? currBlock.options.right.title : formDropdownRight.first.title
             ),
             _react2.default.createElement(
-              "div",
-              { className: "dropdown-menu", "aria-labelledby": "dropdownMenuButton" },
+              'div',
+              { className: 'dropdown-menu', 'aria-labelledby': 'dropdownMenuButton' },
               formDropdownRight.first.options.map(function (option, index) {
                 return _react2.default.createElement(
-                  "span",
+                  'span',
                   { key: index,
-                    className: "dropdown-item",
+                    className: 'dropdown-item',
                     onClick: function onClick() {
-                      return _this3.props.changeDropdownRightFirstTitle(option);
+                      return _this3.setSecondDefaultValue(option, 'right');
                     } },
                   option
                 );
@@ -42472,55 +42488,46 @@ var Form = function (_React$Component) {
             )
           ),
           _react2.default.createElement(
-            "div",
-            { className: "dropdown" },
+            'div',
+            { className: 'dropdown' },
             _react2.default.createElement(
-              "button",
-              { className: "btn btn-outline-secondary dropdown-toggle",
-                type: "button",
-                id: "dropdownMenuButton",
-                "data-toggle": "dropdown",
-                "aria-haspopup": "true",
-                "aria-expanded": "false" },
+              'button',
+              { className: 'btn btn-outline-secondary dropdown-toggle',
+                type: 'button',
+                id: 'dropdownMenuButton',
+                'data-toggle': 'dropdown',
+                'aria-haspopup': 'true',
+                'aria-expanded': 'false',
+                disabled: formDropdownRight.first.title === '' || formDropdownRight.first.title === 'none' ? "disabled" : false },
               formDropdownRight.second.title
             ),
             _react2.default.createElement(
-              "div",
-              { className: "dropdown-menu", "aria-labelledby": "dropdownMenuButton" },
-              formDropdownRight.second.options.map(function (option, index) {
-                return _react2.default.createElement(
-                  "span",
-                  { key: index,
-                    className: "dropdown-item",
-                    onClick: function onClick() {
-                      return _this3.props.changeDropdownRightSecondTitle(option);
-                    } },
-                  option
-                );
-              })
+              'div',
+              { className: 'dropdown-menu', 'aria-labelledby': 'dropdownMenuButton' },
+              _react2.default.createElement(_RightOptionsList2.default, null)
             )
           )
         ),
         _react2.default.createElement(
-          "button",
-          { type: "button",
-            className: "btn btn-outline-primary",
+          'button',
+          { type: 'button',
+            className: 'btn btn-outline-primary',
             onClick: function onClick() {
               return _this3.prepareBlocks();
             } },
-          "Save"
+          'Save'
         ),
         _react2.default.createElement(
-          "button",
-          { type: "button",
-            className: "btn btn-outline-danger",
+          'button',
+          { type: 'button',
+            className: 'btn btn-outline-danger',
             onClick: function onClick() {
               return _this3.props.onCancel({
                 active: false,
                 top: _this3.props.formOptions.top
               });
             } },
-          "Cancel"
+          'Cancel'
         )
       );
     }
@@ -42529,12 +42536,15 @@ var Form = function (_React$Component) {
   return Form;
 }(_react2.default.Component);
 
-// onClick={() => this.props.saveParamsToBlock([
-//
-// ])}
-
-
 exports.default = Form;
+
+
+function newOption(option, keys, values) {
+  var index = keys.indexOf(keys.filter(function (key) {
+    return key === option;
+  })[0]);
+  return values[index][0];
+}
 
 /***/ }),
 
@@ -42930,6 +42940,142 @@ exports.default = ChartTypeSelectorInput;
 
 /***/ }),
 
+/***/ "./src/js/components/presentational/LeftOptionsList.js":
+/*!*************************************************************!*\
+  !*** ./src/js/components/presentational/LeftOptionsList.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _actions = __webpack_require__(/*! ../../store/actions */ "./src/js/store/actions.js");
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var LeftOptionsList = function (_React$Component) {
+  _inherits(LeftOptionsList, _React$Component);
+
+  function LeftOptionsList() {
+    _classCallCheck(this, LeftOptionsList);
+
+    return _possibleConstructorReturn(this, (LeftOptionsList.__proto__ || Object.getPrototypeOf(LeftOptionsList)).apply(this, arguments));
+  }
+
+  _createClass(LeftOptionsList, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      switch (this.props.type) {
+        case 'rsi':
+          return this.props.rsiOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownLeftSecondTitle(option);
+                } },
+              option
+            );
+          });
+        case 'ma':
+          return this.props.maOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownLeftSecondTitle(option);
+                } },
+              option
+            );
+          });
+        case 'ema':
+          return this.props.emaOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownLeftSecondTitle(option);
+                } },
+              option
+            );
+          });
+        case 'sma':
+          return this.props.smaOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownLeftSecondTitle(option);
+                } },
+              option
+            );
+          });
+      }
+      return this.props.noOptions;
+    }
+  }]);
+
+  return LeftOptionsList;
+}(_react2.default.Component);
+
+LeftOptionsList.propTypes = {
+  changeDropdownLeftSecondTitle: _propTypes2.default.func,
+  type: _propTypes2.default.string,
+  rsiOptions: _propTypes2.default.array,
+  maOptions: _propTypes2.default.array,
+  emaOptions: _propTypes2.default.array,
+  smaOptions: _propTypes2.default.array,
+  noOptions: _propTypes2.default.string
+};
+
+exports.default = (0, _reactRedux.connect)(function (state) {
+  return {
+    type: state.formDropdown.left.first.title,
+    rsiOptions: state.formDropdown.left.second.options.rsi,
+    maOptions: state.formDropdown.left.second.options.ma,
+    emaOptions: state.formDropdown.left.second.options.ema,
+    smaOptions: state.formDropdown.left.second.options.sma,
+    noOptions: state.formDropdown.left.second.options.none
+  };
+}, function (dispatch) {
+  return {
+    changeDropdownLeftSecondTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownLeftSecondTitle, dispatch)
+  };
+})(LeftOptionsList);
+
+/***/ }),
+
 /***/ "./src/js/components/presentational/Pre.js":
 /*!*************************************************!*\
   !*** ./src/js/components/presentational/Pre.js ***!
@@ -42982,6 +43128,142 @@ var Pre = function Pre(_ref) {
 };
 
 exports.default = Pre;
+
+/***/ }),
+
+/***/ "./src/js/components/presentational/RightOptionsList.js":
+/*!**************************************************************!*\
+  !*** ./src/js/components/presentational/RightOptionsList.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _actions = __webpack_require__(/*! ../../store/actions */ "./src/js/store/actions.js");
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RightOptionsList = function (_React$Component) {
+  _inherits(RightOptionsList, _React$Component);
+
+  function RightOptionsList() {
+    _classCallCheck(this, RightOptionsList);
+
+    return _possibleConstructorReturn(this, (RightOptionsList.__proto__ || Object.getPrototypeOf(RightOptionsList)).apply(this, arguments));
+  }
+
+  _createClass(RightOptionsList, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      switch (this.props.type) {
+        case 'rsi':
+          return this.props.rsiOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownRightSecondTitle(option);
+                } },
+              option
+            );
+          });
+        case 'ma':
+          return this.props.maOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownRightSecondTitle(option);
+                } },
+              option
+            );
+          });
+        case 'ema':
+          return this.props.emaOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownRightSecondTitle(option);
+                } },
+              option
+            );
+          });
+        case 'sma':
+          return this.props.smaOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownRightSecondTitle(option);
+                } },
+              option
+            );
+          });
+      }
+      return this.props.noOptions;
+    }
+  }]);
+
+  return RightOptionsList;
+}(_react2.default.Component);
+
+RightOptionsList.propTypes = {
+  changeDropdownRightSecondTitle: _propTypes2.default.func,
+  type: _propTypes2.default.string,
+  rsiOptions: _propTypes2.default.array,
+  maOptions: _propTypes2.default.array,
+  emaOptions: _propTypes2.default.array,
+  smaOptions: _propTypes2.default.array,
+  noOptions: _propTypes2.default.string
+};
+
+exports.default = (0, _reactRedux.connect)(function (state) {
+  return {
+    type: state.formDropdown.right.first.title,
+    rsiOptions: state.formDropdown.right.second.options.rsi,
+    maOptions: state.formDropdown.right.second.options.ma,
+    emaOptions: state.formDropdown.right.second.options.ema,
+    smaOptions: state.formDropdown.right.second.options.sma,
+    noOptions: state.formDropdown.right.second.options.none
+  };
+}, function (dispatch) {
+  return {
+    changeDropdownRightSecondTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownRightSecondTitle, dispatch)
+  };
+})(RightOptionsList);
 
 /***/ }),
 
@@ -43245,22 +43527,34 @@ var initialAppState = {
   formDropdown: {
     left: {
       first: {
-        title: '',
-        options: ['Option 1', 'Option 2', 'Option 3']
+        title: 'rsi',
+        options: ['rsi', 'ma', 'ema', 'sma', 'none']
       },
       second: {
-        title: 'Choose option',
-        options: ['Param 1', 'Param 2', 'Param 3']
+        title: 'rsi param1',
+        options: {
+          rsi: ['rsi param1', 'rsi param2', 'rsi param3'],
+          ma: ['ma param1', 'ma param2', 'ma param3'],
+          ema: ['ema param1', 'ema param2', 'ema param3'],
+          sma: ['sma param1', 'sma param2', 'sma param3'],
+          none: ''
+        }
       }
     },
     right: {
       first: {
-        title: '',
-        options: ['Option 1', 'Option 2', 'Option 3']
+        title: 'rsi',
+        options: ['rsi', 'ma', 'ema', 'sma', 'none']
       },
       second: {
-        title: 'Choose option',
-        options: ['Param 1', 'Param 2', 'Param 3']
+        title: 'rsi param1',
+        options: {
+          rsi: ['rsi param1', 'rsi param2', 'rsi param3'],
+          ma: ['ma param1', 'ma param2', 'ma param3'],
+          ema: ['ema param1', 'ema param2', 'ema param3'],
+          sma: ['sma param1', 'sma param2', 'sma param3'],
+          none: ''
+        }
       }
     }
   },

@@ -19,38 +19,78 @@ const initialAppState = {
   formDropdown: {
     left: {
       first: {
-        title: '',
+        title: 'rsi',
         options: [
-          'Option 1',
-          'Option 2',
-          'Option 3',
+          'rsi',
+          'ma',
+          'ema',
+          'sma',
+          'none',
         ],
       },
       second: {
-        title: 'Choose option',
-        options: [
-          'Param 1',
-          'Param 2',
-          'Param 3',
-        ],
+        title: 'rsi param1',
+        options: {
+          rsi: [
+            'rsi param1',
+            'rsi param2',
+            'rsi param3',
+          ],
+          ma: [
+            'ma param1',
+            'ma param2',
+            'ma param3',
+          ],
+          ema: [
+            'ema param1',
+            'ema param2',
+            'ema param3',
+          ],
+          sma: [
+            'sma param1',
+            'sma param2',
+            'sma param3',
+          ],
+          none: '',
+        },
       },
     },
     right: {
       first: {
-        title: '',
+        title: 'rsi',
         options: [
-          'Option 1',
-          'Option 2',
-          'Option 3',
+          'rsi',
+          'ma',
+          'ema',
+          'sma',
+          'none',
         ],
       },
       second: {
-        title: 'Choose option',
-        options: [
-          'Param 1',
-          'Param 2',
-          'Param 3',
-        ],
+        title: 'rsi param1',
+        options: {
+          rsi: [
+            'rsi param1',
+            'rsi param2',
+            'rsi param3',
+          ],
+          ma: [
+            'ma param1',
+            'ma param2',
+            'ma param3',
+          ],
+          ema: [
+            'ema param1',
+            'ema param2',
+            'ema param3',
+          ],
+          sma: [
+            'sma param1',
+            'sma param2',
+            'sma param3',
+          ],
+          none: '',
+        },
       },
     },
   },

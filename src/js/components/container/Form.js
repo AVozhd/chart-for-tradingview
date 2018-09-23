@@ -1,9 +1,26 @@
 import React from 'react';
+import LeftOptionsList from '../presentational/LeftOptionsList';
+import RightOptionsList from '../presentational/RightOptionsList';
 
 export default class Form extends React.Component {
   constructor(props) {
     super(props);
     this.prepareBlocks = this.prepareBlocks.bind(this);
+    this.setSecondDefaultValue = this.setSecondDefaultValue.bind(this);
+  }
+  
+  setSecondDefaultValue(option, type) {
+    if(type === 'left') {
+      let keys = Object.keys(this.props.formDropdown.left.second.options);
+      let values = Object.values(this.props.formDropdown.left.second.options);
+      this.props.changeDropdownLeftFirstTitle(option);
+      this.props.changeDropdownLeftSecondTitle(newOption(option, keys, values));
+    } else {
+      let keys = Object.keys(this.props.formDropdown.right.second.options);
+      let values = Object.values(this.props.formDropdown.right.second.options);
+      this.props.changeDropdownRightFirstTitle(option);
+      this.props.changeDropdownRightSecondTitle(newOption(option, keys, values));
+    }
   }
   
   prepareBlocks() {
@@ -41,11 +58,12 @@ export default class Form extends React.Component {
               aria-expanded="false">
               { formDropdownLeft.first.title === '' ? currBlock.options.left.title : formDropdownLeft.first.title }
             </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div className="dropdown-menu"
+                 aria-labelledby="dropdownMenuButton" >
               { formDropdownLeft.first.options.map((option, index) =>
                 <span key={index}
                       className="dropdown-item"
-                      onClick={() => this.props.changeDropdownLeftFirstTitle(option)}>
+                      onClick={() => this.setSecondDefaultValue(option, 'left')}>
                   { option }
                 </span>
               )}
@@ -57,17 +75,12 @@ export default class Form extends React.Component {
                     id="dropdownMenuButton"
                     data-toggle="dropdown"
                     aria-haspopup="true"
-                    aria-expanded="false">
+                    aria-expanded="false"
+                    disabled={ formDropdownLeft.first.title === '' || formDropdownLeft.first.title === 'none' ? "disabled" : false } >
               { formDropdownLeft.second.title }
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              { formDropdownLeft.second.options.map((option, index) =>
-                <span key={index}
-                      className="dropdown-item"
-                      onClick={() => this.props.changeDropdownLeftSecondTitle(option)}>
-                  { option }
-                </span>
-              )}
+              <LeftOptionsList />
             </div>
           </div>
         </div>
@@ -81,14 +94,14 @@ export default class Form extends React.Component {
               id="dropdownMenuButton"
               data-toggle="dropdown"
               aria-haspopup="true"
-              aria-expanded="false">
+              aria-expanded="false" >
               { formDropdownRight.first.title === '' ? currBlock.options.right.title : formDropdownRight.first.title }
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
               { formDropdownRight.first.options.map((option, index) =>
                   <span key={index}
                         className="dropdown-item"
-                        onClick={() => this.props.changeDropdownRightFirstTitle(option)}>
+                        onClick={() => this.setSecondDefaultValue(option, 'right')}>
                 { option }
               </span>
               )}
@@ -100,17 +113,12 @@ export default class Form extends React.Component {
                     id="dropdownMenuButton"
                     data-toggle="dropdown"
                     aria-haspopup="true"
-                    aria-expanded="false">
+                    aria-expanded="false"
+                    disabled={ formDropdownRight.first.title === '' || formDropdownRight.first.title === 'none' ? "disabled" : false }>
               { formDropdownRight.second.title }
             </button>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              { formDropdownRight.second.options.map((option, index) =>
-                  <span key={index}
-                        className="dropdown-item"
-                        onClick={() => this.props.changeDropdownRightSecondTitle(option)}>
-                { option }
-              </span>
-              )}
+              <RightOptionsList />
             </div>
           </div>
         </div>
@@ -134,6 +142,7 @@ export default class Form extends React.Component {
   }
 }
 
-// onClick={() => this.props.saveParamsToBlock([
-//
-// ])}
+function newOption(option, keys, values) {
+  let index = keys.indexOf(keys.filter(key => key === option)[0]);
+  return values[index][0];
+}

@@ -14,7 +14,9 @@ import { changeChartType,
          changeDropdownLeftSecondTitle,
          changeDropdownRightFirstTitle,
          changeDropdownRightSecondTitle,
-  saveParamsToBuyChartBlock, saveParamsToSellChartBlock, getScript } from '../store/actions';
+         saveParamsToBuyChartBlock,
+         saveParamsToSellChartBlock,
+         getScript } from '../store/actions';
 import BuyChart from './container/BuyChart';
 import SellChart from './container/SellChart';
 import ChartTypeSelectorInput from './presentational/ChartTypeSelectorInput';

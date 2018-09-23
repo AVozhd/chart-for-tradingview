@@ -107,6 +107,6 @@ pre.result-script {
   .dropdown-div {
     display: grid;
     align-items: center;
-    grid-template-columns: minmax(max-content, 100px) min-content;
+    grid-template-columns: minmax(max-content, 120px) min-content;
   }
 }
