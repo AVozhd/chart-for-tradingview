@@ -42032,7 +42032,8 @@ var MainComponent = function (_React$Component) {
             svgParams: this.props.svg,
             editBlockParams: this.props.editBlockParamsBuyChart,
             changeFormState: this.props.changeFormState,
-            form: this.props.form
+            form: this.props.form,
+            hideResultScript: this.props.hideResultScript
           }) : _react2.default.createElement(_SellChart2.default, {
             options: this.props.sellChart,
             onChange: this.props.addBlockToSellChart,
@@ -42041,7 +42042,8 @@ var MainComponent = function (_React$Component) {
             svgParams: this.props.svg,
             editBlockParams: this.props.editBlockParamsSellChart,
             changeFormState: this.props.changeFormState,
-            form: this.props.form
+            form: this.props.form,
+            hideResultScript: this.props.hideResultScript
           })
         ),
         _react2.default.createElement(
@@ -42138,7 +42140,8 @@ MainComponent.propTypes = {
   changeDropdownRightFirstTitle: _propTypes2.default.func,
   saveParamsToBuyChartBlock: _propTypes2.default.func,
   saveParamsToSellChartBlock: _propTypes2.default.func,
-  getScript: _propTypes2.default.func
+  getScript: _propTypes2.default.func,
+  hideResultScript: _propTypes2.default.func
 };
 
 exports.default = (0, _reactRedux.connect)(function (state) {
@@ -42169,7 +42172,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     changeDropdownRightFirstTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownRightFirstTitle, dispatch),
     saveParamsToBuyChartBlock: (0, _redux.bindActionCreators)(_actions.saveParamsToBuyChartBlock, dispatch),
     saveParamsToSellChartBlock: (0, _redux.bindActionCreators)(_actions.saveParamsToSellChartBlock, dispatch),
-    getScript: (0, _redux.bindActionCreators)(_actions.getScript, dispatch)
+    getScript: (0, _redux.bindActionCreators)(_actions.getScript, dispatch),
+    hideResultScript: (0, _redux.bindActionCreators)(_actions.hideResultScript, dispatch)
   };
 })(MainComponent);
 
@@ -42238,6 +42242,9 @@ var BuyChart = function (_React$Component) {
         active: true,
         top: Math.floor((0, _jquery2.default)(eventTarget).position().top) - 5,
         currentBlock: blockIndex
+      });
+      this.props.hideResultScript({
+        active: false
       });
     }
   }, {
@@ -42671,6 +42678,9 @@ var BuyChart = function (_React$Component) {
         active: true,
         top: Math.floor((0, _jquery2.default)(eventTarget).position().top) - 5,
         currentBlock: blockIndex
+      });
+      this.props.hideResultScript({
+        active: false
       });
     }
   }, {
@@ -43504,7 +43514,7 @@ exports.default = SimpleArrow;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getScript = exports.saveParamsToSellChartBlock = exports.saveParamsToBuyChartBlock = exports.changeDropdownRightSecondTitle = exports.changeDropdownRightFirstTitle = exports.changeDropdownLeftSecondTitle = exports.changeDropdownLeftFirstTitle = exports.editBlockParamsSellChart = exports.addBlockToSellChart = exports.removeBlockFromSellChart = exports.editBlockParamsBuyChart = exports.addBlockToBuyChart = exports.removeBlockFromBuyChart = exports.changeFormState = exports.recalcSvgParams = exports.changeChartType = undefined;
+exports.hideResultScript = exports.getScript = exports.saveParamsToSellChartBlock = exports.saveParamsToBuyChartBlock = exports.changeDropdownRightSecondTitle = exports.changeDropdownRightFirstTitle = exports.changeDropdownLeftSecondTitle = exports.changeDropdownLeftFirstTitle = exports.editBlockParamsSellChart = exports.addBlockToSellChart = exports.removeBlockFromSellChart = exports.editBlockParamsBuyChart = exports.addBlockToBuyChart = exports.removeBlockFromBuyChart = exports.changeFormState = exports.recalcSvgParams = exports.changeChartType = undefined;
 
 var _actionsTypes = __webpack_require__(/*! ./actionsTypes */ "./src/js/store/actionsTypes.js");
 
@@ -43624,6 +43634,13 @@ var getScript = exports.getScript = function getScript(something) {
   };
 };
 
+var hideResultScript = exports.hideResultScript = function hideResultScript(newPreState) {
+  return {
+    type: types.ACTION_HIDE_RESULT_SCRIPT,
+    payload: newPreState
+  };
+};
+
 /***/ }),
 
 /***/ "./src/js/store/actionsTypes.js":
@@ -43655,6 +43672,7 @@ var ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE = exports.ACTION_CHANGE_DROPDOWN_R
 var ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK = exports.ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK = 'ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK';
 var ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK = exports.ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK = 'ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK';
 var ACTION_GET_SCRIPS = exports.ACTION_GET_SCRIPS = 'ACTION_GET_SCRIPS';
+var ACTION_HIDE_RESULT_SCRIPT = exports.ACTION_HIDE_RESULT_SCRIPT = 'ACTION_HIDE_RESULT_SCRIPT';
 
 /***/ }),
 
@@ -43939,6 +43957,8 @@ var rootReducer = exports.rootReducer = function rootReducer() {
         form: _initialAppState2.default.form
       });
     case types.ACTION_GET_SCRIPS:
+      return _extends({}, state, { pre: action.payload });
+    case types.ACTION_HIDE_RESULT_SCRIPT:
       return _extends({}, state, { pre: action.payload });
   }
   return state;

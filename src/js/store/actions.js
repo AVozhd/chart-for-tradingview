@@ -111,3 +111,10 @@ export const getScript = (something) => {
     payload: something
   };
 };
+
+export const hideResultScript = (newPreState) => {
+  return {
+    type: types.ACTION_HIDE_RESULT_SCRIPT,
+    payload: newPreState
+  };
+};

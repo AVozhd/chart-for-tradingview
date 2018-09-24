@@ -16,7 +16,8 @@ import { changeChartType,
          changeDropdownRightSecondTitle,
          saveParamsToBuyChartBlock,
          saveParamsToSellChartBlock,
-         getScript } from '../store/actions';
+         getScript,
+         hideResultScript } from '../store/actions';
 import BuyChart from './container/BuyChart';
 import SellChart from './container/SellChart';
 import ChartTypeSelectorInput from './presentational/ChartTypeSelectorInput';
@@ -50,6 +51,7 @@ class MainComponent extends React.Component {
                 editBlockParams={ this.props.editBlockParamsBuyChart }
                 changeFormState={ this.props.changeFormState }
                 form={ this.props.form }
+                hideResultScript={ this.props.hideResultScript }
               />
               :
               <SellChart
@@ -61,6 +63,7 @@ class MainComponent extends React.Component {
                 editBlockParams={ this.props.editBlockParamsSellChart }
                 changeFormState={ this.props.changeFormState }
                 form={ this.props.form }
+                hideResultScript={ this.props.hideResultScript }
               />
           }
         </svg>
@@ -143,6 +146,7 @@ MainComponent.propTypes = {
   saveParamsToBuyChartBlock: PropTypes.func,
   saveParamsToSellChartBlock: PropTypes.func,
   getScript: PropTypes.func,
+  hideResultScript: PropTypes.func,
 };
 
 export default connect((state => ({
@@ -171,4 +175,5 @@ export default connect((state => ({
   saveParamsToBuyChartBlock: bindActionCreators(saveParamsToBuyChartBlock, dispatch),
   saveParamsToSellChartBlock: bindActionCreators(saveParamsToSellChartBlock, dispatch),
   getScript: bindActionCreators(getScript, dispatch),
+  hideResultScript: bindActionCreators(hideResultScript, dispatch),
 })))(MainComponent);

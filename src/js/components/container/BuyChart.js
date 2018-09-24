@@ -18,6 +18,9 @@ export default class BuyChart extends React.Component {
       top: Math.floor($(eventTarget).position().top) - 5,
       currentBlock: blockIndex,
     });
+    this.props.hideResultScript({
+      active: false
+    });
   }
   
   addBlock() {
