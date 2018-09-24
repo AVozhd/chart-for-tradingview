@@ -55,7 +55,7 @@ text {
 
 pre.result-script {
   display: block;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .hidden {
@@ -112,7 +112,8 @@ pre.result-script {
   .dropdown-div {
     display: grid;
     align-items: center;
-    grid-template-columns: minmax(max-content, 120px) min-content;
+    grid-template-columns: minmax(120px, max-content) min-content min-content;
+    grid-column-gap: 10px;
   }
 }
 
@@ -137,4 +138,8 @@ pre.result-script {
 
 .block-cursor-pointer {
   cursor: pointer;
+}
+
+.dropdown > button {
+  width: 100%;
 }

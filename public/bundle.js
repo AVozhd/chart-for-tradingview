@@ -4132,7 +4132,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline,\npolyline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\npolyline {\n  fill: none;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\npre.result-script {\n  display: block;\n  margin-top: 20px;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n.dropdown-div {\n  margin-bottom: 10px;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n  .dropdown-div {\n    display: grid;\n    align-items: center;\n    grid-template-columns: minmax(max-content, 120px) min-content;\n  }\n}\n\n.active {\n  stroke: #007bff !important;\n}\n\n.deactived {\n  stroke: gray !important;\n  fill: lightgray !important;\n  cursor: not-allowed;\n}\n\n.deactived-text {\n  fill: gray !important;\n  cursor: not-allowed;\n}\n\n.undisplayed {\n  display: none;\n}\n\n.block-cursor-pointer {\n  cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline,\npolyline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\npolyline {\n  fill: none;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\npre.result-script {\n  display: block;\n  margin-top: 50px;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n.dropdown-div {\n  margin-bottom: 10px;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n  .dropdown-div {\n    display: grid;\n    align-items: center;\n    grid-template-columns: minmax(120px, max-content) min-content min-content;\n    grid-column-gap: 10px;\n  }\n}\n\n.active {\n  stroke: #007bff !important;\n}\n\n.deactived {\n  stroke: gray !important;\n  fill: lightgray !important;\n  cursor: not-allowed;\n}\n\n.deactived-text {\n  fill: gray !important;\n  cursor: not-allowed;\n}\n\n.undisplayed {\n  display: none;\n}\n\n.block-cursor-pointer {\n  cursor: pointer;\n}\n\n.dropdown > button {\n  width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -43173,44 +43173,126 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _actions = __webpack_require__(/*! ../../store/actions */ "./src/js/store/actions.js");
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-var Pre = function Pre(_ref) {
-  _objectDestructuringEmpty(_ref);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  return _react2.default.createElement(
-    "pre",
-    { className: "result-script" },
-    _react2.default.createElement(
-      "h1",
-      null,
-      "Result script title"
-    ),
-    "study(\"MACD\")",
-    _react2.default.createElement("br", null),
-    "fast = 12, slow = 26",
-    _react2.default.createElement("br", null),
-    "fastMA = ema(close, fast)",
-    _react2.default.createElement("br", null),
-    "slowMA = ema(close, slow)",
-    _react2.default.createElement("br", null),
-    "macd = fastMA - slowMA",
-    _react2.default.createElement("br", null),
-    "signal = sma(macd, 9)",
-    _react2.default.createElement("br", null),
-    "plot(macd, color=blue)",
-    _react2.default.createElement("br", null),
-    "plot(signal, color=orange)"
-  );
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Pre = function (_React$Component) {
+  _inherits(Pre, _React$Component);
+
+  function Pre() {
+    _classCallCheck(this, Pre);
+
+    return _possibleConstructorReturn(this, (Pre.__proto__ || Object.getPrototypeOf(Pre)).apply(this, arguments));
+  }
+
+  _createClass(Pre, [{
+    key: 'searchParams',
+    value: function searchParams(chartBlocks, type) {
+      var params = [];
+      var res = [];
+      chartBlocks.map(function (block) {
+        return params.push(Object.values(block.options).filter(function (option) {
+          return option.title !== 'none' && option.title !== 'condition';
+        }));
+      });
+      params = params.filter(function (elem) {
+        return elem.length > 0;
+      });
+      params = params.map(function (elem) {
+        return elem.length > 1 ? elem.map(function (object) {
+          return Object.values(object);
+        }) : Object.values(elem[0]);
+      });
+      params.forEach(function (array) {
+        return Array.isArray(array[0]) ? array.map(function (elem) {
+          return res.push(elem);
+        }) : res.push(array);
+      });
+      var ParamsByType = {};
+      res.map(function (array, index) {
+        return array[0] === type ? ParamsByType[index] = array[1] : ParamsByType;
+      });
+      return [].concat(_toConsumableArray(new Set(Object.values(ParamsByType))));
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var buyRsiParams = this.searchParams(this.props.buyChartBlocks, 'rsi');
+      var sellRsiParams = this.searchParams(this.props.sellChartBlocks, 'rsi');
+      console.log('RSI BUY params', buyRsiParams);
+      console.log('RSI SELL params', sellRsiParams);
+      return _react2.default.createElement(
+        'pre',
+        { className: 'result-script' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Result script'
+        ),
+        'study("MACD")',
+        _react2.default.createElement('br', null),
+        'fast = 12, slow = 26',
+        _react2.default.createElement('br', null),
+        'fastMA = ema(close, fast)',
+        _react2.default.createElement('br', null),
+        'slowMA = ema(close, slow)',
+        _react2.default.createElement('br', null),
+        'macd = fastMA - slowMA',
+        _react2.default.createElement('br', null),
+        'signal = sma(macd, 9)',
+        _react2.default.createElement('br', null),
+        'plot(macd, color=blue)',
+        _react2.default.createElement('br', null),
+        'plot(signal, color=orange)'
+      );
+    }
+  }]);
+
+  return Pre;
+}(_react2.default.Component);
+
+Pre.propTypes = {
+  buyChartBlocks: _propTypes2.default.array,
+  sellChartBlocks: _propTypes2.default.array
 };
 
-exports.default = Pre;
+exports.default = (0, _reactRedux.connect)(function (state) {
+  return {
+    buyChartBlocks: state.buyChart.blocks.filter(function (block) {
+      return block.blockType === 'complex';
+    }),
+    sellChartBlocks: state.sellChart.blocks.filter(function (block) {
+      return block.blockType === 'complex';
+    })
+  };
+}, function (dispatch) {
+  return {
+    changeDropdownLeftSecondTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownLeftSecondTitle, dispatch)
+  };
+})(Pre);
 
 /***/ }),
 
@@ -43614,9 +43696,9 @@ var initialAppState = {
         options: ['rsi', 'ma', 'ema', 'sma', 'none']
       },
       second: {
-        title: 'rsi param1',
+        title: '> 70',
         options: {
-          rsi: ['rsi param1', 'rsi param2', 'rsi param3'],
+          rsi: ['> 70', '< 30', '= 40', '= 50', '= 60'],
           ma: ['ma param1', 'ma param2', 'ma param3'],
           ema: ['ema param1', 'ema param2', 'ema param3'],
           sma: ['sma param1', 'sma param2', 'sma param3'],
@@ -43630,9 +43712,9 @@ var initialAppState = {
         options: ['rsi', 'ma', 'ema', 'sma', 'none']
       },
       second: {
-        title: 'rsi param1',
+        title: '> 70',
         options: {
-          rsi: ['rsi param1', 'rsi param2', 'rsi param3'],
+          rsi: ['> 70', '< 30', '= 40', '= 50', '= 60'],
           ma: ['ma param1', 'ma param2', 'ma param3'],
           ema: ['ema param1', 'ema param2', 'ema param3'],
           sma: ['sma param1', 'sma param2', 'sma param3'],

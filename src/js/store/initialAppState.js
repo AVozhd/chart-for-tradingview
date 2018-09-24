@@ -29,12 +29,14 @@ const initialAppState = {
         ],
       },
       second: {
-        title: 'rsi param1',
+        title: '> 70',
         options: {
           rsi: [
-            'rsi param1',
-            'rsi param2',
-            'rsi param3',
+            '> 70',
+            '< 30',
+            '= 40',
+            '= 50',
+            '= 60',
           ],
           ma: [
             'ma param1',
@@ -67,12 +69,14 @@ const initialAppState = {
         ],
       },
       second: {
-        title: 'rsi param1',
+        title: '> 70',
         options: {
           rsi: [
-            'rsi param1',
-            'rsi param2',
-            'rsi param3',
+            '> 70',
+            '< 30',
+            '= 40',
+            '= 50',
+            '= 60',
           ],
           ma: [
             'ma param1',
