@@ -43262,7 +43262,7 @@ var Pre = function (_React$Component) {
           null,
           'Result script'
         ),
-        'study("MACD")',
+        'study("My Script")',
         _react2.default.createElement('br', null),
         'fast = 12, slow = 26',
         _react2.default.createElement('br', null),
@@ -43283,6 +43283,27 @@ var Pre = function (_React$Component) {
 
   return Pre;
 }(_react2.default.Component);
+
+/*
+study(title="My Script", overlay=true)
+myrsi = rsi(close, 14)
+mycond = myrsi > 70
+mycond2 = myrsi < 30
+alertcondition(mycond, title='RSI higher 70', message='RSI higher 70!')
+alertcondition(mycond2, title='RSI lower 30', message='RSI lower 30!')
+plot(myrsi, color=red)
+*/
+
+/*
+study("Example of alertcondition")
+src = input(close)
+ma_1 = sma(src, 20)
+ma_2 = sma(src, 10)
+c = cross(ma_1, ma_2)
+alertcondition(c, title='Red crosses blue', message='Red and blue have crossed!')
+plot(ma_1, color=red)
+plot(ma_2, color=blue)
+*/
 
 Pre.propTypes = {
   buyChartBlocks: _propTypes2.default.array,
