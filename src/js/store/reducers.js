@@ -57,6 +57,20 @@ export const rootReducer = (state = initialAppState, action) => {
           }
         }
       };
+    case types.ACTION_CHANGE_DROPDOWN_LEFT_THIRD_TITLE:
+      return {
+        ...state,
+        formDropdown: {
+          ...state.formDropdown,
+          left: {
+            ...state.formDropdown.left,
+            third: {
+              ...state.formDropdown.left.third,
+              title: action.payload,
+            }
+          }
+        }
+      };
     case types.ACTION_CHANGE_DROPDOWN_RIGHT_FIRST_TITLE:
       return {
         ...state,
@@ -80,6 +94,20 @@ export const rootReducer = (state = initialAppState, action) => {
             ...state.formDropdown.right,
             second: {
               ...state.formDropdown.left.second,
+              title: action.payload,
+            }
+          }
+        }
+      };
+    case types.ACTION_CHANGE_DROPDOWN_RIGHT_THIRD_TITLE:
+      return {
+        ...state,
+        formDropdown: {
+          ...state.formDropdown,
+          right: {
+            ...state.formDropdown.right,
+            third: {
+              ...state.formDropdown.left.third,
               title: action.payload,
             }
           }

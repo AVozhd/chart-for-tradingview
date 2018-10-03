@@ -12,8 +12,10 @@ import { changeChartType,
          editBlockParamsSellChart,
          changeDropdownLeftFirstTitle,
          changeDropdownLeftSecondTitle,
+         changeDropdownLeftThirdTitle,
          changeDropdownRightFirstTitle,
          changeDropdownRightSecondTitle,
+         changeDropdownRightThirdTitle,
          saveParamsToBuyChartBlock,
          saveParamsToSellChartBlock,
          getScript,
@@ -91,9 +93,15 @@ class MainComponent extends React.Component {
             <div>
               <button type="button"
                       className="btn btn-outline-success"
-                      onClick={() => {this.props.getScript({
-                        active: true,
-                      })}} >
+                      onClick={() => {
+                        this.props.getScript({
+                          active: true,
+                        });
+                        this.props.changeFormState({
+                          active: false,
+                          top: this.props.form.top,
+                        })
+                      }} >
                 Get Script
               </button>
             </div>
@@ -106,6 +114,8 @@ class MainComponent extends React.Component {
                                              changeDropdownRightFirstTitle={this.props.changeDropdownRightFirstTitle}
                                              changeDropdownLeftSecondTitle={this.props.changeDropdownLeftSecondTitle}
                                              changeDropdownRightSecondTitle={this.props.changeDropdownRightSecondTitle}
+                                             changeDropdownLeftThirdTitle={this.props.changeDropdownLeftThirdTitle}
+                                             changeDropdownRightThirdTitle={this.props.changeDropdownRightThirdTitle}
                                              saveParamsToBlock={ this.props.chartType === 'buy' ?
                                              this.props.saveParamsToBuyChartBlock
                                              :
@@ -143,6 +153,8 @@ MainComponent.propTypes = {
   changeDropdownLeftFirstTitle: PropTypes.func,
   changeDropdownRightSecondTitle: PropTypes.func,
   changeDropdownRightFirstTitle: PropTypes.func,
+  changeDropdownLeftThirdTitle: PropTypes.func,
+  changeDropdownRightThirdTitle: PropTypes.func,
   saveParamsToBuyChartBlock: PropTypes.func,
   saveParamsToSellChartBlock: PropTypes.func,
   getScript: PropTypes.func,
@@ -172,6 +184,8 @@ export default connect((state => ({
   changeDropdownRightSecondTitle: bindActionCreators(changeDropdownRightSecondTitle, dispatch),
   changeDropdownLeftFirstTitle: bindActionCreators(changeDropdownLeftFirstTitle, dispatch),
   changeDropdownRightFirstTitle: bindActionCreators(changeDropdownRightFirstTitle, dispatch),
+  changeDropdownLeftThirdTitle: bindActionCreators(changeDropdownLeftThirdTitle, dispatch),
+  changeDropdownRightThirdTitle: bindActionCreators(changeDropdownRightThirdTitle, dispatch),
   saveParamsToBuyChartBlock: bindActionCreators(saveParamsToBuyChartBlock, dispatch),
   saveParamsToSellChartBlock: bindActionCreators(saveParamsToSellChartBlock, dispatch),
   getScript: bindActionCreators(getScript, dispatch),

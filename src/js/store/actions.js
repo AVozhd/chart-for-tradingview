@@ -118,3 +118,17 @@ export const hideResultScript = (newPreState) => {
     payload: newPreState
   };
 };
+
+export const changeDropdownLeftThirdTitle = (newDropdownTitle) => {
+  return {
+    type: types.ACTION_CHANGE_DROPDOWN_LEFT_THIRD_TITLE,
+    payload: newDropdownTitle
+  };
+};
+
+export const changeDropdownRightThirdTitle = (newDropdownTitle) => {
+  return {
+    type: types.ACTION_CHANGE_DROPDOWN_RIGHT_THIRD_TITLE,
+    payload: newDropdownTitle
+  };
+};

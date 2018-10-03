@@ -1,6 +1,8 @@
 import React from 'react';
 import LeftOptionsList from '../presentational/LeftOptionsList';
+import LeftSecondOptionsList from '../presentational/LeftSecondOptionsList';
 import RightOptionsList from '../presentational/RightOptionsList';
+import RightSecondOptionsList from '../presentational/RightSecondOptionsList';
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -13,13 +15,19 @@ export default class Form extends React.Component {
     if(type === 'left') {
       let keys = Object.keys(this.props.formDropdown.left.second.options);
       let values = Object.values(this.props.formDropdown.left.second.options);
+      let keys2 = Object.keys(this.props.formDropdown.left.third.options);
+      let values2 = Object.values(this.props.formDropdown.left.third.options);
       this.props.changeDropdownLeftFirstTitle(option);
       this.props.changeDropdownLeftSecondTitle(newOption(option, keys, values));
+      this.props.changeDropdownLeftThirdTitle(newOption(option, keys2, values2));
     } else {
       let keys = Object.keys(this.props.formDropdown.right.second.options);
       let values = Object.values(this.props.formDropdown.right.second.options);
+      let keys2 = Object.keys(this.props.formDropdown.right.third.options);
+      let values2 = Object.values(this.props.formDropdown.right.third.options);
       this.props.changeDropdownRightFirstTitle(option);
       this.props.changeDropdownRightSecondTitle(newOption(option, keys, values));
+      this.props.changeDropdownRightThirdTitle(newOption(option, keys2, values2));
     }
   }
   
@@ -29,11 +37,11 @@ export default class Form extends React.Component {
     block.options = {
       left: {
         title: this.props.formDropdown.left.first.title,
-        param1: this.props.formDropdown.left.second.title,
+        param1: clearOutput(this.props.formDropdown.left.second.title, this.props.formDropdown.left.third.title),
       },
       right: {
         title: this.props.formDropdown.right.first.title,
-        param1: this.props.formDropdown.right.second.title,
+        param1: clearOutput(this.props.formDropdown.right.second.title, this.props.formDropdown.right.third.title),
       },
     };
     blockState.map((elem) => { elem.key === block.key ? block : elem });
@@ -83,6 +91,20 @@ export default class Form extends React.Component {
               <LeftOptionsList />
             </div>
           </div>
+          <div className="dropdown">
+            <button className="btn btn-outline-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    disabled={ formDropdownLeft.first.title === '' || formDropdownLeft.first.title === 'none' ? "disabled" : false } >
+              { formDropdownLeft.third.title }
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <LeftSecondOptionsList />
+            </div>
+          </div>
         </div>
         
         
@@ -121,6 +143,20 @@ export default class Form extends React.Component {
               <RightOptionsList />
             </div>
           </div>
+          <div className="dropdown">
+            <button className="btn btn-outline-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    disabled={ formDropdownRight.first.title === '' || formDropdownRight.first.title === 'none' ? "disabled" : false }>
+              { formDropdownRight.third.title }
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <RightSecondOptionsList />
+            </div>
+          </div>
         </div>
         
         
@@ -145,4 +181,8 @@ export default class Form extends React.Component {
 function newOption(option, keys, values) {
   let index = keys.indexOf(keys.filter(key => key === option)[0]);
   return values[index][0];
+}
+
+function clearOutput(condition, param) {
+  return condition === undefined || param === undefined ? '' : `${condition} ${param}`;
 }

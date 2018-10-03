@@ -29,14 +29,42 @@ const initialAppState = {
         ],
       },
       second: {
-        title: '> 70',
+        title: '>',
         options: {
           rsi: [
-            '> 70',
-            '< 30',
-            '= 40',
-            '= 50',
-            '= 60',
+            '>',
+            '<',
+            '=',
+            'crossover',
+            'crossunder',
+          ],
+          ma: [
+            'ma param1',
+            'ma param2',
+            'ma param3',
+          ],
+          ema: [
+            'ema param1',
+            'ema param2',
+            'ema param3',
+          ],
+          sma: [
+            'sma param1',
+            'sma param2',
+            'sma param3',
+          ],
+          none: '',
+        },
+      },
+      third: {
+        title: '30',
+        options: {
+          rsi: [
+            '30',
+            '40',
+            '50',
+            '60',
+            '70',
           ],
           ma: [
             'ma param1',
@@ -69,14 +97,42 @@ const initialAppState = {
         ],
       },
       second: {
-        title: '> 70',
+        title: '>',
         options: {
           rsi: [
-            '> 70',
-            '< 30',
-            '= 40',
-            '= 50',
-            '= 60',
+            '>',
+            '<',
+            '=',
+            'crossover',
+            'crossunder',
+          ],
+          ma: [
+            'ma param1',
+            'ma param2',
+            'ma param3',
+          ],
+          ema: [
+            'ema param1',
+            'ema param2',
+            'ema param3',
+          ],
+          sma: [
+            'sma param1',
+            'sma param2',
+            'sma param3',
+          ],
+          none: '',
+        },
+      },
+      third: {
+        title: '30',
+        options: {
+          rsi: [
+            '30',
+            '40',
+            '50',
+            '60',
+            '70',
           ],
           ma: [
             'ma param1',

@@ -31,7 +31,8 @@ class Pre extends React.Component {
   render() {
     const buyParams = this.searchParams(this.props.buyChartBlocks);
     const sellParams = this.searchParams(this.props.sellChartBlocks);
-    
+    const preparedBuyParams = prepareParams(buyParams);
+    const preparedSellParams = prepareParams(sellParams);
 
     return (
       <pre className="result-script">
@@ -43,9 +44,37 @@ class Pre extends React.Component {
         study(title="{ buyParams.length > 0 ? `BUY: ${getParamsNames(buyParams, true)};` : '' } { sellParams.length > 0 ? `SELL: ${getParamsNames(sellParams, true)}` : '' }", overlay=true)
         <br />
         { getUnicParamsNames(buyParams.concat(sellParams)).map(param => `${param} = ${param}(close, 14)\n`) }
+        { preparedBuyParams.map((param, index) => `buy_signals${index} = ${param}\n`) }
+        { preparedSellParams.map((param, index) => `sell_signals${index} = ${param}\n`) }
+        { smth(buyParams) }
+        {/*{ preparedBuyParams.map((param, index) => `plotshape(buy_signals${index}, style=shape.triangleup, text="${ prepareText(param) }")\n`) }*/}
       </pre>
     )
   }
+}
+
+function smth(params) {
+  let res = [];
+  params.forEach(array => Array.isArray(array[0]) ? array.map(elem => res.push(elem)) : res.push(array));
+  res = res.map(elem => elem.join(' '));
+  console.log(res);
+}
+
+/*
+function prepareText(param) {
+  let smbl = param.replace(/[a-z0-9 ]/gi, '');
+  console.log(smbl);
+  // switch (param) {
+  //   case ''
+  // }
+}
+*/
+
+function prepareParams(params) {
+  let res = [];
+  params.forEach(array => Array.isArray(array[0]) ? res.push(array.map(elem => elem.join(' '))) : res.push(array.join(' ')));
+  res = res.map(row => Array.isArray(row) ? row[0] === row[1] ? row[0] : `${row[0]} and ${row[1]}` : row);
+  return res;
 }
 
 function getUnicParamsNames(params) {
@@ -71,20 +100,20 @@ function prepareName(array) {
 
 /*
  
- //@version=3
- study(title="RSI", overlay=true)
- rsi = rsi(close, 14)
- buy_signals = rsi < 30
- sell_signals = rsi > 70
- plotshape(buy_signals, style=shape.triangleup, text="up")
- plotshape(sell_signals, style=shape.triangledown, text="down")
- alertcondition(buy_signals, title='rsi < 30', message='RSI is below 30')
- alertcondition(sell_signals, title='rsi > 70', message='RSI is above 70')
+//@version=3
+study(title="RSI", overlay=false)
+rsi = rsi(close, 14)
+buy_signals = rsi < 30
+sell_signals = rsi > 70
+plotshape(buy_signals, style=shape.triangleup, text="up")
+plotshape(sell_signals, style=shape.triangledown, text="down")
+alertcondition(buy_signals, title='rsi < 30', message='RSI is below 30')
+alertcondition(sell_signals, title='rsi > 70', message='RSI is above 70')
  
  */
 
 /*
-study(title="My Script", overlay=true)
+study(title="My Script", overlay=false)
 myrsi = rsi(close, 14)
 mycond = myrsi > 70
 mycond2 = myrsi < 30

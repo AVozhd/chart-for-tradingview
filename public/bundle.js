@@ -4132,7 +4132,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Rub
 exports.i(__webpack_require__(/*! -!../../node_modules/css-loader!bootstrap/dist/css/bootstrap.min.css */ "./node_modules/css-loader/index.js!./node_modules/bootstrap/dist/css/bootstrap.min.css"), "");
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline,\npolyline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\npolyline {\n  fill: none;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\npre.result-script {\n  display: block;\n  margin-top: 50px;\n  /*white-space: pre-wrap;*/\n  /*white-space: -moz-pre-wrap;*/\n  /*white-space: -o-pre-wrap;*/\n  /*word-wrap: break-word;*/\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n.dropdown-div {\n  margin-bottom: 10px;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n  .dropdown-div {\n    display: grid;\n    align-items: center;\n    grid-template-columns: minmax(120px, max-content) min-content min-content;\n    grid-column-gap: 10px;\n  }\n}\n\n.active {\n  stroke: #007bff !important;\n}\n\n.deactived {\n  stroke: gray !important;\n  fill: lightgray !important;\n  cursor: not-allowed;\n}\n\n.deactived-text {\n  fill: gray !important;\n  cursor: not-allowed;\n}\n\n.undisplayed {\n  display: none;\n}\n\n.block-cursor-pointer {\n  cursor: pointer;\n}\n\n.dropdown > button {\n  width: 100%;\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Rubik', sans-serif;\n  font-size: 16px;\n}\n\n#root {\n  display: block;\n  overflow: auto;\n}\n\n.container,\n.topMenu {\n  display: grid;\n  height: auto;\n  grid-template-columns: 1fr 1fr;\n}\n\nsvg {\n  height: auto;\n  width: 100%;\n}\n\nrect,\npath,\nline,\npolyline {\n  stroke: #12b495;\n  stroke-width: 2px;\n}\n\npolygon {\n  stroke: #12b495;\n  stroke-width: 1px;\n}\n\nrect,\npath,\npolygon,\ncircle {\n  fill: white;\n}\n\npolyline {\n  fill: none;\n}\n\ntext {\n  font-family: 'Rubik', sans-serif;\n  text-anchor: middle;\n}\n\npre.result-script {\n  display: block;\n  margin-top: 50px;\n  white-space: pre-wrap;\n  white-space: -moz-pre-wrap;\n  white-space: -o-pre-wrap;\n  word-wrap: break-word;\n}\n\n.hidden {\n  display: none;\n}\n\n.active {\n  stroke: #007bff;\n}\n\n.span-title,\n.btn {\n  margin-right: 10px;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line,\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke-width: 1px;\n  cursor: pointer;\n}\n\n.addBlockBtn circle,\n.addBlockBtn line {\n  stroke: #007bff;\n}\n\n.removeBlockBtn circle,\n.removeBlockBtn line {\n  stroke: #a94442;\n}\n\n.relative {\n  position: relative;\n}\n\n.dropdown-div {\n  margin-bottom: 10px;\n}\n\n@media (min-width: 1000px) {\n  .container > div:last-child {\n    padding-left: 50px;\n  }\n  .title {\n    display: block;\n    width: 100%;\n  }\n  .inline {\n    display: inline-block;\n    margin-right: 10px;\n  }\n  .dropdown-div {\n    display: grid;\n    align-items: center;\n    grid-template-columns: minmax(120px, max-content) min-content min-content;\n    grid-column-gap: 10px;\n  }\n}\n\n.active {\n  stroke: #007bff !important;\n}\n\n.deactived {\n  stroke: gray !important;\n  fill: lightgray !important;\n  cursor: not-allowed;\n}\n\n.deactived-text {\n  fill: gray !important;\n  cursor: not-allowed;\n}\n\n.undisplayed {\n  display: none;\n}\n\n.block-cursor-pointer {\n  cursor: pointer;\n}\n\n.dropdown > button {\n  width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -42098,6 +42098,10 @@ var MainComponent = function (_React$Component) {
                     _this2.props.getScript({
                       active: true
                     });
+                    _this2.props.changeFormState({
+                      active: false,
+                      top: _this2.props.form.top
+                    });
                   } },
                 'Get Script'
               )
@@ -42113,6 +42117,8 @@ var MainComponent = function (_React$Component) {
               changeDropdownRightFirstTitle: this.props.changeDropdownRightFirstTitle,
               changeDropdownLeftSecondTitle: this.props.changeDropdownLeftSecondTitle,
               changeDropdownRightSecondTitle: this.props.changeDropdownRightSecondTitle,
+              changeDropdownLeftThirdTitle: this.props.changeDropdownLeftThirdTitle,
+              changeDropdownRightThirdTitle: this.props.changeDropdownRightThirdTitle,
               saveParamsToBlock: this.props.chartType === 'buy' ? this.props.saveParamsToBuyChartBlock : this.props.saveParamsToSellChartBlock,
               chartBlockOptions: this.props.chartType === 'buy' ? this.props.buyChart.blocks : this.props.sellChart.blocks }) : ''
           ),
@@ -42146,6 +42152,8 @@ MainComponent.propTypes = {
   changeDropdownLeftFirstTitle: _propTypes2.default.func,
   changeDropdownRightSecondTitle: _propTypes2.default.func,
   changeDropdownRightFirstTitle: _propTypes2.default.func,
+  changeDropdownLeftThirdTitle: _propTypes2.default.func,
+  changeDropdownRightThirdTitle: _propTypes2.default.func,
   saveParamsToBuyChartBlock: _propTypes2.default.func,
   saveParamsToSellChartBlock: _propTypes2.default.func,
   getScript: _propTypes2.default.func,
@@ -42178,6 +42186,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     changeDropdownRightSecondTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownRightSecondTitle, dispatch),
     changeDropdownLeftFirstTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownLeftFirstTitle, dispatch),
     changeDropdownRightFirstTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownRightFirstTitle, dispatch),
+    changeDropdownLeftThirdTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownLeftThirdTitle, dispatch),
+    changeDropdownRightThirdTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownRightThirdTitle, dispatch),
     saveParamsToBuyChartBlock: (0, _redux.bindActionCreators)(_actions.saveParamsToBuyChartBlock, dispatch),
     saveParamsToSellChartBlock: (0, _redux.bindActionCreators)(_actions.saveParamsToSellChartBlock, dispatch),
     getScript: (0, _redux.bindActionCreators)(_actions.getScript, dispatch),
@@ -42397,9 +42407,17 @@ var _LeftOptionsList = __webpack_require__(/*! ../presentational/LeftOptionsList
 
 var _LeftOptionsList2 = _interopRequireDefault(_LeftOptionsList);
 
+var _LeftSecondOptionsList = __webpack_require__(/*! ../presentational/LeftSecondOptionsList */ "./src/js/components/presentational/LeftSecondOptionsList.js");
+
+var _LeftSecondOptionsList2 = _interopRequireDefault(_LeftSecondOptionsList);
+
 var _RightOptionsList = __webpack_require__(/*! ../presentational/RightOptionsList */ "./src/js/components/presentational/RightOptionsList.js");
 
 var _RightOptionsList2 = _interopRequireDefault(_RightOptionsList);
+
+var _RightSecondOptionsList = __webpack_require__(/*! ../presentational/RightSecondOptionsList */ "./src/js/components/presentational/RightSecondOptionsList.js");
+
+var _RightSecondOptionsList2 = _interopRequireDefault(_RightSecondOptionsList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42428,13 +42446,19 @@ var Form = function (_React$Component) {
       if (type === 'left') {
         var keys = Object.keys(this.props.formDropdown.left.second.options);
         var values = Object.values(this.props.formDropdown.left.second.options);
+        var keys2 = Object.keys(this.props.formDropdown.left.third.options);
+        var values2 = Object.values(this.props.formDropdown.left.third.options);
         this.props.changeDropdownLeftFirstTitle(option);
         this.props.changeDropdownLeftSecondTitle(newOption(option, keys, values));
+        this.props.changeDropdownLeftThirdTitle(newOption(option, keys2, values2));
       } else {
         var _keys = Object.keys(this.props.formDropdown.right.second.options);
         var _values = Object.values(this.props.formDropdown.right.second.options);
+        var _keys2 = Object.keys(this.props.formDropdown.right.third.options);
+        var _values2 = Object.values(this.props.formDropdown.right.third.options);
         this.props.changeDropdownRightFirstTitle(option);
         this.props.changeDropdownRightSecondTitle(newOption(option, _keys, _values));
+        this.props.changeDropdownRightThirdTitle(newOption(option, _keys2, _values2));
       }
     }
   }, {
@@ -42449,11 +42473,11 @@ var Form = function (_React$Component) {
       block.options = {
         left: {
           title: this.props.formDropdown.left.first.title,
-          param1: this.props.formDropdown.left.second.title
+          param1: clearOutput(this.props.formDropdown.left.second.title, this.props.formDropdown.left.third.title)
         },
         right: {
           title: this.props.formDropdown.right.first.title,
-          param1: this.props.formDropdown.right.second.title
+          param1: clearOutput(this.props.formDropdown.right.second.title, this.props.formDropdown.right.third.title)
         }
       };
       blockState.map(function (elem) {
@@ -42527,6 +42551,26 @@ var Form = function (_React$Component) {
               { className: 'dropdown-menu', 'aria-labelledby': 'dropdownMenuButton' },
               _react2.default.createElement(_LeftOptionsList2.default, null)
             )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'dropdown' },
+            _react2.default.createElement(
+              'button',
+              { className: 'btn btn-outline-secondary dropdown-toggle',
+                type: 'button',
+                id: 'dropdownMenuButton',
+                'data-toggle': 'dropdown',
+                'aria-haspopup': 'true',
+                'aria-expanded': 'false',
+                disabled: formDropdownLeft.first.title === '' || formDropdownLeft.first.title === 'none' ? "disabled" : false },
+              formDropdownLeft.third.title
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'dropdown-menu', 'aria-labelledby': 'dropdownMenuButton' },
+              _react2.default.createElement(_LeftSecondOptionsList2.default, null)
+            )
           )
         ),
         _react2.default.createElement(
@@ -42581,6 +42625,26 @@ var Form = function (_React$Component) {
               { className: 'dropdown-menu', 'aria-labelledby': 'dropdownMenuButton' },
               _react2.default.createElement(_RightOptionsList2.default, null)
             )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'dropdown' },
+            _react2.default.createElement(
+              'button',
+              { className: 'btn btn-outline-secondary dropdown-toggle',
+                type: 'button',
+                id: 'dropdownMenuButton',
+                'data-toggle': 'dropdown',
+                'aria-haspopup': 'true',
+                'aria-expanded': 'false',
+                disabled: formDropdownRight.first.title === '' || formDropdownRight.first.title === 'none' ? "disabled" : false },
+              formDropdownRight.third.title
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'dropdown-menu', 'aria-labelledby': 'dropdownMenuButton' },
+              _react2.default.createElement(_RightSecondOptionsList2.default, null)
+            )
           )
         ),
         _react2.default.createElement(
@@ -42619,6 +42683,10 @@ function newOption(option, keys, values) {
     return key === option;
   })[0]);
   return values[index][0];
+}
+
+function clearOutput(condition, param) {
+  return condition === undefined || param === undefined ? '' : condition + ' ' + param;
 }
 
 /***/ }),
@@ -43177,6 +43245,142 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 
 /***/ }),
 
+/***/ "./src/js/components/presentational/LeftSecondOptionsList.js":
+/*!*******************************************************************!*\
+  !*** ./src/js/components/presentational/LeftSecondOptionsList.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _actions = __webpack_require__(/*! ../../store/actions */ "./src/js/store/actions.js");
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var LeftSecondOptionsList = function (_React$Component) {
+  _inherits(LeftSecondOptionsList, _React$Component);
+
+  function LeftSecondOptionsList() {
+    _classCallCheck(this, LeftSecondOptionsList);
+
+    return _possibleConstructorReturn(this, (LeftSecondOptionsList.__proto__ || Object.getPrototypeOf(LeftSecondOptionsList)).apply(this, arguments));
+  }
+
+  _createClass(LeftSecondOptionsList, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      switch (this.props.type) {
+        case 'rsi':
+          return this.props.rsiOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownLeftThirdTitle(option);
+                } },
+              option
+            );
+          });
+        case 'ma':
+          return this.props.maOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownLeftThirdTitle(option);
+                } },
+              option
+            );
+          });
+        case 'ema':
+          return this.props.emaOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownLeftThirdTitle(option);
+                } },
+              option
+            );
+          });
+        case 'sma':
+          return this.props.smaOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownLeftThirdTitle(option);
+                } },
+              option
+            );
+          });
+      }
+      return this.props.noOptions;
+    }
+  }]);
+
+  return LeftSecondOptionsList;
+}(_react2.default.Component);
+
+LeftSecondOptionsList.propTypes = {
+  changeDropdownLeftThirdTitle: _propTypes2.default.func,
+  type: _propTypes2.default.string,
+  rsiOptions: _propTypes2.default.array,
+  maOptions: _propTypes2.default.array,
+  emaOptions: _propTypes2.default.array,
+  smaOptions: _propTypes2.default.array,
+  noOptions: _propTypes2.default.string
+};
+
+exports.default = (0, _reactRedux.connect)(function (state) {
+  return {
+    type: state.formDropdown.left.first.title,
+    rsiOptions: state.formDropdown.left.third.options.rsi,
+    maOptions: state.formDropdown.left.third.options.ma,
+    emaOptions: state.formDropdown.left.third.options.ema,
+    smaOptions: state.formDropdown.left.third.options.sma,
+    noOptions: state.formDropdown.left.third.options.none
+  };
+}, function (dispatch) {
+  return {
+    changeDropdownLeftThirdTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownLeftThirdTitle, dispatch)
+  };
+})(LeftSecondOptionsList);
+
+/***/ }),
+
 /***/ "./src/js/components/presentational/Pre.js":
 /*!*************************************************!*\
   !*** ./src/js/components/presentational/Pre.js ***!
@@ -43266,6 +43470,8 @@ var Pre = function (_React$Component) {
     value: function render() {
       var buyParams = this.searchParams(this.props.buyChartBlocks);
       var sellParams = this.searchParams(this.props.sellChartBlocks);
+      var preparedBuyParams = prepareParams(buyParams);
+      var preparedSellParams = prepareParams(sellParams);
 
       return _react2.default.createElement(
         'pre',
@@ -43285,13 +43491,56 @@ var Pre = function (_React$Component) {
         _react2.default.createElement('br', null),
         getUnicParamsNames(buyParams.concat(sellParams)).map(function (param) {
           return param + ' = ' + param + '(close, 14)\n';
-        })
+        }),
+        preparedBuyParams.map(function (param, index) {
+          return 'buy_signals' + index + ' = ' + param + '\n';
+        }),
+        preparedSellParams.map(function (param, index) {
+          return 'sell_signals' + index + ' = ' + param + '\n';
+        }),
+        smth(buyParams)
       );
     }
   }]);
 
   return Pre;
 }(_react2.default.Component);
+
+function smth(params) {
+  var res = [];
+  params.forEach(function (array) {
+    return Array.isArray(array[0]) ? array.map(function (elem) {
+      return res.push(elem);
+    }) : res.push(array);
+  });
+  res = res.map(function (elem) {
+    return elem.join(' ');
+  });
+  console.log(res);
+}
+
+/*
+function prepareText(param) {
+  let smbl = param.replace(/[a-z0-9 ]/gi, '');
+  console.log(smbl);
+  // switch (param) {
+  //   case ''
+  // }
+}
+*/
+
+function prepareParams(params) {
+  var res = [];
+  params.forEach(function (array) {
+    return Array.isArray(array[0]) ? res.push(array.map(function (elem) {
+      return elem.join(' ');
+    })) : res.push(array.join(' '));
+  });
+  res = res.map(function (row) {
+    return Array.isArray(row) ? row[0] === row[1] ? row[0] : row[0] + ' and ' + row[1] : row;
+  });
+  return res;
+}
 
 function getUnicParamsNames(params) {
   var res = [];
@@ -43326,20 +43575,20 @@ function prepareName(array) {
 
 /*
  
- //@version=3
- study(title="RSI", overlay=true)
- rsi = rsi(close, 14)
- buy_signals = rsi < 30
- sell_signals = rsi > 70
- plotshape(buy_signals, style=shape.triangleup, text="up")
- plotshape(sell_signals, style=shape.triangledown, text="down")
- alertcondition(buy_signals, title='rsi < 30', message='RSI is below 30')
- alertcondition(sell_signals, title='rsi > 70', message='RSI is above 70')
+//@version=3
+study(title="RSI", overlay=false)
+rsi = rsi(close, 14)
+buy_signals = rsi < 30
+sell_signals = rsi > 70
+plotshape(buy_signals, style=shape.triangleup, text="up")
+plotshape(sell_signals, style=shape.triangledown, text="down")
+alertcondition(buy_signals, title='rsi < 30', message='RSI is below 30')
+alertcondition(sell_signals, title='rsi > 70', message='RSI is above 70')
  
  */
 
 /*
-study(title="My Script", overlay=true)
+study(title="My Script", overlay=false)
 myrsi = rsi(close, 14)
 mycond = myrsi > 70
 mycond2 = myrsi < 30
@@ -43557,6 +43806,142 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 
 /***/ }),
 
+/***/ "./src/js/components/presentational/RightSecondOptionsList.js":
+/*!********************************************************************!*\
+  !*** ./src/js/components/presentational/RightSecondOptionsList.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _actions = __webpack_require__(/*! ../../store/actions */ "./src/js/store/actions.js");
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RightSecondOptionsList = function (_React$Component) {
+  _inherits(RightSecondOptionsList, _React$Component);
+
+  function RightSecondOptionsList() {
+    _classCallCheck(this, RightSecondOptionsList);
+
+    return _possibleConstructorReturn(this, (RightSecondOptionsList.__proto__ || Object.getPrototypeOf(RightSecondOptionsList)).apply(this, arguments));
+  }
+
+  _createClass(RightSecondOptionsList, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      switch (this.props.type) {
+        case 'rsi':
+          return this.props.rsiOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownRightThirdTitle(option);
+                } },
+              option
+            );
+          });
+        case 'ma':
+          return this.props.maOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownRightThirdTitle(option);
+                } },
+              option
+            );
+          });
+        case 'ema':
+          return this.props.emaOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownRightThirdTitle(option);
+                } },
+              option
+            );
+          });
+        case 'sma':
+          return this.props.smaOptions.map(function (option, index) {
+            return _react2.default.createElement(
+              'span',
+              { key: index,
+                className: 'dropdown-item',
+                onClick: function onClick() {
+                  return _this2.props.changeDropdownRightThirdTitle(option);
+                } },
+              option
+            );
+          });
+      }
+      return this.props.noOptions;
+    }
+  }]);
+
+  return RightSecondOptionsList;
+}(_react2.default.Component);
+
+RightSecondOptionsList.propTypes = {
+  changeDropdownRightThirdTitle: _propTypes2.default.func,
+  type: _propTypes2.default.string,
+  rsiOptions: _propTypes2.default.array,
+  maOptions: _propTypes2.default.array,
+  emaOptions: _propTypes2.default.array,
+  smaOptions: _propTypes2.default.array,
+  noOptions: _propTypes2.default.string
+};
+
+exports.default = (0, _reactRedux.connect)(function (state) {
+  return {
+    type: state.formDropdown.right.first.title,
+    rsiOptions: state.formDropdown.right.third.options.rsi,
+    maOptions: state.formDropdown.right.third.options.ma,
+    emaOptions: state.formDropdown.right.third.options.ema,
+    smaOptions: state.formDropdown.right.third.options.sma,
+    noOptions: state.formDropdown.right.third.options.none
+  };
+}, function (dispatch) {
+  return {
+    changeDropdownRightThirdTitle: (0, _redux.bindActionCreators)(_actions.changeDropdownRightThirdTitle, dispatch)
+  };
+})(RightSecondOptionsList);
+
+/***/ }),
+
 /***/ "./src/js/components/presentational/SimpleArrow.js":
 /*!*********************************************************!*\
   !*** ./src/js/components/presentational/SimpleArrow.js ***!
@@ -43629,7 +44014,7 @@ exports.default = SimpleArrow;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.hideResultScript = exports.getScript = exports.saveParamsToSellChartBlock = exports.saveParamsToBuyChartBlock = exports.changeDropdownRightSecondTitle = exports.changeDropdownRightFirstTitle = exports.changeDropdownLeftSecondTitle = exports.changeDropdownLeftFirstTitle = exports.editBlockParamsSellChart = exports.addBlockToSellChart = exports.removeBlockFromSellChart = exports.editBlockParamsBuyChart = exports.addBlockToBuyChart = exports.removeBlockFromBuyChart = exports.changeFormState = exports.recalcSvgParams = exports.changeChartType = undefined;
+exports.changeDropdownRightThirdTitle = exports.changeDropdownLeftThirdTitle = exports.hideResultScript = exports.getScript = exports.saveParamsToSellChartBlock = exports.saveParamsToBuyChartBlock = exports.changeDropdownRightSecondTitle = exports.changeDropdownRightFirstTitle = exports.changeDropdownLeftSecondTitle = exports.changeDropdownLeftFirstTitle = exports.editBlockParamsSellChart = exports.addBlockToSellChart = exports.removeBlockFromSellChart = exports.editBlockParamsBuyChart = exports.addBlockToBuyChart = exports.removeBlockFromBuyChart = exports.changeFormState = exports.recalcSvgParams = exports.changeChartType = undefined;
 
 var _actionsTypes = __webpack_require__(/*! ./actionsTypes */ "./src/js/store/actionsTypes.js");
 
@@ -43756,6 +44141,20 @@ var hideResultScript = exports.hideResultScript = function hideResultScript(newP
   };
 };
 
+var changeDropdownLeftThirdTitle = exports.changeDropdownLeftThirdTitle = function changeDropdownLeftThirdTitle(newDropdownTitle) {
+  return {
+    type: types.ACTION_CHANGE_DROPDOWN_LEFT_THIRD_TITLE,
+    payload: newDropdownTitle
+  };
+};
+
+var changeDropdownRightThirdTitle = exports.changeDropdownRightThirdTitle = function changeDropdownRightThirdTitle(newDropdownTitle) {
+  return {
+    type: types.ACTION_CHANGE_DROPDOWN_RIGHT_THIRD_TITLE,
+    payload: newDropdownTitle
+  };
+};
+
 /***/ }),
 
 /***/ "./src/js/store/actionsTypes.js":
@@ -43784,6 +44183,8 @@ var ACTION_CHANGE_DROPDOWN_LEFT_FIRST_TITLE = exports.ACTION_CHANGE_DROPDOWN_LEF
 var ACTION_CHANGE_DROPDOWN_RIGHT_FIRST_TITLE = exports.ACTION_CHANGE_DROPDOWN_RIGHT_FIRST_TITLE = 'ACTION_CHANGE_DROPDOWN_RIGHT_FIRST_TITLE';
 var ACTION_CHANGE_DROPDOWN_LEFT_SECOND_TITLE = exports.ACTION_CHANGE_DROPDOWN_LEFT_SECOND_TITLE = 'ACTION_CHANGE_DROPDOWN_LEFT_SECOND_TITLE';
 var ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE = exports.ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE = 'ACTION_CHANGE_DROPDOWN_RIGHT_SECOND_TITLE';
+var ACTION_CHANGE_DROPDOWN_LEFT_THIRD_TITLE = exports.ACTION_CHANGE_DROPDOWN_LEFT_THIRD_TITLE = 'ACTION_CHANGE_DROPDOWN_LEFT_THIRD_TITLE';
+var ACTION_CHANGE_DROPDOWN_RIGHT_THIRD_TITLE = exports.ACTION_CHANGE_DROPDOWN_RIGHT_THIRD_TITLE = 'ACTION_CHANGE_DROPDOWN_RIGHT_THIRD_TITLE';
 var ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK = exports.ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK = 'ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK';
 var ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK = exports.ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK = 'ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK';
 var ACTION_GET_SCRIPS = exports.ACTION_GET_SCRIPS = 'ACTION_GET_SCRIPS';
@@ -43829,9 +44230,19 @@ var initialAppState = {
         options: ['rsi', 'ma', 'ema', 'sma', 'none']
       },
       second: {
-        title: '> 70',
+        title: '>',
         options: {
-          rsi: ['> 70', '< 30', '= 40', '= 50', '= 60'],
+          rsi: ['>', '<', '=', 'crossover', 'crossunder'],
+          ma: ['ma param1', 'ma param2', 'ma param3'],
+          ema: ['ema param1', 'ema param2', 'ema param3'],
+          sma: ['sma param1', 'sma param2', 'sma param3'],
+          none: ''
+        }
+      },
+      third: {
+        title: '30',
+        options: {
+          rsi: ['30', '40', '50', '60', '70'],
           ma: ['ma param1', 'ma param2', 'ma param3'],
           ema: ['ema param1', 'ema param2', 'ema param3'],
           sma: ['sma param1', 'sma param2', 'sma param3'],
@@ -43845,9 +44256,19 @@ var initialAppState = {
         options: ['rsi', 'ma', 'ema', 'sma', 'none']
       },
       second: {
-        title: '> 70',
+        title: '>',
         options: {
-          rsi: ['> 70', '< 30', '= 40', '= 50', '= 60'],
+          rsi: ['>', '<', '=', 'crossover', 'crossunder'],
+          ma: ['ma param1', 'ma param2', 'ma param3'],
+          ema: ['ema param1', 'ema param2', 'ema param3'],
+          sma: ['sma param1', 'sma param2', 'sma param3'],
+          none: ''
+        }
+      },
+      third: {
+        title: '30',
+        options: {
+          rsi: ['30', '40', '50', '60', '70'],
           ma: ['ma param1', 'ma param2', 'ma param3'],
           ema: ['ema param1', 'ema param2', 'ema param3'],
           sma: ['sma param1', 'sma param2', 'sma param3'],
@@ -44037,6 +44458,16 @@ var rootReducer = exports.rootReducer = function rootReducer() {
           })
         })
       });
+    case types.ACTION_CHANGE_DROPDOWN_LEFT_THIRD_TITLE:
+      return _extends({}, state, {
+        formDropdown: _extends({}, state.formDropdown, {
+          left: _extends({}, state.formDropdown.left, {
+            third: _extends({}, state.formDropdown.left.third, {
+              title: action.payload
+            })
+          })
+        })
+      });
     case types.ACTION_CHANGE_DROPDOWN_RIGHT_FIRST_TITLE:
       return _extends({}, state, {
         formDropdown: _extends({}, state.formDropdown, {
@@ -44052,6 +44483,16 @@ var rootReducer = exports.rootReducer = function rootReducer() {
         formDropdown: _extends({}, state.formDropdown, {
           right: _extends({}, state.formDropdown.right, {
             second: _extends({}, state.formDropdown.left.second, {
+              title: action.payload
+            })
+          })
+        })
+      });
+    case types.ACTION_CHANGE_DROPDOWN_RIGHT_THIRD_TITLE:
+      return _extends({}, state, {
+        formDropdown: _extends({}, state.formDropdown, {
+          right: _extends({}, state.formDropdown.right, {
+            third: _extends({}, state.formDropdown.left.third, {
               title: action.payload
             })
           })
