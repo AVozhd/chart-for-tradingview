@@ -32,25 +32,33 @@ class Pre extends React.Component {
     const buyParams = this.searchParams(this.props.buyChartBlocks);
     const sellParams = this.searchParams(this.props.sellChartBlocks);
     
-    console.log(sellParams);
 
     return (
       <pre className="result-script">
         <h1>
-          Result script
+          Result Alert Script
         </h1>
         //@version=3
         <br />
-        study(title="BUY:{ setScriptName(buyParams) };", overlay=true)
+        study(title="{ buyParams.length > 0 ? `BUY: ${getParamsNames(buyParams, true)};` : '' } { sellParams.length > 0 ? `SELL: ${getParamsNames(sellParams, true)}` : '' }", overlay=true)
+        <br />
+        { getUnicParamsNames(buyParams.concat(sellParams)).map(param => `${param} = ${param}(close, 14)\n`) }
       </pre>
     )
   }
 }
 
-function setScriptName(params) {
+function getUnicParamsNames(params) {
+  let res = [];
+  params.forEach(array => Array.isArray(array[0]) ? array.map(elem => res.push(elem)) : res.push(array));
+  res = res.map(elem => elem[0]);
+  return [...new Set(res)];
+}
+
+function getParamsNames(params, toUpCase = false) {
   let res = [];
   params.forEach(array => Array.isArray(array[0]) ? res.push(prepareName(array)) : res.push(array[0]));
-  return res.join(', ').toUpperCase();
+  return toUpCase ? res.join(', ').toUpperCase() : res.join(', ');
 }
 
 function prepareName(array) {
@@ -60,6 +68,20 @@ function prepareName(array) {
     return `${array[0][0]} + ${array[1][0]}`;
   }
 }
+
+/*
+ 
+ //@version=3
+ study(title="RSI", overlay=true)
+ rsi = rsi(close, 14)
+ buy_signals = rsi < 30
+ sell_signals = rsi > 70
+ plotshape(buy_signals, style=shape.triangleup, text="up")
+ plotshape(sell_signals, style=shape.triangledown, text="down")
+ alertcondition(buy_signals, title='rsi < 30', message='RSI is below 30')
+ alertcondition(sell_signals, title='rsi > 70', message='RSI is above 70')
+ 
+ */
 
 /*
 study(title="My Script", overlay=true)
@@ -111,19 +133,7 @@ alertcondition(sell_signals, title='Sell-Signal', message='price is above the MA
 
 */
 
-/*
- 
-//@version=3
-study(title="RSI", overlay=true)
-rsi = rsi(close, 14)
-buy_signals = rsi < 30
-sell_signals = rsi > 70
-plotshape(buy_signals, style=shape.triangleup, text="up")
-plotshape(sell_signals, style=shape.triangledown, text="down")
-alertcondition(buy_signals, title='rsi < 30', message='RSI is below 30')
-alertcondition(sell_signals, title='rsi > 70', message='RSI is above 70')
- 
- */
+
 
 /*
 study("Example of alertcondition")
