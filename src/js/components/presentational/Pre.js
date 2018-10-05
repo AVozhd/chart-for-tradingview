@@ -6,20 +6,6 @@ import PropTypes from 'prop-types';
 
 class Pre extends React.Component {
   
-  /*
-  searchParams(chartBlocks, type = 'rsi') {
-    let params = [];
-    let res = [];
-    chartBlocks.map(block => params.push(Object.values(block.options).filter(option => option.title !== 'none' && option.title !== 'condition')));
-    params = params.filter(elem => elem.length > 0);
-    params = params.map(elem => elem.length > 1 ? elem.map(object => Object.values(object)) : Object.values(elem[0]));
-    params.forEach(array => Array.isArray(array[0]) ? array.map(elem => res.push(elem)) : res.push(array));
-    const ParamsByType = {};
-    res.map((array, index) => array[0] === type ? ParamsByType[index] = array[1] : ParamsByType);
-    return [...new Set(Object.values(ParamsByType))];
-  }
-  */
-  
   searchParams(chartBlocks) {
     let params = [];
     chartBlocks.map(block => params.push(Object.values(block.options).filter(option => option.title !== 'none' && option.title !== 'condition')));
@@ -33,7 +19,6 @@ class Pre extends React.Component {
     const sellParams = this.searchParams(this.props.sellChartBlocks);
     const preparedBuyParams = prepareParams(buyParams);
     const preparedSellParams = prepareParams(sellParams);
-
     return (
       <pre className="result-script">
         <h1>
@@ -46,34 +31,34 @@ class Pre extends React.Component {
         { getUnicParamsNames(buyParams.concat(sellParams)).map(param => `${param} = ${param}(close, 14)\n`) }
         { preparedBuyParams.map((param, index) => `buy_signals${index} = ${param}\n`) }
         { preparedSellParams.map((param, index) => `sell_signals${index} = ${param}\n`) }
-        { smth(buyParams) }
-        {/*{ preparedBuyParams.map((param, index) => `plotshape(buy_signals${index}, style=shape.triangleup, text="${ prepareText(param) }")\n`) }*/}
+        { preparedBuyParams.map((param, index) => `plotshape(buy_signals${index}, style=shape.flag, text="!")\n`) }
+        { preparedSellParams.map((param, index) => `plotshape(sell_signals${index}, style=shape.flag, text="!")\n`) }
+        { preparedBuyParams.map((param, index) => `alertcondition(buy_signals${index}, title='Buy-Signal', message='${param}')\n`) }
+        { preparedSellParams.map((param, index) => `alertcondition(sell_signals${index}, title='Sell-Signal', message='${param}')\n`) }
       </pre>
     )
   }
 }
 
-function smth(params) {
-  let res = [];
-  params.forEach(array => Array.isArray(array[0]) ? array.map(elem => res.push(elem)) : res.push(array));
-  res = res.map(elem => elem.join(' '));
-  console.log(res);
+function checkParam(str) {
+  let arrFromStr = str.split(' ');
+  if(arrFromStr[1] !== '>' && arrFromStr[1] !== '<' && arrFromStr[1] !== '=') {
+    if(arrFromStr[0] === 'rsi') {
+      return `${arrFromStr[1]}(${arrFromStr[0]}, ${arrFromStr[2]})`;
+    } else {
+      return str;
+    }
+  } else if(arrFromStr[1] === '=') {
+    return `${arrFromStr[0]} == ${arrFromStr[2]}`;
+  } else {
+    return str;
+  }
 }
-
-/*
-function prepareText(param) {
-  let smbl = param.replace(/[a-z0-9 ]/gi, '');
-  console.log(smbl);
-  // switch (param) {
-  //   case ''
-  // }
-}
-*/
 
 function prepareParams(params) {
   let res = [];
   params.forEach(array => Array.isArray(array[0]) ? res.push(array.map(elem => elem.join(' '))) : res.push(array.join(' ')));
-  res = res.map(row => Array.isArray(row) ? row[0] === row[1] ? row[0] : `${row[0]} and ${row[1]}` : row);
+  res = res.map(row => Array.isArray(row) ? row[0] === row[1] ? checkParam(row[0]) : `${checkParam(row[0])} and ${checkParam(row[1])}` : checkParam(row));
   return res;
 }
 
@@ -110,6 +95,11 @@ plotshape(sell_signals, style=shape.triangledown, text="down")
 alertcondition(buy_signals, title='rsi < 30', message='RSI is below 30')
 alertcondition(sell_signals, title='rsi > 70', message='RSI is above 70')
  
+ //@version=3
+ study(title="RSI", overlay=true)
+ rsi = rsi(close, 14)
+ buy_signals = rsi < 30
+
  */
 
 /*

@@ -42891,6 +42891,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -42976,7 +42978,9 @@ var Block = function (_React$Component) {
             ),
             _react2.default.createElement(
               'text',
-              { x: '50', y: '80' },
+              _extends({ x: '50',
+                y: '80'
+              }, this.props.params.options.left.param1.length > 10 ? { textLength: '96' } : {}, this.props.params.options.left.param1.length > 10 ? { lengthAdjust: 'spacing' } : {}),
               this.props.params.options.left.param1
             )
           ),
@@ -42998,7 +43002,9 @@ var Block = function (_React$Component) {
             ),
             _react2.default.createElement(
               'text',
-              { x: '50', y: '80' },
+              _extends({ x: '50',
+                y: '80'
+              }, this.props.params.options.right.param1.length > 10 ? { textLength: '96' } : {}, this.props.params.options.right.param1.length > 10 ? { lengthAdjust: 'spacing' } : {}),
               this.props.params.options.right.param1
             )
           ),
@@ -43432,22 +43438,6 @@ var Pre = function (_React$Component) {
 
   _createClass(Pre, [{
     key: 'searchParams',
-
-
-    /*
-    searchParams(chartBlocks, type = 'rsi') {
-      let params = [];
-      let res = [];
-      chartBlocks.map(block => params.push(Object.values(block.options).filter(option => option.title !== 'none' && option.title !== 'condition')));
-      params = params.filter(elem => elem.length > 0);
-      params = params.map(elem => elem.length > 1 ? elem.map(object => Object.values(object)) : Object.values(elem[0]));
-      params.forEach(array => Array.isArray(array[0]) ? array.map(elem => res.push(elem)) : res.push(array));
-      const ParamsByType = {};
-      res.map((array, index) => array[0] === type ? ParamsByType[index] = array[1] : ParamsByType);
-      return [...new Set(Object.values(ParamsByType))];
-    }
-    */
-
     value: function searchParams(chartBlocks) {
       var params = [];
       chartBlocks.map(function (block) {
@@ -43472,7 +43462,6 @@ var Pre = function (_React$Component) {
       var sellParams = this.searchParams(this.props.sellChartBlocks);
       var preparedBuyParams = prepareParams(buyParams);
       var preparedSellParams = prepareParams(sellParams);
-
       return _react2.default.createElement(
         'pre',
         { className: 'result-script' },
@@ -43498,7 +43487,18 @@ var Pre = function (_React$Component) {
         preparedSellParams.map(function (param, index) {
           return 'sell_signals' + index + ' = ' + param + '\n';
         }),
-        smth(buyParams)
+        preparedBuyParams.map(function (param, index) {
+          return 'plotshape(buy_signals' + index + ', style=shape.flag, text="!")\n';
+        }),
+        preparedSellParams.map(function (param, index) {
+          return 'plotshape(sell_signals' + index + ', style=shape.flag, text="!")\n';
+        }),
+        preparedBuyParams.map(function (param, index) {
+          return 'alertcondition(buy_signals' + index + ', title=\'Buy-Signal\', message=\'' + param + '\')\n';
+        }),
+        preparedSellParams.map(function (param, index) {
+          return 'alertcondition(sell_signals' + index + ', title=\'Sell-Signal\', message=\'' + param + '\')\n';
+        })
       );
     }
   }]);
@@ -43506,28 +43506,20 @@ var Pre = function (_React$Component) {
   return Pre;
 }(_react2.default.Component);
 
-function smth(params) {
-  var res = [];
-  params.forEach(function (array) {
-    return Array.isArray(array[0]) ? array.map(function (elem) {
-      return res.push(elem);
-    }) : res.push(array);
-  });
-  res = res.map(function (elem) {
-    return elem.join(' ');
-  });
-  console.log(res);
+function checkParam(str) {
+  var arrFromStr = str.split(' ');
+  if (arrFromStr[1] !== '>' && arrFromStr[1] !== '<' && arrFromStr[1] !== '=') {
+    if (arrFromStr[0] === 'rsi') {
+      return arrFromStr[1] + '(' + arrFromStr[0] + ', ' + arrFromStr[2] + ')';
+    } else {
+      return str;
+    }
+  } else if (arrFromStr[1] === '=') {
+    return arrFromStr[0] + ' == ' + arrFromStr[2];
+  } else {
+    return str;
+  }
 }
-
-/*
-function prepareText(param) {
-  let smbl = param.replace(/[a-z0-9 ]/gi, '');
-  console.log(smbl);
-  // switch (param) {
-  //   case ''
-  // }
-}
-*/
 
 function prepareParams(params) {
   var res = [];
@@ -43537,7 +43529,7 @@ function prepareParams(params) {
     })) : res.push(array.join(' '));
   });
   res = res.map(function (row) {
-    return Array.isArray(row) ? row[0] === row[1] ? row[0] : row[0] + ' and ' + row[1] : row;
+    return Array.isArray(row) ? row[0] === row[1] ? checkParam(row[0]) : checkParam(row[0]) + ' and ' + checkParam(row[1]) : checkParam(row);
   });
   return res;
 }
@@ -43585,6 +43577,11 @@ plotshape(sell_signals, style=shape.triangledown, text="down")
 alertcondition(buy_signals, title='rsi < 30', message='RSI is below 30')
 alertcondition(sell_signals, title='rsi > 70', message='RSI is above 70')
  
+ //@version=3
+ study(title="RSI", overlay=true)
+ rsi = rsi(close, 14)
+ buy_signals = rsi < 30
+
  */
 
 /*

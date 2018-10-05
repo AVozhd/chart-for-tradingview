@@ -42,7 +42,12 @@ export default class Block extends React.Component {
                   })}
                   x="50"
                   y="30" >{this.props.params.options.left.title}</text>
-            <text x="50" y="80" >{this.props.params.options.left.param1}</text>
+            <text x="50"
+                  y="80"
+                  {...(this.props.params.options.left.param1.length > 10 ? {textLength: '96'} : {})}
+                  {...(this.props.params.options.left.param1.length > 10 ? {lengthAdjust: 'spacing'} : {})} >
+              {this.props.params.options.left.param1}
+            </text>
           </g>
           <g transform={"translate(" +  this.props.params.width*0.1 + ",0)"}>
             <polyline points="0,50 0,0 100,0 100,50 0,50 0,100 100,100 100,50"
@@ -54,7 +59,12 @@ export default class Block extends React.Component {
                   })}
                   x="50"
                   y="30" >{this.props.params.options.right.title}</text>
-            <text x="50" y="80" >{this.props.params.options.right.param1}</text>
+            <text x="50"
+                  y="80"
+                  {...(this.props.params.options.right.param1.length > 10 ? {textLength: '96'} : {})}
+                  {...(this.props.params.options.right.param1.length > 10 ? {lengthAdjust: 'spacing'} : {})} >
+              {this.props.params.options.right.param1}
+            </text>
           </g>
           <polyline points={`0,0 ${this.props.params.width},0 ${this.props.params.width},${this.props.params.height} 0,${this.props.params.height} 0,0`}
                     transform={`translate(-${this.props.params.width/2},0)`}
