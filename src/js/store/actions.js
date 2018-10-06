@@ -132,3 +132,10 @@ export const changeDropdownRightThirdTitle = (newDropdownTitle) => {
     payload: newDropdownTitle
   };
 };
+
+export const changeAddsState = (newState) => {
+  return {
+    type: types.ACTION_CHANGE_ADDS_STATE,
+    payload: newState
+  };
+};

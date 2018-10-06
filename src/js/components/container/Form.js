@@ -9,9 +9,24 @@ export default class Form extends React.Component {
     super(props);
     this.prepareBlocks = this.prepareBlocks.bind(this);
     this.setSecondDefaultValue = this.setSecondDefaultValue.bind(this);
+    this.closeForm = this.closeForm.bind(this);
   }
-  
+
+  closeForm() {
+    this.props.onCancel({
+                  active: false,
+                  top: this.props.formOptions.top,
+                });
+    this.props.changeAddsState(false);
+  }
+
   setSecondDefaultValue(option, type) {
+    let test = option.search(/[.*ma]/i);
+    if(option.search(/[.*ma]/i) !== -1) {
+      this.props.changeAddsState(true);
+    } else {
+      this.props.changeAddsState(false);
+    }
     if(type === 'left') {
       let keys = Object.keys(this.props.formDropdown.left.second.options);
       let values = Object.values(this.props.formDropdown.left.second.options);
@@ -30,7 +45,7 @@ export default class Form extends React.Component {
       this.props.changeDropdownRightThirdTitle(newOption(option, keys2, values2));
     }
   }
-  
+
   prepareBlocks() {
     let blockState = this.props.chartBlockOptions;
     let block = blockState.filter(block => block.key === this.props.formOptions.currentBlock)[0];
@@ -46,9 +61,10 @@ export default class Form extends React.Component {
     };
     blockState.map((elem) => { elem.key === block.key ? block : elem });
     this.props.saveParamsToBlock(blockState);
+    this.props.changeAddsState(false);
   }
-  
-  
+
+
   render() {
     const currBlock = this.props.chartBlockOptions.filter(block => block.key === this.props.formOptions.currentBlock)[0];
     const formDropdownLeft = this.props.formDropdown.left;
@@ -106,8 +122,8 @@ export default class Form extends React.Component {
             </div>
           </div>
         </div>
-        
-        
+
+
         <div className="dropdown-div">
           <div className="dropdown">
             <button
@@ -158,8 +174,8 @@ export default class Form extends React.Component {
             </div>
           </div>
         </div>
-        
-        
+
+
         <button type="button"
                 className="btn btn-outline-primary"
                 onClick={() => this.prepareBlocks()} >
@@ -167,12 +183,11 @@ export default class Form extends React.Component {
         </button>
         <button type="button"
                 className="btn btn-outline-danger"
-                onClick={() => this.props.onCancel({
-                  active: false,
-                  top: this.props.formOptions.top,
-                })}>
+                onClick={() => this.closeForm()}>
           Cancel
         </button>
+
+        {this.props.adds.active ? <p>TEST</p> : ''}
       </form>
     )
   }

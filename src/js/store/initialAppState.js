@@ -11,6 +11,9 @@ const initialAppState = {
       height: 400,
     },
   },
+  adds: {
+    active: false,
+  },
   form: {
     active: false,
     top: 0,

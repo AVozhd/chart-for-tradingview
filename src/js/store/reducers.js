@@ -135,6 +135,14 @@ export const rootReducer = (state = initialAppState, action) => {
       return { ...state, pre: action.payload };
     case types.ACTION_HIDE_RESULT_SCRIPT:
       return { ...state, pre: action.payload };
+    case types.ACTION_CHANGE_ADDS_STATE:
+      return {
+        ...state,
+        adds: {
+          ...state.adds,
+          active: action.payload
+        }
+      };
   }
   return state;
 };

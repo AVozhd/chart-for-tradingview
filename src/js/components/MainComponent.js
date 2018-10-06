@@ -19,7 +19,7 @@ import { changeChartType,
          saveParamsToBuyChartBlock,
          saveParamsToSellChartBlock,
          getScript,
-         hideResultScript } from '../store/actions';
+         hideResultScript, changeAddsState } from '../store/actions';
 import BuyChart from './container/BuyChart';
 import SellChart from './container/SellChart';
 import ChartTypeSelectorInput from './presentational/ChartTypeSelectorInput';
@@ -123,7 +123,9 @@ class MainComponent extends React.Component {
                                              chartBlockOptions={ this.props.chartType === 'buy' ?
                                              this.props.buyChart.blocks
                                              :
-                                             this.props.sellChart.blocks } /> : '' }
+                                             this.props.sellChart.blocks }
+                                             adds={this.props.adds}
+                                             changeAddsState={this.props.changeAddsState} /> : '' }
           </div>
           { this.props.pre.active? <Pre /> : '' }
         </div>
@@ -159,6 +161,8 @@ MainComponent.propTypes = {
   saveParamsToSellChartBlock: PropTypes.func,
   getScript: PropTypes.func,
   hideResultScript: PropTypes.func,
+  changeAddsState: PropTypes.func,
+  adds: PropTypes.object,
 };
 
 export default connect((state => ({
@@ -170,6 +174,7 @@ export default connect((state => ({
   form: state.form,
   formDropdown: state.formDropdown,
   pre: state.pre,
+  adds: state.adds,
 })), (dispatch => ({
   changeChartType: bindActionCreators(changeChartType, dispatch),
   recalcSvgParams: bindActionCreators(recalcSvgParams, dispatch),
@@ -190,4 +195,5 @@ export default connect((state => ({
   saveParamsToSellChartBlock: bindActionCreators(saveParamsToSellChartBlock, dispatch),
   getScript: bindActionCreators(getScript, dispatch),
   hideResultScript: bindActionCreators(hideResultScript, dispatch),
+  changeAddsState: bindActionCreators(changeAddsState, dispatch),
 })))(MainComponent);

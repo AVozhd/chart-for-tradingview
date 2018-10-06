@@ -42120,7 +42120,9 @@ var MainComponent = function (_React$Component) {
               changeDropdownLeftThirdTitle: this.props.changeDropdownLeftThirdTitle,
               changeDropdownRightThirdTitle: this.props.changeDropdownRightThirdTitle,
               saveParamsToBlock: this.props.chartType === 'buy' ? this.props.saveParamsToBuyChartBlock : this.props.saveParamsToSellChartBlock,
-              chartBlockOptions: this.props.chartType === 'buy' ? this.props.buyChart.blocks : this.props.sellChart.blocks }) : ''
+              chartBlockOptions: this.props.chartType === 'buy' ? this.props.buyChart.blocks : this.props.sellChart.blocks,
+              adds: this.props.adds,
+              changeAddsState: this.props.changeAddsState }) : ''
           ),
           this.props.pre.active ? _react2.default.createElement(_Pre2.default, null) : ''
         )
@@ -42157,7 +42159,9 @@ MainComponent.propTypes = {
   saveParamsToBuyChartBlock: _propTypes2.default.func,
   saveParamsToSellChartBlock: _propTypes2.default.func,
   getScript: _propTypes2.default.func,
-  hideResultScript: _propTypes2.default.func
+  hideResultScript: _propTypes2.default.func,
+  changeAddsState: _propTypes2.default.func,
+  adds: _propTypes2.default.object
 };
 
 exports.default = (0, _reactRedux.connect)(function (state) {
@@ -42169,7 +42173,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     sellChart: state.sellChart,
     form: state.form,
     formDropdown: state.formDropdown,
-    pre: state.pre
+    pre: state.pre,
+    adds: state.adds
   };
 }, function (dispatch) {
   return {
@@ -42191,7 +42196,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     saveParamsToBuyChartBlock: (0, _redux.bindActionCreators)(_actions.saveParamsToBuyChartBlock, dispatch),
     saveParamsToSellChartBlock: (0, _redux.bindActionCreators)(_actions.saveParamsToSellChartBlock, dispatch),
     getScript: (0, _redux.bindActionCreators)(_actions.getScript, dispatch),
-    hideResultScript: (0, _redux.bindActionCreators)(_actions.hideResultScript, dispatch)
+    hideResultScript: (0, _redux.bindActionCreators)(_actions.hideResultScript, dispatch),
+    changeAddsState: (0, _redux.bindActionCreators)(_actions.changeAddsState, dispatch)
   };
 })(MainComponent);
 
@@ -42437,12 +42443,28 @@ var Form = function (_React$Component) {
 
     _this.prepareBlocks = _this.prepareBlocks.bind(_this);
     _this.setSecondDefaultValue = _this.setSecondDefaultValue.bind(_this);
+    _this.closeForm = _this.closeForm.bind(_this);
     return _this;
   }
 
   _createClass(Form, [{
+    key: 'closeForm',
+    value: function closeForm() {
+      this.props.onCancel({
+        active: false,
+        top: this.props.formOptions.top
+      });
+      this.props.changeAddsState(false);
+    }
+  }, {
     key: 'setSecondDefaultValue',
     value: function setSecondDefaultValue(option, type) {
+      var test = option.search(/[.*ma]/i);
+      if (option.search(/[.*ma]/i) !== -1) {
+        this.props.changeAddsState(true);
+      } else {
+        this.props.changeAddsState(false);
+      }
       if (type === 'left') {
         var keys = Object.keys(this.props.formDropdown.left.second.options);
         var values = Object.values(this.props.formDropdown.left.second.options);
@@ -42484,6 +42506,7 @@ var Form = function (_React$Component) {
         elem.key === block.key ? block : elem;
       });
       this.props.saveParamsToBlock(blockState);
+      this.props.changeAddsState(false);
     }
   }, {
     key: 'render',
@@ -42661,13 +42684,15 @@ var Form = function (_React$Component) {
           { type: 'button',
             className: 'btn btn-outline-danger',
             onClick: function onClick() {
-              return _this3.props.onCancel({
-                active: false,
-                top: _this3.props.formOptions.top
-              });
+              return _this3.closeForm();
             } },
           'Cancel'
-        )
+        ),
+        this.props.adds.active ? _react2.default.createElement(
+          'p',
+          null,
+          'TEST'
+        ) : ''
       );
     }
   }]);
@@ -44011,7 +44036,7 @@ exports.default = SimpleArrow;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.changeDropdownRightThirdTitle = exports.changeDropdownLeftThirdTitle = exports.hideResultScript = exports.getScript = exports.saveParamsToSellChartBlock = exports.saveParamsToBuyChartBlock = exports.changeDropdownRightSecondTitle = exports.changeDropdownRightFirstTitle = exports.changeDropdownLeftSecondTitle = exports.changeDropdownLeftFirstTitle = exports.editBlockParamsSellChart = exports.addBlockToSellChart = exports.removeBlockFromSellChart = exports.editBlockParamsBuyChart = exports.addBlockToBuyChart = exports.removeBlockFromBuyChart = exports.changeFormState = exports.recalcSvgParams = exports.changeChartType = undefined;
+exports.changeAddsState = exports.changeDropdownRightThirdTitle = exports.changeDropdownLeftThirdTitle = exports.hideResultScript = exports.getScript = exports.saveParamsToSellChartBlock = exports.saveParamsToBuyChartBlock = exports.changeDropdownRightSecondTitle = exports.changeDropdownRightFirstTitle = exports.changeDropdownLeftSecondTitle = exports.changeDropdownLeftFirstTitle = exports.editBlockParamsSellChart = exports.addBlockToSellChart = exports.removeBlockFromSellChart = exports.editBlockParamsBuyChart = exports.addBlockToBuyChart = exports.removeBlockFromBuyChart = exports.changeFormState = exports.recalcSvgParams = exports.changeChartType = undefined;
 
 var _actionsTypes = __webpack_require__(/*! ./actionsTypes */ "./src/js/store/actionsTypes.js");
 
@@ -44152,6 +44177,13 @@ var changeDropdownRightThirdTitle = exports.changeDropdownRightThirdTitle = func
   };
 };
 
+var changeAddsState = exports.changeAddsState = function changeAddsState(newState) {
+  return {
+    type: types.ACTION_CHANGE_ADDS_STATE,
+    payload: newState
+  };
+};
+
 /***/ }),
 
 /***/ "./src/js/store/actionsTypes.js":
@@ -44186,6 +44218,7 @@ var ACTION_SAVE_PARAMS_TO_BUY_CHART_BLOCK = exports.ACTION_SAVE_PARAMS_TO_BUY_CH
 var ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK = exports.ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK = 'ACTION_SAVE_PARAMS_TO_SELL_CHART_BLOCK';
 var ACTION_GET_SCRIPS = exports.ACTION_GET_SCRIPS = 'ACTION_GET_SCRIPS';
 var ACTION_HIDE_RESULT_SCRIPT = exports.ACTION_HIDE_RESULT_SCRIPT = 'ACTION_HIDE_RESULT_SCRIPT';
+var ACTION_CHANGE_ADDS_STATE = exports.ACTION_CHANGE_ADDS_STATE = 'ACTION_CHANGE_ADDS_STATE';
 
 /***/ }),
 
@@ -44214,6 +44247,9 @@ var initialAppState = {
       width: 300,
       height: 400
     }
+  },
+  adds: {
+    active: false
   },
   form: {
     active: false,
@@ -44513,6 +44549,12 @@ var rootReducer = exports.rootReducer = function rootReducer() {
       return _extends({}, state, { pre: action.payload });
     case types.ACTION_HIDE_RESULT_SCRIPT:
       return _extends({}, state, { pre: action.payload });
+    case types.ACTION_CHANGE_ADDS_STATE:
+      return _extends({}, state, {
+        adds: _extends({}, state.adds, {
+          active: action.payload
+        })
+      });
   }
   return state;
 };
