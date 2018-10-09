@@ -21,7 +21,6 @@ export default class Form extends React.Component {
   }
 
   setSecondDefaultValue(option, type) {
-    let test = option.search(/[.*ma]/i);
     if(option.search(/[.*ma]/i) !== -1) {
       this.props.changeAddsState(true);
     } else {
@@ -93,32 +92,46 @@ export default class Form extends React.Component {
               )}
             </div>
           </div>
-          <div className="dropdown">
-            <button className="btn btn-outline-secondary dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    disabled={ formDropdownLeft.first.title === '' || formDropdownLeft.first.title === 'none' ? "disabled" : false } >
-              { formDropdownLeft.second.title }
-            </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <LeftOptionsList />
-            </div>
-          </div>
-          <div className="dropdown">
-            <button className="btn btn-outline-secondary dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    disabled={ formDropdownLeft.first.title === '' || formDropdownLeft.first.title === 'none' ? "disabled" : false } >
-              { formDropdownLeft.third.title }
-            </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <LeftSecondOptionsList />
+          <div {...(this.props.adds.active ? {className: 'group-form-param'} : {})}>
+            { this.props.adds.active ?
+              <div className="form-param">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="button">Button</button>
+                  </div>
+                  <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                </div>
+              </div>
+              : ''}
+            <div className="dropdown-div">
+              <div className="dropdown">
+                <button className="btn btn-outline-secondary dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        disabled={ formDropdownLeft.first.title === '' || formDropdownLeft.first.title === 'none' ? "disabled" : false } >
+                  { formDropdownLeft.second.title }
+                </button>
+                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <LeftOptionsList />
+                </div>
+              </div>
+              <div className="dropdown">
+                <button className="btn btn-outline-secondary dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        disabled={ formDropdownLeft.first.title === '' || formDropdownLeft.first.title === 'none' ? "disabled" : false } >
+                  { formDropdownLeft.third.title }
+                </button>
+                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <LeftSecondOptionsList />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -186,8 +199,7 @@ export default class Form extends React.Component {
                 onClick={() => this.closeForm()}>
           Cancel
         </button>
-
-        {this.props.adds.active ? <p>TEST</p> : ''}
+        
       </form>
     )
   }

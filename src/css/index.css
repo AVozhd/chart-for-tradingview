@@ -115,8 +115,7 @@ pre.result-script {
   }
   .dropdown-div {
     display: grid;
-    align-items: center;
-    grid-template-columns: minmax(120px, max-content) min-content min-content;
+    grid-template-columns: minmax(120px, max-content) min-content;
     grid-column-gap: 10px;
   }
 }
@@ -146,4 +145,14 @@ pre.result-script {
 
 .dropdown > button {
   width: 100%;
+}
+
+.group-form-param {
+  display: grid;
+  row-gap: 10px;
+}
+
+.form-param {
+  line-height: 24px;
+  padding: 6px 0;
 }
